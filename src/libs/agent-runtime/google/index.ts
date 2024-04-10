@@ -1,5 +1,5 @@
-import { Content, GoogleGenerativeAI, Part } from '@google/generative-ai';
 import { GoogleGenerativeAIStream, StreamingTextResponse } from 'ai';
+import { Content, GoogleGenerativeAI, Part } from 'generative-ai';
 
 import { LobeRuntimeAI } from '../BaseAI';
 import { AgentRuntimeErrorType, ILobeAgentRuntimeErrorType } from '../error';
