@@ -1,5 +1,13 @@
+/*
+ * @Author: liujiarong godisljr@163.com
+ * @Date: 2024-04-10 19:55:33
+ * @LastEditors: liujiarong godisljr@163.com
+ * @LastEditTime: 2024-04-10 21:44:56
+ * @FilePath: /lobe-chat/src/layout/GlobalLayout/Desktop/SideBar/TopActions.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { ActionIcon } from '@lobehub/ui';
-import { Compass, MessageSquare } from 'lucide-react';
+import { Compass, MessageSquare, SmilePlus } from 'lucide-react';
 import Link from 'next/link';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -42,6 +50,9 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
           size="large"
           title={t('tab.market')}
         />
+      </Link>
+      <Link aria-label={t('tab.market')} href={'https://lobechat.liujiarong.top/chat'}>
+        <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={'完整版'} />
       </Link>
     </>
   );
