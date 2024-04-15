@@ -9,7 +9,7 @@ import { debugStream } from '../utils/debugStream';
 import { desensitizeUrl } from '../utils/desensitizeUrl';
 import { handleOpenAIError } from '../utils/handleOpenAIError';
 
-const DEFAULT_BASE_URL = 'https://api.perplexity.ai';
+const DEFAULT_BASE_URL = process.env.PERPLEXITY_URL || 'https://api.perplexity.ai';
 
 export class LobePerplexityAI implements LobeRuntimeAI {
   private client: OpenAI;

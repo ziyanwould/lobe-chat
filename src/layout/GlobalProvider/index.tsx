@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { cookies } from 'next/headers';
+import Script from 'next/script';
 import { FC, ReactNode } from 'react';
 
 import { getClientConfig } from '@/config/client';
@@ -53,6 +54,11 @@ const GlobalLayout = async ({ children }: GlobalLayoutProps) => {
           <StoreHydration />
           {children}
           <DebugUI />
+          <Script
+            async
+            data-website-id="034f53a1-91e0-4c4e-a74e-1f4cb8851eda"
+            src="https://umami.liujiarong.top/script.js"
+          />
         </AppTheme>
       </Locale>
     </StyleRegistry>

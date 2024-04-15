@@ -1,5 +1,5 @@
 import { ActionIcon } from '@lobehub/ui';
-import { Compass, MessageSquare } from 'lucide-react';
+import { Compass, MessageSquare, SmilePlus } from 'lucide-react';
 import Link from 'next/link';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -42,6 +42,9 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
           size="large"
           title={t('tab.market')}
         />
+      </Link>
+      <Link aria-label={t('tab.market')} href={'https://robot.liujiarong.top/chat'}>
+        <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={'体验版'} />
       </Link>
     </>
   );
