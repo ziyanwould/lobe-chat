@@ -8,9 +8,15 @@
   "clearCurrentMessages": "Borrar mensajes actuales",
   "confirmClearCurrentMessages": "Estás a punto de borrar los mensajes de esta sesión. Una vez borrados, no se podrán recuperar. Por favor, confirma tu acción.",
   "confirmRemoveSessionItemAlert": "Estás a punto de eliminar este asistente. Una vez eliminado, no se podrá recuperar. Por favor, confirma tu acción.",
+  "confirmRemoveSessionSuccess": "Asistente eliminado con éxito",
   "defaultAgent": "Asistente predeterminado",
   "defaultList": "Lista predeterminada",
   "defaultSession": "Asistente predeterminado",
+  "duplicateSession": {
+    "loading": "Cargando duplicado...",
+    "success": "Duplicado exitoso",
+    "title": "{{title}} Copia"
+  },
   "duplicateTitle": "{{title}} Copia",
   "historyRange": "Rango de historial",
   "inbox": {
@@ -112,9 +118,12 @@
   },
   "updateAgent": "Actualizar información del asistente",
   "upload": {
+    "actionFiletip": "Sube el archivo",
     "actionTooltip": "Subir imagen",
     "disabled": "El modelo actual no admite reconocimiento visual. Por favor, cambia de modelo para usar esta función",
     "dragDesc": "Arrastra y suelta archivos aquí, admite la carga de varias imágenes. Mantén presionada la tecla Shift para enviar las imágenes directamente.",
+    "dragFileDesc": "Arrastre imágenes y archivos aquí para admitir la carga de varias imágenes y archivos. Mantenga presionada la tecla Mayús para enviar una imagen o un archivo directamente.",
+    "dragFileTitle": "Sube el archivo",
     "dragTitle": "Subir imagen"
   }
 }

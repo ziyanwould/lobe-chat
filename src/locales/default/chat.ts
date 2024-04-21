@@ -9,9 +9,15 @@ export default {
   clearCurrentMessages: '清空当前会话消息',
   confirmClearCurrentMessages: '即将清空当前会话消息，清空后将无法找回，请确认你的操作',
   confirmRemoveSessionItemAlert: '即将删除该助手，删除后该将无法找回，请确认你的操作',
+  confirmRemoveSessionSuccess: '助手删除成功',
   defaultAgent: '自定义助手',
   defaultList: '默认列表',
   defaultSession: '自定义助手',
+  duplicateSession: {
+    loading: '复制中...',
+    success: '复制成功',
+    title: '{{title}} 副本',
+  },
   duplicateTitle: '{{title}} 副本',
   historyRange: '历史范围',
   inbox: {
@@ -114,9 +120,12 @@ export default {
   },
   updateAgent: '更新助理信息',
   upload: {
+    actionFiletip: '上传文件',
     actionTooltip: '上传图片',
-    disabled: '当前模型不支持视觉识别，请切换模型后使用',
+    disabled: '当前模型不支持视觉识别和文件分析，请切换模型后使用',
     dragDesc: '拖拽文件到这里，支持上传多个图片。按住 Shift 直接发送图片',
-    dragTitle: '上传图片',
+    dragFileDesc: '拖拽图片和文件到这里，支持上传多个图片和文件。按住 Shift 直接发送图片或文件',
+    dragFileTitle: '上传文件',
+    dragTitle: '上传图片'
   },
 };

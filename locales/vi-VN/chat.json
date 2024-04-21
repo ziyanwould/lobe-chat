@@ -8,9 +8,15 @@
   "clearCurrentMessages": "Xóa tin nhắn hiện tại",
   "confirmClearCurrentMessages": "Bạn sắp xóa tin nhắn hiện tại. Hành động này không thể hoàn tác, vui lòng xác nhận.",
   "confirmRemoveSessionItemAlert": "Bạn sắp xóa trợ lý này. Hành động này không thể hoàn tác, vui lòng xác nhận.",
+  "confirmRemoveSessionSuccess": "Xóa trợ lý thành công",
   "defaultAgent": "Trợ lý mặc định",
   "defaultList": "Danh sách mặc định",
   "defaultSession": "Trợ lý mặc định",
+  "duplicateSession": {
+    "loading": "Đang sao chép...",
+    "success": "Sao chép thành công",
+    "title": "{{title}} Bản sao"
+  },
   "duplicateTitle": "{{title}} Bản sao",
   "historyRange": "Phạm vi lịch sử",
   "inbox": {
@@ -112,9 +118,12 @@
   },
   "updateAgent": "Cập nhật thông tin trợ lý",
   "upload": {
+    "actionFiletip": "Tải lên tập tin",
     "actionTooltip": "Tải lên hình ảnh",
     "disabled": "Mô hình hiện tại không hỗ trợ nhận diện hình ảnh, vui lòng chuyển đổi mô hình trước khi sử dụng",
     "dragDesc": "Kéo và thả tệp vào đây, hỗ trợ tải lên nhiều hình ảnh. Giữ phím Shift để gửi hình ảnh trực tiếp",
+    "dragFileDesc": "Kéo ảnh và tệp vào đây để hỗ trợ tải lên nhiều ảnh và tệp. Giữ phím Shift để gửi hình ảnh hoặc tập tin trực tiếp",
+    "dragFileTitle": "Tải lên tập tin",
     "dragTitle": "Tải lên hình ảnh"
   }
 }

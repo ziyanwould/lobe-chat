@@ -8,9 +8,15 @@
   "clearCurrentMessages": "Cancella messaggi attuali",
   "confirmClearCurrentMessages": "Stai per cancellare i messaggi attuali, questa operazione non potrà essere annullata. Confermi?",
   "confirmRemoveSessionItemAlert": "Stai per rimuovere questo assistente, l'operazione non potrà essere annullata. Confermi?",
+  "confirmRemoveSessionSuccess": "Session eliminata con successo",
   "defaultAgent": "Assistente predefinito",
   "defaultList": "Lista predefinita",
   "defaultSession": "Sessione predefinita",
+  "duplicateSession": {
+    "loading": "In corso di duplicazione...",
+    "success": "Duplicazione riuscita",
+    "title": "{{title}} Copia"
+  },
   "duplicateTitle": "{{title}} Copia",
   "historyRange": "Intervallo cronologico",
   "inbox": {
@@ -112,9 +118,12 @@
   },
   "updateAgent": "Aggiorna informazioni assistente",
   "upload": {
+    "actionFiletip": "Carica il file",
     "actionTooltip": "Carica immagine",
     "disabled": "Il modello attuale non supporta il riconoscimento visivo, si prega di cambiare modello prima di utilizzarlo",
     "dragDesc": "Trascina i file qui, supporta il caricamento di più immagini. Tieni premuto Shift per inviare direttamente le immagini",
+    "dragFileDesc": "Trascina qui immagini e file per supportare il caricamento di più immagini e file. Tieni premuto Maiusc per inviare direttamente un'immagine o un file",
+    "dragFileTitle": "Carica il file",
     "dragTitle": "Carica immagine"
   }
 }

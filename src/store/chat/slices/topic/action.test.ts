@@ -314,7 +314,7 @@ describe('topic action', () => {
       const activeId = 'test-session-id';
 
       await act(async () => {
-        useChatStore.setState({ activeId });
+        useChatStore.setState({ activeId, activeTopicId: topicId });
       });
 
       const refreshTopicSpy = vi.spyOn(result.current, 'refreshTopic');
@@ -328,6 +328,27 @@ describe('topic action', () => {
       expect(topicService.removeTopic).toHaveBeenCalledWith(topicId);
       expect(refreshTopicSpy).toHaveBeenCalled();
       expect(switchTopicSpy).toHaveBeenCalled();
+    });
+    it('should remove a specific topic and its messages, then not refresh the topic list', async () => {
+      const topicId = 'topic-1';
+      const { result } = renderHook(() => useChatStore());
+      const activeId = 'test-session-id';
+
+      await act(async () => {
+        useChatStore.setState({ activeId });
+      });
+
+      const refreshTopicSpy = vi.spyOn(result.current, 'refreshTopic');
+      const switchTopicSpy = vi.spyOn(result.current, 'switchTopic');
+
+      await act(async () => {
+        await result.current.removeTopic(topicId);
+      });
+
+      expect(messageService.removeMessages).toHaveBeenCalledWith(activeId, topicId);
+      expect(topicService.removeTopic).toHaveBeenCalledWith(topicId);
+      expect(refreshTopicSpy).toHaveBeenCalled();
+      expect(switchTopicSpy).not.toHaveBeenCalled();
     });
   });
   describe('removeUnstarredTopic', () => {

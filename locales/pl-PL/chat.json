@@ -8,9 +8,15 @@
   "clearCurrentMessages": "Wyczyść bieżącą rozmowę",
   "confirmClearCurrentMessages": "Czy na pewno chcesz wyczyścić bieżącą rozmowę? Tej operacji nie można cofnąć.",
   "confirmRemoveSessionItemAlert": "Czy na pewno chcesz usunąć tego asystenta? Tej operacji nie można cofnąć.",
+  "confirmRemoveSessionSuccess": "Sesja usunięta pomyślnie",
   "defaultAgent": "Domyślny asystent",
   "defaultList": "Domyślna lista",
   "defaultSession": "Domyślna sesja",
+  "duplicateSession": {
+    "loading": "Kopiowanie...",
+    "success": "Kopiowanie zakończone powodzeniem",
+    "title": "{{title}} - kopia"
+  },
   "duplicateTitle": "{{title}} kopia",
   "historyRange": "Zakres historii",
   "inbox": {
@@ -112,9 +118,12 @@
   },
   "updateAgent": "Aktualizuj informacje asystenta",
   "upload": {
+    "actionFiletip": "Prześlij plik",
     "actionTooltip": "Prześlij obraz",
     "disabled": "Obecny model nie obsługuje rozpoznawania wizyjnego. Proszę przełączyć model.",
     "dragDesc": "Przeciągnij pliki tutaj, obsługiwane jest przesyłanie wielu obrazów. Naciśnij klawisz Shift, aby wysłać obraz bezpośrednio",
+    "dragFileDesc": "Przeciągnij zdjęcia i pliki tutaj, aby umożliwić przesyłanie wielu zdjęć i plików. Przytrzymaj klawisz Shift, aby bezpośrednio wysłać obraz lub plik",
+    "dragFileTitle": "Prześlij plik",
     "dragTitle": "Prześlij obraz"
   }
 }
