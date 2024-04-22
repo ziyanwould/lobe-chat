@@ -59,6 +59,11 @@ const GlobalLayout = async ({ children }: GlobalLayoutProps) => {
             data-website-id="034f53a1-91e0-4c4e-a74e-1f4cb8851eda"
             src="https://umami.liujiarong.top/script.js"
           />
+          <Script
+            data-domain="liujiarong.top"
+            defer
+            src="https://analytics.liujiarong.top/js/script.js"
+          />
         </AppTheme>
       </Locale>
     </StyleRegistry>
