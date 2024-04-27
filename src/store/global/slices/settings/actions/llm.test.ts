@@ -110,7 +110,6 @@ describe('LLMSettingsSliceAction', () => {
       // Assert that setModelProviderConfig was not called
       expect(ollamaList?.chatModels.find((c) => c.id === 'llava')).toEqual({
         displayName: 'LLaVA 7B',
-        functionCall: false,
         enabled: true,
         id: 'llava',
         tokens: 4000,
@@ -139,8 +138,8 @@ describe('LLMSettingsSliceAction', () => {
       const enabledProviders = modelProviderSelectors.modelProviderListForModelSelect(
         result.current,
       );
-      expect(enabledProviders).toHaveLength(2);
-      expect(enabledProviders[1].id).toBe('perplexity');
+      expect(enabledProviders).toHaveLength(3);
+      expect(enabledProviders.at(-1)!.id).toBe('perplexity');
     });
   });
 });

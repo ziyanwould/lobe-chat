@@ -4,12 +4,14 @@ import Script from 'next/script';
 import { FC, ReactNode } from 'react';
 
 import { getClientConfig } from '@/config/client';
+import { getServerFeatureFlagsValue } from '@/config/server/featureFlags';
 import { LOBE_LOCALE_COOKIE } from '@/const/locale';
 import {
   LOBE_THEME_APPEARANCE,
   LOBE_THEME_NEUTRAL_COLOR,
   LOBE_THEME_PRIMARY_COLOR,
 } from '@/const/theme';
+import { FeatureFlagStoreProvider } from '@/store/featureFlags';
 import { getAntdLocale } from '@/utils/locale';
 
 import AppTheme from './AppTheme';
@@ -43,6 +45,8 @@ const GlobalLayout = async ({ children }: GlobalLayoutProps) => {
   const defaultLang = cookieStore.get(LOBE_LOCALE_COOKIE);
   const antdLocale = await getAntdLocale(defaultLang?.value);
 
+  // get default feature flags to use with ssr
+  const serverFeatureFlags = getServerFeatureFlagsValue();
   return (
     <StyleRegistry>
       <Locale antdLocale={antdLocale} defaultLang={defaultLang?.value}>
@@ -52,7 +56,9 @@ const GlobalLayout = async ({ children }: GlobalLayoutProps) => {
           defaultPrimaryColor={primaryColor?.value as any}
         >
           <StoreInitialization />
-          {children}
+          <FeatureFlagStoreProvider featureFlags={serverFeatureFlags}>
+            {children}
+          </FeatureFlagStoreProvider>
           <DebugUI />
           <Script
             async

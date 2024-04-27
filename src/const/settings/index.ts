@@ -101,9 +101,10 @@ export const DEFAULT_LLM_CONFIG: GlobalLLMConfig = {
     enabledModels: filterEnabledModels(MoonshotProviderCard),
   },
   ollama: {
-    enabled: false,
+    enabled: true,
     enabledModels: filterEnabledModels(OllamaProviderCard),
     endpoint: '',
+    fetchOnClient: true,
   },
   openai: {
     apiKey: '',

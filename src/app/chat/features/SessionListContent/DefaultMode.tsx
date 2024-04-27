@@ -1,10 +1,12 @@
 import { CollapseProps } from 'antd';
+import isEqual from 'fast-deep-equal';
 import { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useGlobalStore } from '@/store/global';
 import { preferenceSelectors } from '@/store/global/selectors';
 import { useSessionStore } from '@/store/session';
+import { sessionSelectors } from '@/store/session/selectors';
 import { SessionDefaultGroup } from '@/types/session';
 
 import Actions from '../SessionListContent/CollapseGroup/Actions';
@@ -14,7 +16,7 @@ import SessionList from './List';
 import ConfigGroupModal from './Modals/ConfigGroupModal';
 import RenameGroupModal from './Modals/RenameGroupModal';
 
-const SessionListContent = memo(() => {
+const SessionDefaultMode = memo(() => {
   const { t } = useTranslation('chat');
 
   const [activeGroupId, setActiveGroupId] = useState<string>();
@@ -22,11 +24,11 @@ const SessionListContent = memo(() => {
   const [configGroupModalOpen, setConfigGroupModalOpen] = useState(false);
 
   const [useFetchSessions] = useSessionStore((s) => [s.useFetchSessions]);
-  const { data } = useFetchSessions();
+  useFetchSessions();
 
-  const pinnedSessions = data?.pinned;
-  const defaultSessions = data?.default;
-  const customSessionGroups = data?.customGroup;
+  const defaultSessions = useSessionStore(sessionSelectors.defaultSessions, isEqual);
+  const customSessionGroups = useSessionStore(sessionSelectors.customSessionGroups, isEqual);
+  const pinnedSessions = useSessionStore(sessionSelectors.pinnedSessions, isEqual);
 
   const [sessionGroupKeys, updatePreference] = useGlobalStore((s) => [
     preferenceSelectors.sessionGroupKeys(s),
@@ -96,4 +98,6 @@ const SessionListContent = memo(() => {
   );
 });
 
-export default SessionListContent;
+SessionDefaultMode.displayName = 'SessionDefaultMode';
+
+export default SessionDefaultMode;
