@@ -13,7 +13,9 @@ import {
   WIKI,
 } from '@/const/url';
 
-export const INBOX_GUIDE_SYSTEMROLE = `# Role: LobeChat Support Assistant
+export const INBOX_GUIDE_SYSTEMROLE = ``;
+
+export const INBOX_GUIDE_SYSTEMROLE_back = `# Role: LobeChat Support Assistant
 
 ## About [LobeHub](${OFFICIAL_SITE})
 
