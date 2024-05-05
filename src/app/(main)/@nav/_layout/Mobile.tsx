@@ -2,7 +2,7 @@
 
 import { Icon, MobileTabBar, type MobileTabBarProps } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
-import { Bot, MessageSquare, User } from 'lucide-react';
+import { Compass, MessageSquare, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { rgba } from 'polished';
 import { memo, useMemo } from 'react';
@@ -44,7 +44,7 @@ const Nav = memo(() => {
         title: t('tab.chat'),
       },
       {
-        icon: (active) => <Icon className={active ? styles.active : undefined} icon={Bot} />,
+        icon: (active) => <Icon className={active ? styles.active : undefined} icon={Compass} />,
         key: SidebarTabKey.Market,
         onClick: () => {
           router.push('/market');
@@ -53,11 +53,11 @@ const Nav = memo(() => {
       },
       {
         icon: (active) => <Icon className={active ? styles.active : undefined} icon={User} />,
-        key: SidebarTabKey.Setting,
+        key: SidebarTabKey.Me,
         onClick: () => {
-          router.push('/settings');
+          router.push('/me');
         },
-        title: t('tab.setting'),
+        title: t('tab.me'),
       },
     ],
     [t],
