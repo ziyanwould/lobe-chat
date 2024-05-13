@@ -46,7 +46,7 @@
     "prettier": "prettier -c --write \"**/**\"",
     "pull": "git pull",
     "release": "semantic-release",
-    "start": "next start -p 9102",
+    "start": "next start -p 9117",
     "stylelint": "stylelint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
