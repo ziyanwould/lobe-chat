@@ -149,7 +149,8 @@ export const getLLMConfig = () => {
       ENABLED_OPENAI: process.env.ENABLED_OPENAI !== '0',
       OPENAI_API_KEY: process.env.OPENAI_API_KEY,
       OPENAI_PROXY_URL: process.env.OPENAI_PROXY_URL,
-      OPENAI_MODEL_LIST: process.env.OPENAI_MODEL_LIST || process.env.CUSTOM_MODELS,
+      OPENAI_MODEL_LIST:
+        process.env.OPENAI_MODEL_LIST?.replace(/\r?\n/g, '') || process.env.CUSTOM_MODELS,
       OPENAI_FUNCTION_REGIONS: regions as any,
 
       ENABLED_AZURE_OPENAI: !!AZURE_API_KEY,
