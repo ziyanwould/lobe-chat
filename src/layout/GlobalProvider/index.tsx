@@ -3,8 +3,8 @@ import { cookies } from 'next/headers';
 import Script from 'next/script';
 import { FC, ReactNode } from 'react';
 
-import { getClientConfig } from '@/config/client';
-import { getServerFeatureFlagsValue } from '@/config/server/featureFlags';
+import { getDebugConfig } from '@/config/debug';
+import { getServerFeatureFlagsValue } from '@/config/featureFlags';
 import { LOBE_LOCALE_COOKIE } from '@/const/locale';
 import {
   LOBE_THEME_APPEARANCE,
@@ -27,7 +27,7 @@ let DebugUI: FC = () => null;
 // refs: https://webpack.js.org/plugins/internal-plugins/#constplugin
 if (process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line unicorn/no-lonely-if
-  if (getClientConfig().DEBUG_MODE) {
+  if (getDebugConfig().DEBUG_MODE) {
     DebugUI = dynamic(() => import('@/features/DebugUI'), { ssr: false }) as FC;
   }
 }
