@@ -128,15 +128,6 @@ export const ModelInfoTags = memo<ModelInfoTagsProps>(
             </Center>
           </Tooltip>
         )}
-        {/*{model.isCustom && (*/}
-        {/*  <Tooltip*/}
-        {/*    overlayStyle={{ maxWidth: 300 }}*/}
-        {/*    placement={placement}*/}
-        {/*    title={t('ModelSelect.featureTag.custom')}*/}
-        {/*  >*/}
-        {/*    <Center className={styles.custom}>DIY</Center>*/}
-        {/*  </Tooltip>*/}
-        {/*)}*/}
       </Flexbox>
     );
   },
