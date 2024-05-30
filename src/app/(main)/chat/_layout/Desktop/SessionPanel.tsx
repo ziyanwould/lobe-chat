@@ -43,7 +43,7 @@ const SessionPanel = memo<PropsWithChildren>(({ children }) => {
     if (!nextWidth) return;
 
     if (isEqual(nextWidth, sessionsWidth)) return;
-    setWidth(nextWidth || 0);
+    setWidth(nextWidth);
     updatePreference({ sessionsWidth: nextWidth });
   };
 

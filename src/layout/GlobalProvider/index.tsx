@@ -1,6 +1,5 @@
 import dynamic from 'next/dynamic';
 import { cookies, headers } from 'next/headers';
-import Script from 'next/script';
 import { FC, PropsWithChildren } from 'react';
 import { resolveAcceptLanguage } from 'resolve-accept-language';
 
@@ -20,7 +19,9 @@ import { isMobileDevice } from '@/utils/responsive';
 
 import AppTheme from './AppTheme';
 import Locale from './Locale';
+import StoreInitialization from './StoreInitialization';
 import StyleRegistry from './StyleRegistry';
+import Script from 'next/script';
 
 let DebugUI: FC = () => null;
 
@@ -76,16 +77,6 @@ const GlobalLayout = async ({ children }: PropsWithChildren) => {
   const isMobile = isMobileDevice();
   return (
     <StyleRegistry>
-      <Script
-        async
-        data-website-id="034f53a1-91e0-4c4e-a74e-1f4cb8851eda"
-        src="https://umami.liujiarong.top/script.js"
-      />
-      <Script
-        data-domain="liujiarong.top"
-        defer
-        src="https://analytics.liujiarong.top/js/script.js"
-      />
       <Locale antdLocale={antdLocale} defaultLang={userLocale}>
         <AppTheme
           defaultAppearance={appearance?.value}
@@ -98,10 +89,21 @@ const GlobalLayout = async ({ children }: PropsWithChildren) => {
             serverConfig={serverConfig}
           >
             {children}
+            <StoreInitialization />
           </ServerConfigStoreProvider>
           <DebugUI />
         </AppTheme>
       </Locale>
+      <Script
+        async
+        data-website-id="034f53a1-91e0-4c4e-a74e-1f4cb8851eda"
+        src="https://umami.liujiarong.top/script.js"
+      />
+      <Script
+        data-domain="liujiarong.top"
+        defer
+        src="https://analytics.liujiarong.top/js/script.js"
+      />
     </StyleRegistry>
   );
 };
