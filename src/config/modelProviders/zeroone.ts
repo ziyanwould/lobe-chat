@@ -39,8 +39,7 @@ const ZeroOne: ModelProviderCard = {
       tokens: 16_384,
     },
     {
-      description:
-        '基于Yi-Large超强模型的高阶服务，结合检索与生成技术提供精准答案，支持客⼾私有知识库（请联系客服申请）。',
+      description: '基于Yi-Large超强模型的高阶服务，结合检索与生成技术提供精准答案，支持客⼾私有知识库（请联系客服申请）。',
       displayName: 'Yi Large RAG',
       id: 'yi-large-rag',
       tokens: 16_384,
@@ -65,6 +64,7 @@ const ZeroOne: ModelProviderCard = {
       id: 'yi-large-rag-preview',
       tokens: 16_384,
     },
+
   ],
   id: 'zeroone',
 };
