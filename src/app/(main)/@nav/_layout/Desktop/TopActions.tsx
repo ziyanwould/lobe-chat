@@ -1,5 +1,5 @@
 import { ActionIcon } from '@lobehub/ui';
-import { Cat, Compass, Home, Images, MessageSquare, Milestone, SmilePlus, Smartphone, Trophy } from 'lucide-react';
+import { Cat, Compass, Home, Images, MessageSquare, Milestone, SmilePlus, Smartphone, Trophy, Palette } from 'lucide-react';
 import Link from 'next/link';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -51,6 +51,9 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
       </Link>
       <Link aria-label={t('tab.market')} href={'https://aichat.liujiarong.top'} target="_blank">
         <ActionIcon icon={Images} placement={'right'} size="large" title={'绘图模型'} />
+      </Link>
+      <Link aria-label={t('tab.market')} href={'https://www.liujiarong.top/stable-ui/'} target="_blank">
+        <ActionIcon icon={Palette} placement={'right'} size="large" title={'stable-ui(AI生图)'} />
       </Link>
       <Link aria-label={t('tab.market')} href={'https://aidea.liujiarong.top'} target="_blank">
         <ActionIcon icon={Smartphone} placement={'right'} size="large" title={'移动端'} />
