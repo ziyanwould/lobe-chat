@@ -1,5 +1,5 @@
 import { ActionIcon } from '@lobehub/ui';
-import { Cat, Compass, Home, Images, MessageSquare, Milestone, SmilePlus, Smartphone, Trophy, Palette } from 'lucide-react';
+import { Cat, Compass, Home, Images, MessageSquare, Milestone, SmilePlus, Smartphone, Trophy, Palette, Gitlab } from 'lucide-react';
 import Link from 'next/link';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -66,6 +66,9 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
       </Link>
       <Link aria-label={t('tab.market')} href={'https://homarr.liujiarong.top'} target="_blank">
         <ActionIcon icon={Milestone} placement={'right'} size="large" title={'导航'} />
+      </Link>
+      <Link aria-label={t('tab.market')} href={'https://github.com/ziyanwould/AIForAl'} target="_blank">
+        <ActionIcon icon={Gitlab} placement={'right'} size="large" title={'AIForAl'} />
       </Link>
     </>
   );
