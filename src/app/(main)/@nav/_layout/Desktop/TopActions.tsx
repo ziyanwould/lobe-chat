@@ -43,8 +43,8 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
           title={t('tab.market')}
         />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://robot.liujiarong.top/chat'}>
-        <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={'体验版'} />
+      <Link aria-label={t('tab.market')} href={'https://lobechat.liujiarong.top/chat'}>
+        <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={'完整版'} />
       </Link>
       <Link aria-label={t('tab.market')} href={'https://chatnio.liujiarong.top'} target="_blank">
         <ActionIcon icon={Cat} placement={'right'} size="large" title={'国内大模型'} />
