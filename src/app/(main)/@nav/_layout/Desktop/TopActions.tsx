@@ -36,15 +36,6 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
           title={t('tab.chat')}
         />
       </Link>
-      <Link aria-label={t('tab.market')} href={'/market'}>
-        <ActionIcon
-          active={tab === SidebarTabKey.Market}
-          icon={Compass}
-          placement={'right'}
-          size="large"
-          title={t('tab.market')}
-        />
-      </Link>
       <Link aria-label={t('tab.market')} href={'https://robotai.liujiarong.top'}>
         <ActionIcon icon={Bot} placement={'right'} size="large" title={'国内加速版'} />
       </Link>
