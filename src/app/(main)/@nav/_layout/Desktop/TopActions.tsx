@@ -1,5 +1,5 @@
 import { ActionIcon } from '@lobehub/ui';
-import { Cat, Compass, Home, Images, MessageSquare, Milestone, SmilePlus, Smartphone, Trophy, Palette, Gitlab } from 'lucide-react';
+import { Cat, Compass, Home, Images, MessageSquare, Milestone, SmilePlus, Smartphone, Trophy, Palette, Gitlab, Bot, Plane } from 'lucide-react';
 import Link from 'next/link';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -44,6 +44,12 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
           size="large"
           title={t('tab.market')}
         />
+      </Link>
+      <Link aria-label={t('tab.market')} href={'https://robotai.liujiarong.top'}>
+        <ActionIcon icon={Bot} placement={'right'} size="large" title={'国内加速版'} />
+      </Link>
+      <Link aria-label={t('tab.market')} href={'https://robot.liujiarong.top'}>
+        <ActionIcon icon={Plane} placement={'right'} size="large" title={'海外版（vercel）'} />
       </Link>
       <Link aria-label={t('tab.market')} href={'https://lobechat.liujiarong.top/chat'}>
         <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={'完整版'} />
