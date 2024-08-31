@@ -146,10 +146,12 @@ ENV \
     TAICHU_API_KEY="" \
     # TogetherAI
     TOGETHERAI_API_KEY="" TOGETHERAI_MODEL_LIST="" \
+    # Upstage
+    UPSTAGE_API_KEY="" \
     # 01.AI
     ZEROONE_API_KEY="" \
     # Zhipu
-    ZHIPU_API_KEY=""
+    ZHIPU_API_KEY="" ZHIPU_MODEL_LIST=""
 
 USER nextjs
 

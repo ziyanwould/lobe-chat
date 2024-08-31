@@ -50,32 +50,38 @@ One-click **FREE** deployment of your private OpenAI ChatGPT/Claude/Gemini/Groq/
 
 #### TOC
 
-- [👋🏻 Getting Started & Join Our Community](#-getting-started--join-our-community)
-- [✨ Features](#-features)
-  - [`1` Multi-Model Service Provider Support](#1-multi-model-service-provider-support)
-  - [`2` Local Large Language Model (LLM) Support](#2-local-large-language-model-llm-support)
-  - [`3` Model Visual Recognition](#3-model-visual-recognition)
-  - [`4` TTS & STT Voice Conversation](#4-tts--stt-voice-conversation)
-  - [`5` Text to Image Generation](#5-text-to-image-generation)
-  - [`6` Plugin System (Function Calling)](#6-plugin-system-function-calling)
-  - [`7` Agent Market (GPTs)](#7-agent-market-gpts)
-  - [`8` Support Local / Remote Database](#8-support-local--remote-database)
-  - [`9` Support Multi-User Management](#9-support-multi-user-management)
-  - [`10` Progressive Web App (PWA)](#10-progressive-web-app-pwa)
-  - [`11` Mobile Device Adaptation](#11-mobile-device-adaptation)
-  - [`12` Custom Themes](#12-custom-themes)
-  - [`*` What's more](#-whats-more)
-- [⚡️ Performance](#️-performance)
-- [🛳 Self Hosting](#-self-hosting)
-  - [`A` Deploying with Vercel, Zeabur or Sealos](#a-deploying-with-vercel-zeabur-or-sealos)
-  - [`B` Deploying with Docker](#b-deploying-with-docker)
-  - [Environment Variable](#environment-variable)
-- [📦 Ecosystem](#-ecosystem)
-- [🧩 Plugins](#-plugins)
-- [⌨️ Local Development](#️-local-development)
-- [🤝 Contributing](#-contributing)
-- [❤️ Sponsor](#️-sponsor)
-- [🔗 More Products](#-more-products)
+- [Lobe Chat](#lobe-chat)
+      - [TOC](#toc)
+      - [](#)
+  - [👋🏻 Getting Started \& Join Our Community](#-getting-started--join-our-community)
+  - [✨ Features](#-features)
+    - [`1` Multi-Model Service Provider Support](#1-multi-model-service-provider-support)
+      - [Supported Model Service Providers](#supported-model-service-providers)
+    - [`2` Local Large Language Model (LLM) Support](#2-local-large-language-model-llm-support)
+    - [`3` Model Visual Recognition](#3-model-visual-recognition)
+    - [`4` TTS \& STT Voice Conversation](#4-tts--stt-voice-conversation)
+    - [`5` Text to Image Generation](#5-text-to-image-generation)
+    - [`6` Plugin System (Function Calling)](#6-plugin-system-function-calling)
+    - [`7` Agent Market (GPTs)](#7-agent-market-gpts)
+    - [`8` Support Local / Remote Database](#8-support-local--remote-database)
+    - [`9` Support Multi-User Management](#9-support-multi-user-management)
+    - [`10` Progressive Web App (PWA)](#10-progressive-web-app-pwa)
+    - [`11` Mobile Device Adaptation](#11-mobile-device-adaptation)
+    - [`12` Custom Themes](#12-custom-themes)
+    - [`*` What's more](#-whats-more)
+  - [⚡️ Performance](#️-performance)
+  - [🛳 Self Hosting](#-self-hosting)
+    - [`A` Deploying with Vercel, Zeabur or Sealos](#a-deploying-with-vercel-zeabur-or-sealos)
+      - [After Fork](#after-fork)
+      - [Keep Updated](#keep-updated)
+    - [`B` Deploying with Docker](#b-deploying-with-docker)
+    - [Environment Variable](#environment-variable)
+  - [📦 Ecosystem](#-ecosystem)
+  - [🧩 Plugins](#-plugins)
+  - [⌨️ Local Development](#️-local-development)
+  - [🤝 Contributing](#-contributing)
+  - [❤️ Sponsor](#️-sponsor)
+  - [🔗 More Products](#-more-products)
 
 ####
 
@@ -266,20 +272,20 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 
 <!-- AGENT LIST --> 
 
-| Recent Submits                                                                                                                                                                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Backtracking Question Expert](https://chat-preview.lobehub.com/market?agent=step-back-expert)<br/><sup>By **[tiny656](https://github.com/tiny656)** on **2024-08-27**</sup>                  | Hello! I am an expert in world knowledge, skilled in using backtracking questioning strategies to help you gain a deeper understanding and analysis of issues. Please enter a question, and I will respond to it according to the following process:
+| Recent Submits                                                                                                                                                               | Description                                                                                                                                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [International Lyricist](https://chat-preview.lobehub.com/market?agent=letrista-internacional)<br/><sup>By **[mnector](https://github.com/mnector)** on **2024-08-29**</sup> | Specialized in writing lyrics for songs in Spanish, English, and French, with a focus on storytelling and the emotions of the provided content.<br/>`lyricism` `translation` `music`                                                                 |
+| [Backtracking Question Expert](https://chat-preview.lobehub.com/market?agent=step-back-expert)<br/><sup>By **[tiny656](https://github.com/tiny656)** on **2024-08-27**</sup> | Hello! I am an expert in world knowledge, skilled in using backtracking questioning strategies to help you gain a deeper understanding and analysis of issues. Please enter a question, and I will respond to it according to the following process: |
 
 1. Provide at least 3 optional backtracking questions that align with the strategy.
 2. Answer each of these backtracking questions.
 3. Use the above answers as evidence to logically and coherently provide a final answer to your question, assisted by visual charts.
 
 Please tell me what issue you would like to explore?<br/>`backtracking-questions` `thinking-strategies` `problem-analysis` |
-| [TypeScript Solution Architect](https://chat-preview.lobehub.com/market?agent=typescript-developer)<br/><sup>By **[swarfte](https://github.com/swarfte)** on **2024-08-24**</sup>             | Expert in TypeScript, Node.js, Vue.js 3, Nuxt.js 3, Express.js, React.js, and modern UI libraries.<br/>`type-script` `java-script` `web-development` `coding-standards` `best-practices`                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| [Variable Name Conversion Expert](https://chat-preview.lobehub.com/market?agent=variable-name-conversion)<br/><sup>By **[zengyishou](https://github.com/zengyishou)** on **2024-08-21**</sup> | In software development, naming variables is a common yet relatively time-consuming task. This assistant can automatically convert Chinese variable names into English variable names that conform to camelCase, PascalCase, snake_case, kebab-case, and constant naming conventions based on specific naming rules. This not only improves code readability but also alleviates the frustration of variable naming.<br/>`software-development` `variable-naming` `chinese-to-english` `code-standards` `automatic-conversion`                                                                                                                                   |
-| [Prompt Engineering Expert](https://chat-preview.lobehub.com/market?agent=ai-prompts-assistant)<br/><sup>By **[cyicz123](https://github.com/cyicz123)** on **2024-08-12**</sup>               | Specializing in prompt optimization and design<br/>`prompt-engineering` `ai-interaction` `writing` `optimization` `consulting`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+\| [Unreal Engine Master](https://chat-preview.lobehub.com/market?agent=unreal-engine-master)<br/><sup>By **[thedivergentai](https://github.com/thedivergentai)** on **2024-08-27**</sup> | Unreal Game Development Companion<br/>`game-development` `unreal-engine` `software-engineering` |
+\| [TypeScript Solution Architect](https://chat-preview.lobehub.com/market?agent=typescript-developer)<br/><sup>By **[swarfte](https://github.com/swarfte)** on **2024-08-24**</sup> | Expert in TypeScript, Node.js, Vue.js 3, Nuxt.js 3, Express.js, React.js, and modern UI libraries.<br/>`type-script` `java-script` `web-development` `coding-standards` `best-practices` |
 
-> 📊 Total agents: [<kbd>**318**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**321**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
