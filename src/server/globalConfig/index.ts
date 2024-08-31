@@ -9,6 +9,7 @@ import {
   OpenRouterProviderCard,
   SiliconCloudProviderCard,
   TogetherAIProviderCard,
+  ZhiPuProviderCard,
 } from '@/config/modelProviders';
 import { enableNextAuth } from '@/const/auth';
 import { parseSystemAgent } from '@/server/globalConfig/parseSystemAgent';
@@ -26,6 +27,8 @@ export const getServerGlobalConfig = () => {
 
     ENABLED_MOONSHOT,
     ENABLED_ZHIPU,
+    ZHIPU_MODEL_LIST,
+
     ENABLED_AWS_BEDROCK,
     ENABLED_GOOGLE,
     ENABLED_GROQ,
@@ -44,6 +47,8 @@ export const getServerGlobalConfig = () => {
     ENABLED_SILICONCLOUD,
     SILICONCLOUD_MODEL_LIST,
 
+    ENABLED_UPSTAGE,
+    
     ENABLED_AZURE_OPENAI,
     AZURE_MODEL_LIST,
 
@@ -135,8 +140,16 @@ export const getServerGlobalConfig = () => {
           modelString: TOGETHERAI_MODEL_LIST,
         }),
       },
+      upstage: { enabled: ENABLED_UPSTAGE },
       zeroone: { enabled: ENABLED_ZEROONE },
-      zhipu: { enabled: ENABLED_ZHIPU },
+      zhipu: { 
+        enabled: ENABLED_ZHIPU, 
+        enabledModels: extractEnabledModels(ZHIPU_MODEL_LIST), 
+        serverModelCards: transformToChatModelCards({ 
+          defaultChatModels: ZhiPuProviderCard.chatModels, 
+          modelString: ZHIPU_MODEL_LIST 
+        }),
+      },
     },
     oAuthSSOProviders: authEnv.NEXT_AUTH_SSO_PROVIDERS.trim().split(/[,，]/),
     systemAgent: parseSystemAgent(appEnv.SYSTEM_AGENT),
