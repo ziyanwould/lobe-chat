@@ -3,6 +3,8 @@ import { LobeChat } from '@lobehub/ui/brand';
 import { Loader2 } from 'lucide-react';
 import { memo } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
+import Link from 'next/link';
+
 
 const FullscreenLoading = memo<{ title?: string }>(({ title }) => {
   return (
@@ -13,6 +15,9 @@ const FullscreenLoading = memo<{ title?: string }>(({ title }) => {
           <Icon icon={Loader2} spin />
           {title}
         </Center>
+        <Link href={'https://robotai.liujiarong.top'} target="_blank">
+          加载太慢~试试国内加速版
+        </Link>
       </Center>
     </Flexbox>
   );
