@@ -37,6 +37,11 @@ const Actions = memo<{ mobile?: boolean }>(({ mobile }) => {
           <Icon icon={SendHorizonal} />
         </Flexbox>
       </Button>
+      <Link href={'https://robotai.liujiarong.top'} target="_blank">
+          <Button block={mobile} size={'large'} style={{ minWidth: 160 }} type={'default'}>
+          国内加速版
+          </Button>
+        </Link>
     </Flexbox>
   );
 });
