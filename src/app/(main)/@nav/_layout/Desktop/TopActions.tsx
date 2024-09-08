@@ -1,7 +1,7 @@
 import { ActionIcon } from '@lobehub/ui';
-import { Compass, FolderClosed, MessageSquare, Cat, Home, Images, Milestone, SmilePlus, Smartphone, Trophy, Palette, Gitlab, Bot, Plane } from 'lucide-react';
+import { Compass, FolderClosed, MessageSquare, Cat, Home, Images, Milestone, SmilePlus, Smartphone, Trophy, Palette, Gitlab } from 'lucide-react';
 import Link from 'next/link';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useGlobalStore } from '@/store/global';
@@ -18,6 +18,24 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
   const switchBackToChat = useGlobalStore((s) => s.switchBackToChat);
   const { showMarket } = useServerConfigStore(featureFlagsSelectors);
   const { enableKnowledgeBase } = useServerConfigStore(featureFlagsSelectors);
+
+  const [knowledgeBaseLink, setKnowledgeBaseLink] = useState('https://lobechat.liujiarong.top');
+  const [knowledgeBaseTitle, setKnowledgeBaseTitle] = useState('完整版');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const currentDomain = window.location.hostname;
+
+      // 根据域名选择链接和标题
+      if (currentDomain.startsWith('lobechat.')) {
+        setKnowledgeBaseLink('https://robot.liujiarong.top');
+        setKnowledgeBaseTitle('知识库版'); // 设置动态标题
+      } else {
+        setKnowledgeBaseLink('https://lobechat.liujiarong.top');
+        setKnowledgeBaseTitle('完整版'); // 设置动态标题
+      }
+    }
+  }, []);
 
   return (
     <>
@@ -37,14 +55,8 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
           title={t('tab.chat')}
         />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://robotai.liujiarong.top'}>
-        <ActionIcon icon={Bot} placement={'right'} size="large" title={'国内加速版'} />
-      </Link>
-      <Link aria-label={t('tab.market')} href={'https://robot.liujiarong.top'}>
-        <ActionIcon icon={Plane} placement={'right'} size="large" title={'海外版（vercel）'} />
-      </Link>
-      <Link aria-label={t('tab.market')} href={'https://lobechat.liujiarong.top/chat'}>
-        <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={'完整版'} />
+      <Link aria-label={t('tab.market')} href={knowledgeBaseLink}>
+        <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={knowledgeBaseTitle} />
       </Link>
       <Link aria-label={t('tab.market')} href={'https://chatnio.liujiarong.top'} target="_blank">
         <ActionIcon icon={Cat} placement={'right'} size="large" title={'国内大模型'} />
