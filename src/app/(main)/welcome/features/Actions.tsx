@@ -5,7 +5,7 @@ import { Button } from 'antd';
 import { SendHorizonal } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Flexbox } from 'react-layout-kit';
 
@@ -15,6 +15,19 @@ const Actions = memo<{ mobile?: boolean }>(({ mobile }) => {
   const { t } = useTranslation('welcome');
   const router = useRouter();
   const { showMarket } = useServerConfigStore(featureFlagsSelectors);
+  
+  const [linkHref, setLinkHref] = useState('');
+  const [linkText, setLinkText] = useState('');
+
+  useEffect(() => {
+    // 获取当前域名
+    const currentDomain = window.location.hostname;
+
+    // 根据当前域名选择链接
+    const isDomestic = currentDomain.endsWith('.top');
+    setLinkHref(isDomestic ? 'https://robot.liujiarong.me' : 'https://robot.liujiarong.top');
+    setLinkText(isDomestic ? '海外加速版' : '国内加速版');
+  }, []);
 
   return (
     <Flexbox gap={16} horizontal={!mobile} justify={'center'} width={'100%'} wrap={'wrap'}>
@@ -37,11 +50,11 @@ const Actions = memo<{ mobile?: boolean }>(({ mobile }) => {
           <Icon icon={SendHorizonal} />
         </Flexbox>
       </Button>
-      <Link href={'https://robotai.liujiarong.top'} target="_blank">
-          <Button block={mobile} size={'large'} style={{ minWidth: 160 }} type={'default'}>
-          国内加速版
-          </Button>
-        </Link>
+      <Link href={linkHref} target="_blank">
+        <Button block={mobile} size={'large'} style={{ minWidth: 160 }} type={'default'}>
+          {linkText}
+        </Button>
+      </Link>
     </Flexbox>
   );
 });
