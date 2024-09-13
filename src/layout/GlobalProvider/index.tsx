@@ -76,6 +76,32 @@ const GlobalLayout = async ({ children }: PropsWithChildren) => {
   const serverFeatureFlags = getServerFeatureFlagsValue();
   const serverConfig = getServerGlobalConfig();
   const isMobile = isMobileDevice();
+
+   // Get the current hostname
+   const hostname = headers().get('host') || '';
+
+   // Determine which Umami script to use based on the hostname
+   const umamiScriptProps = hostname.endsWith('.top') 
+     ? {
+         'data-website-id': '2bfbc2b3-1e1f-48e0-ac6b-665117069b8d',
+         src: 'https://umami.liujiarong.top/script.js',
+       }
+     : {
+         'data-website-id': '4c715c06-37ac-4ee8-92ea-7169343ef4b2',
+         src: 'https://umami.liujiarong.me/script.js',
+       };
+ 
+   // Determine which analytics script to use based on the hostname
+   const analyticsScriptProps = hostname.endsWith('.top')
+     ? {
+         'data-domain': 'liujiarong.top',
+         src: 'https://analytics.liujiarong.top/js/script.js',
+       }
+     : {
+         'data-domain': 'liujiarong.me',
+         src: 'https://analytics.liujiarong.top/js/script.js', // Assuming the source remains the same
+       };
+
   return (
     <StyleRegistry>
       <Locale antdLocale={antdLocale} defaultLang={userLocale}>
@@ -96,14 +122,12 @@ const GlobalLayout = async ({ children }: PropsWithChildren) => {
         </AppTheme>
       </Locale>
       <Script
-        async
-        data-website-id="034f53a1-91e0-4c4e-a74e-1f4cb8851eda"
-        src="https://umami.liujiarong.top/script.js"
-      />
-      <Script
-        data-domain="liujiarong.top"
         defer
-        src="https://analytics.liujiarong.top/js/script.js"
+        {...umamiScriptProps} 
+      />
+     <Script
+        defer
+        {...analyticsScriptProps}
       />
     </StyleRegistry>
   );
