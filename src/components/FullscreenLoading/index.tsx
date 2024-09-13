@@ -5,7 +5,6 @@ import { Center, Flexbox } from 'react-layout-kit';
 import Link from 'next/link';
 import { Image } from 'antd';
 
-import { ProductLogo } from '@/components/Branding';
 
 const FullscreenLoading = memo<{ title?: string }>(({ title }) => {
   const [linkHref, setLinkHref] = useState('');
