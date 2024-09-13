@@ -5,6 +5,8 @@ import { Center, Flexbox } from 'react-layout-kit';
 import Link from 'next/link';
 import { Image } from 'antd';
 
+import { ProductLogo } from '@/components/Branding';
+
 const FullscreenLoading = memo<{ title?: string }>(({ title }) => {
   const [linkHref, setLinkHref] = useState('');
   const [linkText, setLinkText] = useState('');
@@ -26,6 +28,7 @@ const FullscreenLoading = memo<{ title?: string }>(({ title }) => {
           src="https://upimage.liujiarong.top/app/thumb.php?img=/i/2023/12/31/12kpwbs.png"
           width={48}
         />
+        <span style={{ fontSize: 28, fontWeight: 600 }}>Robot Chat</span>
         <Center gap={16} horizontal>
           <Icon icon={Loader2} spin />
           {title}

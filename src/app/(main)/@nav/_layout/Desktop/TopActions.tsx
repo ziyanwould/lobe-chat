@@ -16,8 +16,7 @@ export interface TopActionProps {
 const TopActions = memo<TopActionProps>(({ tab }) => {
   const { t } = useTranslation('common');
   const switchBackToChat = useGlobalStore((s) => s.switchBackToChat);
-  const { showMarket } = useServerConfigStore(featureFlagsSelectors);
-  const { enableKnowledgeBase } = useServerConfigStore(featureFlagsSelectors);
+  const { showMarket, enableKnowledgeBase } = useServerConfigStore(featureFlagsSelectors);
 
   const [knowledgeBaseLink, setKnowledgeBaseLink] = useState('https://lobechat.liujiarong.top');
   const [knowledgeBaseTitle, setKnowledgeBaseTitle] = useState('完整版');
