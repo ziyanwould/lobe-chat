@@ -22,14 +22,14 @@ const FullscreenLoading = memo<{ title?: string }>(({ title }) => {
 
   return (
     <Flexbox height={'100%'} style={{ userSelect: 'none' }} width={'100%'}>
-      <Center flex={1} gap={12} width={'100%'}>
+      <Center flex={1} gap={16} width={'100%'}>
         <Image
           src="https://upimage.liujiarong.top/app/thumb.php?img=/i/2023/12/31/12kpwbs.png"
           width={48}
         />
         <span style={{ fontSize: 28, fontWeight: 600 }}>Robot Chat</span>
-        <Center gap={16} horizontal>
-          <Icon icon={Loader2} spin />
+        <Center gap={12} horizontal style={{ fontSize: 15, lineHeight: 1.5, opacity: 0.66 }}>
+        <Icon icon={Loader2} size={{ fontSize: 16 }} spin />
           {title}
         </Center>
         <Link href={linkHref} target="_blank">
