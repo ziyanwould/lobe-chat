@@ -54,31 +54,31 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
           title={t('tab.chat')}
         />
       </Link>
-      <Link aria-label={t('tab.market')} href={knowledgeBaseLink}>
+      <Link aria-label={t('tab.discover')} href={knowledgeBaseLink}>
         <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={knowledgeBaseTitle} />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://chatnio.liujiarong.top'} target="_blank">
+      <Link aria-label={t('tab.discover')} href={'https://chatnio.liujiarong.top'} target="_blank">
         <ActionIcon icon={Cat} placement={'right'} size="large" title={'国内大模型'} />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://aichat.liujiarong.top'} target="_blank">
+      <Link aria-label={t('tab.discover')} href={'https://aichat.liujiarong.top'} target="_blank">
         <ActionIcon icon={Images} placement={'right'} size="large" title={'绘图模型'} />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://www.liujiarong.top/stable-ui/'} target="_blank">
+      <Link aria-label={t('tab.discover')} href={'https://www.liujiarong.top/stable-ui/'} target="_blank">
         <ActionIcon icon={Palette} placement={'right'} size="large" title={'stable-ui(AI生图)'} />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://aidea.liujiarong.top'} target="_blank">
+      <Link aria-label={t('tab.discover')} href={'https://aidea.liujiarong.top'} target="_blank">
         <ActionIcon icon={Smartphone} placement={'right'} size="large" title={'移动端'} />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://chat.liujiarong.top'} target="_blank">
+      <Link aria-label={t('tab.discover')} href={'https://chat.liujiarong.top'} target="_blank">
         <ActionIcon icon={Trophy} placement={'right'} size="large" title={'VIP'} />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://www.liujiarong.top'} target="_blank">
+      <Link aria-label={t('tab.discover')} href={'https://www.liujiarong.top'} target="_blank">
         <ActionIcon icon={Home} placement={'right'} size="large" title={'首页'} />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://homarr.liujiarong.top'} target="_blank">
+      <Link aria-label={t('tab.discover')} href={'https://homarr.liujiarong.top'} target="_blank">
         <ActionIcon icon={Milestone} placement={'right'} size="large" title={'导航'} />
       </Link>
-      <Link aria-label={t('tab.market')} href={'https://github.com/ziyanwould/AIForAl'} target="_blank">
+      <Link aria-label={t('tab.discover')} href={'https://github.com/ziyanwould/AIForAl'} target="_blank">
         <ActionIcon icon={Gitlab} placement={'right'} size="large" title={'AIForAl'} />
       </Link>
       {enableKnowledgeBase && (
