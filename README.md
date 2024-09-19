@@ -289,7 +289,7 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 > We welcome all users to join this growing ecosystem and participate in the iteration and optimization of agents.
 > Together, we can create more interesting, practical, and innovative agents, further enriching the diversity and practicality of the agent offerings.
 
-<!-- AGENT LIST -->
+<!-- AGENT LIST --> 
 
 | Recent Submits                                                                                                                                                                        | Description                                                                                                                                                                                                                                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
