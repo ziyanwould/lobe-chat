@@ -50,9 +50,7 @@ One-click **FREE** deployment of your private OpenAI ChatGPT/Claude/Gemini/Groq/
 
 #### TOC
 
-- [Lobe Chat](#lobe-chat)
-      - [TOC](#toc)
-      - [](#)
+- [Lobe Chat](#lobe-chat) - [TOC](#toc) - [](#)
   - [👋🏻 Getting Started \& Join Our Community](#-getting-started--join-our-community)
   - [✨ Features](#-features)
     - [`1` File Upload/Knowledge Base](#1-file-uploadknowledge-base)
@@ -250,7 +248,7 @@ In addition, these plugins are not limited to news aggregation, but can also ext
 >
 > Learn more about [📘 Plugin Usage][docs-usage-plugin] by checking it out.
 
-<!-- PLUGIN LIST --> 
+<!-- PLUGIN LIST -->
 
 | Recent Submits                                                                                                                     | Description                                                                                                                               |
 | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -289,16 +287,16 @@ Our marketplace is not just a showcase platform but also a collaborative space. 
 > We welcome all users to join this growing ecosystem and participate in the iteration and optimization of agents.
 > Together, we can create more interesting, practical, and innovative agents, further enriching the diversity and practicality of the agent offerings.
 
-<!-- AGENT LIST --> 
+<!-- AGENT LIST -->
 
-| Recent Submits                                                                                                                                                                                       | Description                                                                                                                                                                                                                                                                                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Exam Essay Writing Master](https://chat-preview.lobehub.com/market?agent=exam-composition-writing)<br/><sup>By **[NriotHrreion](https://github.com/NriotHrreion)** on **2024-09-23**</sup>          | A master of writing exam essays who excels in crafting high-scoring compositions.<br/>`education` `essay` `writing`                                                                                                                                                                                                                   |
-| [Markdown Conversion Expert](https://chat-preview.lobehub.com/market?agent=markdown%E6%8E%92%E7%89%88%E5%A4%A7%E5%B8%88)<br/><sup>By **[cl1107](https://github.com/cl1107)** on **2024-09-23**</sup> | Proficient in using Markdown syntax for text structuring and emphasis<br/>`text-structure` `markdown-syntax` `headings` `lists` `bold` `quote` `agulu`                                                                                                                                                                                |
-| [Nutrition Analyzer](https://chat-preview.lobehub.com/market?agent=nutrition-analyzer)<br/><sup>By **[Pandurangmopgar](https://github.com/Pandurangmopgar)** on **2024-09-23**</sup>                 | Nutri Info is an AI-powered nutrition assistant that analyzes food images and nutrition labels, providing simple explanations of nutritional content, benefits, and potential downsides. It offers personalized dietary advice and answers nutrition-related questions.<br/>`nutrition` `ai` `health` `food-analysis` `meal-planning` |
-| [Database Naming Assistant](https://chat-preview.lobehub.com/market?agent=database-name-helper)<br/><sup>By **[ppzhuya](https://github.com/ppzhuya)** on **2024-09-20**</sup>                        | Input a Chinese word, and I will provide five professional English terms for database design fields.<br/>`database` `naming` `translation` `development` `programming`                                                                                                                                                                |
+| Recent Submits                                                                                                                                                                           | Description                                                                                                                                                                                                             |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Contract Clause Refiner v1.0](https://chat-preview.lobehub.com/market?agent=business-contract)<br/><sup>By **[houhoufm](https://github.com/houhoufm)** on **2024-09-24**</sup>          | Output: {Optimize contract clauses for professional and concise expression}<br/>`contract-optimization` `legal-consultation` `copywriting` `terminology` `project-management`                                           |
+| [Meeting Assistant v1.0](https://chat-preview.lobehub.com/market?agent=meeting)<br/><sup>By **[houhoufm](https://github.com/houhoufm)** on **2024-09-24**</sup>                          | Professional meeting report assistant, distilling meeting key points into report sentences<br/>`meeting-reports` `writing` `communication` `workflow` `professional-skills`                                             |
+| [Stable Album Cover Prompter](https://chat-preview.lobehub.com/market?agent=title-bpm-stimmung)<br/><sup>By **[MellowTrixX](https://github.com/MellowTrixX)** on **2024-09-24**</sup>    | Professional graphic designer for front cover design specializing in creating visual concepts and designs for melodic techno music albums.<br/>`album-cover` `prompt` `stable-diffusion` `cover-design` `cover-prompts` |
+| [Advertising Copywriting Master](https://chat-preview.lobehub.com/market?agent=advertising-copywriting-master)<br/><sup>By **[leter](https://github.com/leter)** on **2024-09-23**</sup> | Specializing in product function analysis and advertising copywriting that resonates with user values<br/>`advertising-copy` `user-values` `marketing-strategy`                                                         |
 
-> 📊 Total agents: [<kbd>**355**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**392**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
