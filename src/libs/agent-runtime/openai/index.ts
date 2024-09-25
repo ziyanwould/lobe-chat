@@ -17,7 +17,7 @@ export const pruneO1Payload = (payload: ChatStreamPayload) => ({
     role: message.role === 'system' ? 'user' : message.role,
   })),
   presence_penalty: 0,
-  stream: false,
+  stream: true,
   temperature: 1,
   top_p: 1,
 });
