@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>README.zh-CN.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///Users/liujiarong/Documents/otherDevelopment/lobe-chat/R%3A%5C2.Travail%5C1.Enseignement%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css"><link rel="stylesheet" href="file:///Users/liujiarong/Documents/otherDevelopment/lobe-chat/D%3A%5Crdaros%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css">
+</head>
+
+<body>
+    <div align="center"><a name="readme-top"></a>
+</div><p><a href="https://chat-preview.lobehub.com"><img src="https://github.com/lobehub/lobe-chat/assets/28616219/9f155dff-4737-429f-9cad-a70a1a860c5f" alt=""></a></p>
+<h1>Lobe Chat</h1>
+<p>现代化设计的开源 ChatGPT/LLMs 聊天应用与开发框架<br/><br>
+支持语音合成、多模态、可扩展的（<a href="https://lobehub.com/zh/blog/openai-function-call">function call</a>）插件系统<br/><br>
+一键<strong>免费</strong>拥有你自己的 ChatGPT/Gemini/Claude/Ollama 应用</p>
+<p><a href="./README.md">English</a> · <strong>简体中文</strong> · <a href="./README.ja-JP.md">日本語</a> · <a href="https://lobehub.com">官网</a> · <a href="./CHANGELOG.md">更新日志</a> · <a href="https://lobehub.com/zh/docs/usage/start">文档</a> · <a href="https://lobehub.com/zh/blog">博客</a> · <a href="https://github.com/lobehub/lobe-chat/issues">反馈问题</a></p>
+<!-- SHIELD GROUP -->
+<p><a href="https://github.com/lobehub/lobe-chat/releases"><img src="https://img.shields.io/github/v/release/lobehub/lobe-chat?color=369eff&amp;labelColor=black&amp;logo=github&amp;style=flat-square" alt=""></a><br>
+<a href="https://hub.docker.com/r/lobehub/lobe-chat"><img src="https://img.shields.io/docker/v/lobehub/lobe-chat?color=369eff&amp;label=docker&amp;labelColor=black&amp;logo=docker&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="https://chat-preview.lobehub.com"><img src="https://img.shields.io/badge/vercel-online-55b467?labelColor=black&amp;logo=vercel&amp;style=flat-square" alt=""></a><br>
+<a href="https://discord.gg/AYFPHvv2jT"><img src="https://img.shields.io/discord/1127171173982154893?color=5865F2&amp;label=discord&amp;labelColor=black&amp;logo=discord&amp;logoColor=white&amp;style=flat-square" alt=""></a><br/><br>
+<a href="https://codecov.io/gh/lobehub/lobe-chat"><img src="https://img.shields.io/codecov/c/github/lobehub/lobe-chat?labelColor=black&amp;style=flat-square&amp;logo=codecov&amp;logoColor=white" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat/actions/workflows/test.yml"><img src="https://img.shields.io/github/actions/workflow/status/lobehub/lobe-chat/test.yml?label=test&amp;labelColor=black&amp;logo=githubactions&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat/actions/workflows/release.yml"><img src="https://img.shields.io/github/actions/workflow/status/lobehub/lobe-chat/release.yml?label=release&amp;labelColor=black&amp;logo=githubactions&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat/releases"><img src="https://img.shields.io/github/release-date/lobehub/lobe-chat?labelColor=black&amp;style=flat-square" alt=""></a><br/><br>
+<a href="https://github.com/lobehub/lobe-chat/graphs/contributors"><img src="https://img.shields.io/github/contributors/lobehub/lobe-chat?color=c4f042&amp;labelColor=black&amp;style=flat-square" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat/network/members"><img src="https://img.shields.io/github/forks/lobehub/lobe-chat?color=8ae8ff&amp;labelColor=black&amp;style=flat-square" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat/network/stargazers"><img src="https://img.shields.io/github/stars/lobehub/lobe-chat?color=ffcb47&amp;labelColor=black&amp;style=flat-square" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat/issues"><img src="https://img.shields.io/github/issues/lobehub/lobe-chat?color=ff80eb&amp;labelColor=black&amp;style=flat-square" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-apache%202.0-white?labelColor=black&amp;style=flat-square" alt=""></a><br><br>
+<a href="https://opencollective.com/lobehub" title="Become ❤ LobeHub Sponsor"><img src="https://img.shields.io/badge/-Sponsor%20LobeHub-f04f88?logo=opencollective&amp;logoColor=white&amp;style=flat-square" alt=""></a></p>
+<p><strong>分享 LobeChat 给你的好友</strong></p>
+<p><a href="https://x.com/intent/tweet?hashtags=chatbot%2CchatGPT%2CopenAI&amp;text=%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%20GitHub%20%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20%F0%9F%A4%AF%20LobeChat%20-%20%E5%BC%80%E6%BA%90%E7%9A%84%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%EF%BC%88Function%20Calling%EF%BC%89%E9%AB%98%E6%80%A7%E8%83%BD%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6%E3%80%82%0A%E5%AE%83%E6%94%AF%E6%8C%81%E4%B8%80%E9%94%AE%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E7%A7%81%E4%BA%BA%20ChatGPT%2FLLM%20%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F&amp;url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat"><img src="https://img.shields.io/badge/-share%20on%20x-black?labelColor=black&amp;logo=x&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="https://t.me/share/url%22?text=%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%20GitHub%20%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20%F0%9F%A4%AF%20LobeChat%20-%20%E5%BC%80%E6%BA%90%E7%9A%84%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%EF%BC%88Function%20Calling%EF%BC%89%E9%AB%98%E6%80%A7%E8%83%BD%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6%E3%80%82%0A%E5%AE%83%E6%94%AF%E6%8C%81%E4%B8%80%E9%94%AE%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E7%A7%81%E4%BA%BA%20ChatGPT%2FLLM%20%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%20%23chatbot%20%23chatGPT%20%23openAI&amp;url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat"><img src="https://img.shields.io/badge/-share%20on%20telegram-black?labelColor=black&amp;logo=telegram&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="https://api.whatsapp.com/send?text=%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%20GitHub%20%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20%F0%9F%A4%AF%20LobeChat%20-%20%E5%BC%80%E6%BA%90%E7%9A%84%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%EF%BC%88Function%20Calling%EF%BC%89%E9%AB%98%E6%80%A7%E8%83%BD%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6%E3%80%82%0A%E5%AE%83%E6%94%AF%E6%8C%81%E4%B8%80%E9%94%AE%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E7%A7%81%E4%BA%BA%20ChatGPT%2FLLM%20%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%20https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat%20%23chatbot%20%23chatGPT%20%23openAI"><img src="https://img.shields.io/badge/-share%20on%20whatsapp-black?labelColor=black&amp;logo=whatsapp&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="https://www.reddit.com/submit?title=%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%20GitHub%20%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20%F0%9F%A4%AF%20LobeChat%20-%20%E5%BC%80%E6%BA%90%E7%9A%84%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%EF%BC%88Function%20Calling%EF%BC%89%E9%AB%98%E6%80%A7%E8%83%BD%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6%E3%80%82%0A%E5%AE%83%E6%94%AF%E6%8C%81%E4%B8%80%E9%94%AE%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E7%A7%81%E4%BA%BA%20ChatGPT%2FLLM%20%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%20%23chatbot%20%23chatGPT%20%23openAI&amp;url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat"><img src="https://img.shields.io/badge/-share%20on%20reddit-black?labelColor=black&amp;logo=reddit&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="http://service.weibo.com/share/share.php?sharesource=weibo&amp;title=%E6%8E%A8%E8%8D%90%E4%B8%80%E4%B8%AA%20GitHub%20%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%20%F0%9F%A4%AF%20LobeChat%20-%20%E5%BC%80%E6%BA%90%E7%9A%84%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%EF%BC%88Function%20Calling%EF%BC%89%E9%AB%98%E6%80%A7%E8%83%BD%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%A1%86%E6%9E%B6%E3%80%82%0A%E5%AE%83%E6%94%AF%E6%8C%81%E4%B8%80%E9%94%AE%E5%85%8D%E8%B4%B9%E9%83%A8%E7%BD%B2%E7%A7%81%E4%BA%BA%20ChatGPT%2FLLM%20%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%20%23chatbot%20%23chatGPT%20%23openAI&amp;url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat"><img src="https://img.shields.io/badge/-share%20on%20weibo-black?labelColor=black&amp;logo=sinaweibo&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="https://mastodon.social/share?text=Check%20this%20GitHub%20repository%20out%20%F0%9F%A4%AF%20LobeChat%20-%20An%20open-source,%20extensible%20(Function%20Calling),%20high-performance%20chatbot%20framework.%20It%20supports%20one-click%20free%20deployment%20of%20your%20private%20ChatGPT/LLM%20web%20application.%20https://github.com/lobehub/lobe-chat%20#chatbot%20#chatGPT%20#openAI"><img src="https://img.shields.io/badge/-share%20on%20mastodon-black?labelColor=black&amp;logo=mastodon&amp;logoColor=white&amp;style=flat-square" alt=""></a></p>
+<p><sup>探索私人生产力的未来。在个体崛起的时代中为你打造.</sup></p>
+<p><a href="https://trendshift.io/repositories/2256"><img src="https://trendshift.io/api/badge/repositories/2256" alt=""></a><br>
+<a href="https://hellogithub.com/repository/39701baf5a734cb894ec812248a5655a"><img src="https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=39701baf5a734cb894ec812248a5655a&amp;claim_uid=HxYvFN34htJzGCD&amp;theme=dark&amp;theme=neutral&amp;theme=dark&amp;theme=neutral" alt=""></a></p>
+<p><a href="https://chat-preview.lobehub.com"><img src="https://github.com/lobehub/lobe-chat/assets/17870709/56b95d48-f573-41cd-8b38-387bf88bc4bf" alt=""></a></p>
+
+<details>
+<summary><kbd>&#x76EE;&#x5F55;&#x6811;</kbd></summary>
+</details><h4 id="toc">TOC</h4>
+<ul>
+<li><a href="#-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8--%E4%BA%A4%E6%B5%81">👋🏻 开始使用 &amp; 交流</a></li>
+<li><a href="#-%E7%89%B9%E6%80%A7%E4%B8%80%E8%A7%88">✨ 特性一览</a>
+<ul>
+<li><a href="#1-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0--%E7%9F%A5%E8%AF%86%E5%BA%93"><code>1</code> 文件上传 / 知识库</a></li>
+<li><a href="#2-%E5%A4%9A%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E5%95%86%E6%94%AF%E6%8C%81"><code>2</code> 多模型服务商支持</a>
+<ul>
+<li><a href="#%E5%B7%B2%E6%94%AF%E6%8C%81%E7%9A%84%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E5%95%86">已支持的模型服务商</a></li>
+</ul>
+</li>
+<li><a href="#3-%E6%94%AF%E6%8C%81%E6%9C%AC%E5%9C%B0%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm"><code>3</code> 支持本地大语言模型 (LLM)</a></li>
+<li><a href="#4-%E6%A8%A1%E5%9E%8B%E8%A7%86%E8%A7%89%E8%AF%86%E5%88%AB-model-visual"><code>4</code> 模型视觉识别 (Model Visual)</a></li>
+<li><a href="#5-tts--stt-%E8%AF%AD%E9%9F%B3%E4%BC%9A%E8%AF%9D"><code>5</code> TTS &amp; STT 语音会话</a></li>
+<li><a href="#6-text-to-image-%E6%96%87%E7%94%9F%E5%9B%BE"><code>6</code> Text to Image 文生图</a></li>
+<li><a href="#7-%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F-tools-calling"><code>7</code> 插件系统 (Tools Calling)</a></li>
+<li><a href="#8-%E5%8A%A9%E6%89%8B%E5%B8%82%E5%9C%BA-gpts"><code>8</code> 助手市场 (GPTs)</a></li>
+<li><a href="#9-%E6%94%AF%E6%8C%81%E6%9C%AC%E5%9C%B0--%E8%BF%9C%E7%A8%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><code>9</code> 支持本地 / 远程数据库</a></li>
+<li><a href="#10-%E6%94%AF%E6%8C%81%E5%A4%9A%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><code>10</code> 支持多用户管理</a></li>
+<li><a href="#11-%E6%B8%90%E8%BF%9B%E5%BC%8F-web-%E5%BA%94%E7%94%A8-pwa"><code>11</code> 渐进式 Web 应用 (PWA)</a></li>
+<li><a href="#12-%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E9%80%82%E9%85%8D"><code>12</code> 移动设备适配</a></li>
+<li><a href="#13-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98"><code>13</code> 自定义主题</a></li>
+<li><a href="#%E6%9B%B4%E5%A4%9A%E7%89%B9%E6%80%A7">更多特性</a></li>
+</ul>
+</li>
+<li><a href="#%EF%B8%8F-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95">⚡️ 性能测试</a></li>
+<li><a href="#-%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8">🛳 开箱即用</a>
+<ul>
+<li><a href="#a-%E4%BD%BF%E7%94%A8-vercelzeabur-%E6%88%96-sealos-%E9%83%A8%E7%BD%B2"><code>A</code> 使用 Vercel、Zeabur 或 Sealos 部署</a>
+<ul>
+<li><a href="#fork-%E4%B9%8B%E5%90%8E">Fork 之后</a></li>
+<li><a href="#%E4%BF%9D%E6%8C%81%E6%9B%B4%E6%96%B0">保持更新</a></li>
+</ul>
+</li>
+<li><a href="#b-%E4%BD%BF%E7%94%A8-docker-%E9%83%A8%E7%BD%B2"><code>B</code> 使用 Docker 部署</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96-openai-api-key">获取 OpenAI API Key</a>
+<ul>
+<li><a href="#a-%E9%80%9A%E8%BF%87-openai-%E5%AE%98%E6%96%B9%E6%B8%A0%E9%81%93"><code>A</code> 通过 OpenAI 官方渠道</a></li>
+<li><a href="#b-%E9%80%9A%E8%BF%87-openai-%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BB%A3%E7%90%86%E5%95%86"><code>B</code> 通过 OpenAI 第三方代理商</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#-%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F">📦 生态系统</a></li>
+<li><a href="#-%E6%8F%92%E4%BB%B6%E4%BD%93%E7%B3%BB">🧩 插件体系</a></li>
+<li><a href="#%EF%B8%8F-%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91">⌨️ 本地开发</a></li>
+<li><a href="#-%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE">🤝 参与贡献</a></li>
+<li><a href="#-%E7%A4%BE%E5%8C%BA%E8%B5%9E%E5%8A%A9">❤ 社区赞助</a></li>
+<li><a href="#-%E6%9B%B4%E5%A4%9A%E5%B7%A5%E5%85%B7">🔗 更多工具</a></li>
+</ul>
+<h4 id=""></h4>
+<br>
+
+<h2 id="%F0%9F%91%8B%F0%9F%8F%BB-%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8--%E4%BA%A4%E6%B5%81">👋🏻 开始使用 &amp; 交流</h2>
+<p>我们是一群充满热情的设计工程师，希望为 AIGC 提供现代化的设计组件和工具，并以开源的方式分享。<br>
+同时通过 Bootstrapping 的方式，我们希望能够为开发者和用户提供一个更加开放、更加透明友好的产品生态。</p>
+<p>不论普通用户与专业开发者，LobeHub 旨在成为所有人的 AI Agent 实验场。LobeChat 目前正在积极开发中，有任何需求或者问题，欢迎提交 <a href="https://img.shields.io/github/issues/lobehub/lobe-chat.svg?style=flat">issues</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><a href="https://chat-preview.lobehub.com"><img src="https://img.shields.io/badge/TRY%20LOBECHAT-ONLINE-55b467?labelColor=black&amp;logo=vercel&amp;style=for-the-badge" alt=""></a></th>
+<th style="text-align:left">无需安装或注册！访问我们的网站，快速体验</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://discord.gg/AYFPHvv2jT"><img src="https://img.shields.io/discord/1127171173982154893?color=5865F2&amp;label=discord&amp;labelColor=black&amp;logo=discord&amp;logoColor=white&amp;style=for-the-badge" alt=""></a></td>
+<td style="text-align:left">加入我们的 Discord 社区！这是你可以与开发者和其他 LobeHub 热衷用户交流的地方</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p><strong>收藏项目</strong>，你将从 GitHub 上无延迟地接收所有发布通知～⭐️</p>
+</blockquote>
+<p><a href="https://github.com/lobehub/lobe-chat/network/stargazers"><img src="https://github.com/lobehub/lobe-chat/assets/17870709/cb06b748-513f-47c2-8740-d876858d7855" alt=""></a></p>
+<details><summary><kbd>Star History</kbd></summary>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=lobehub%2Flobe-chat&amp;theme=dark&amp;type=Date">
+    <img src="https://api.star-history.com/svg?repos=lobehub%2Flobe-chat&amp;type=Date">
+  </picture>
+</details>
+<h2 id="%E2%9C%A8-%E7%89%B9%E6%80%A7%E4%B8%80%E8%A7%88">✨ 特性一览</h2>
+<p><a href="https://lobehub.com/blog/knowledge-base"><img src="https://github.com/user-attachments/assets/77e58e1c-c82f-4341-b159-f4eeede9967f" alt=""></a></p>
+<h3 id="1-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0--%E7%9F%A5%E8%AF%86%E5%BA%93"><code>1</code> <a href="https://lobehub.com/blog/knowledge-base">文件上传 / 知识库</a></h3>
+<p>LobeChat 支持文件上传与知识库功能，你可以上传文件、图片、音频、视频等多种类型的文件，以及创建知识库，方便用户管理和查找文件。同时在对话中使用文件和知识库功能，实现更加丰富的对话体验。</p>
+<p><a href="https://github.com/user-attachments/assets/faa8cf67-e743-4590-8bf6-ebf6ccc34175">https://github.com/user-attachments/assets/faa8cf67-e743-4590-8bf6-ebf6ccc34175</a></p>
+<blockquote>
+<p>[!TIP]</p>
+<p>查阅 <a href="https://lobehub.com/zh/blog/knowledge-base">📘 LobeChat 知识库上线 —— 此刻起，跬步千里</a> 了解详情。</p>
+</blockquote>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/multi-ai-providers"><img src="https://github.com/lobehub/lobe-chat/assets/28616219/b164bc54-8ba2-4c1e-b2f2-f4d7f7e7a551" alt=""></a></p>
+<h3 id="2-%E5%A4%9A%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E5%95%86%E6%94%AF%E6%8C%81"><code>2</code> <a href="https://lobehub.com/docs/usage/features/multi-ai-providers">多模型服务商支持</a></h3>
+<p>在 LobeChat 的不断发展过程中，我们深刻理解到在提供 AI 会话服务时模型服务商的多样性对于满足社区需求的重要性。因此，我们不再局限于单一的模型服务商，而是拓展了对多种模型服务商的支持，以便为用户提供更为丰富和多样化的会话选择。</p>
+<p>通过这种方式，LobeChat 能够更灵活地适应不同用户的需求，同时也为开发者提供了更为广泛的选择空间。</p>
+<h4 id="%E5%B7%B2%E6%94%AF%E6%8C%81%E7%9A%84%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E5%95%86">已支持的模型服务商</h4>
+<p>我们已经实现了对以下模型服务商的支持：</p>
+<ul>
+<li><strong>AWS Bedrock</strong>：集成了 AWS Bedrock 服务，支持了 <strong>Claude / LLama2</strong> 等模型，提供了强大的自然语言处理能力。<a href="https://aws.amazon.com/cn/bedrock">了解更多</a></li>
+<li><strong>Google AI (Gemini Pro、Gemini Vision)</strong>：接入了 Google 的 <strong>Gemini</strong> 系列模型，包括 Gemini 和 Gemini Pro，以支持更高级的语言理解和生成。<a href="https://deepmind.google/technologies/gemini/">了解更多</a></li>
+<li><strong>Anthropic (Claude)</strong>：接入了 Anthropic 的 <strong>Claude</strong> 系列模型，包括 Claude 3 和 Claude 2，多模态突破，超长上下文，树立行业新基准。<a href="https://www.anthropic.com/claude">了解更多</a></li>
+<li><strong>ChatGLM</strong>：加入了智谱的 <strong>ChatGLM</strong> 系列模型（GLM-4/GLM-4-vision/GLM-3-turbo），为用户提供了另一种高效的会话模型选择。<a href="https://www.zhipuai.cn/">了解更多</a></li>
+<li><strong>Moonshot AI (月之暗面)</strong>：集成了 Moonshot 系列模型，这是一家来自中国的创新性 AI 创业公司，旨在提供更深层次的会话理解。<a href="https://www.moonshot.cn/">了解更多</a></li>
+<li><strong>Together.ai</strong>：集成部署了数百种开源模型和向量模型，无需本地部署即可随时访问这些模型。<a href="https://www.together.ai/">了解更多</a></li>
+<li><strong>01.AI (零一万物)</strong>：集成了零一万物模型，系列 API 具备较快的推理速度，这不仅缩短了处理时间，同时也保持了出色的模型效果。<a href="https://www.lingyiwanwu.com/">了解更多</a></li>
+<li><strong>Groq</strong>：接入了 Groq 的 AI 模型，高效处理消息序列，生成回应，胜任多轮对话及单次交互任务。<a href="https://groq.com/">了解更多</a></li>
+<li><strong>OpenRouter</strong>：其支持包括 <strong>Claude 3</strong>，<strong>Gemma</strong>，<strong>Mistral</strong>，<strong>Llama2</strong>和<strong>Cohere</strong>等模型路由，支持智能路由优化，提升使用效率，开放且灵活。<a href="https://openrouter.ai/">了解更多</a></li>
+<li><strong>Minimax</strong>: 接入了 Minimax 的 AI 模型，包括 MoE 模型 <strong>abab6</strong>，提供了更多的选择空间。<a href="https://www.minimaxi.com/">了解更多</a></li>
+<li><strong>DeepSeek</strong>: 接入了 DeepSeek 的 AI 模型，包括最新的 <strong>DeepSeek-V2</strong>，提供兼顾性能与价格的模型。<a href="https://www.deepseek.com/">了解更多</a></li>
+<li><strong>Qwen</strong>: 接入了 Qwen 的 AI 模型，包括最新的 <strong>qwen-turbo</strong>，<strong>qwen-plus</strong> 和 <strong>qwen-max</strong> 等模型。<a href="https://help.aliyun.com/zh/dashscope/developer-reference/model-introduction">了解更多</a></li>
+</ul>
+<p>同时，我们也在计划支持更多的模型服务商，如 Replicate 和 Perplexity 等，以进一步丰富我们的服务商库。如果你希望让 LobeChat 支持你喜爱的服务商，欢迎加入我们的<a href="https://github.com/lobehub/lobe-chat/discussions/1284">社区讨论</a>。</p>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/local-llm"><img src="https://github.com/lobehub/lobe-chat/assets/28616219/ca9a21bc-ea6c-4c90-bf4a-fa53b4fb2b5c" alt=""></a></p>
+<h3 id="3-%E6%94%AF%E6%8C%81%E6%9C%AC%E5%9C%B0%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm"><code>3</code> <a href="https://lobehub.com/docs/usage/features/local-llm">支持本地大语言模型 (LLM)</a></h3>
+<p>为了满足特定用户的需求，LobeChat 还基于 <a href="https://ollama.ai">Ollama</a> 支持了本地模型的使用，让用户能够更灵活地使用自己的或第三方的模型。</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>查阅 <a href="https://lobehub.com/docs/usage/providers/ollama">📘 在 LobeChat 中使用 Ollama</a> 获得更多信息</p>
+</blockquote>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/vision"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/17870709/284072129-382bdf30-e3d6-4411-b5a0-249710b8ba08.png" alt=""></a></p>
+<h3 id="4-%E6%A8%A1%E5%9E%8B%E8%A7%86%E8%A7%89%E8%AF%86%E5%88%AB-model-visual"><code>4</code> <a href="https://lobehub.com/docs/usage/features/vision">模型视觉识别 (Model Visual)</a></h3>
+<p>LobeChat 已经支持 OpenAI 最新的 <a href="https://platform.openai.com/docs/guides/vision"><code>gpt-4-vision</code></a> 支持视觉识别的模型，这是一个具备视觉识别能力的多模态应用。<br>
+用户可以轻松上传图片或者拖拽图片到对话框中，助手将能够识别图片内容，并在此基础上进行智能对话，构建更智能、更多元化的聊天场景。</p>
+<p>这一特性打开了新的互动方式，使得交流不再局限于文字，而是可以涵盖丰富的视觉元素。无论是日常使用中的图片分享，还是在特定行业内的图像解读，助手都能提供出色的对话体验。</p>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/tts"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/17870709/284072124-c9853d8d-f1b5-44a8-a305-45ebc0f6d19a.png" alt=""></a></p>
+<h3 id="5-tts--stt-%E8%AF%AD%E9%9F%B3%E4%BC%9A%E8%AF%9D"><code>5</code> <a href="https://lobehub.com/docs/usage/features/tts">TTS &amp; STT 语音会话</a></h3>
+<p>LobeChat 支持文字转语音（Text-to-Speech，TTS）和语音转文字（Speech-to-Text，STT）技术，这使得我们的应用能够将文本信息转化为清晰的语音输出，用户可以像与真人交谈一样与我们的对话助手进行交流。<br>
+用户可以从多种声音中选择，给助手搭配合适的音源。 同时，对于那些倾向于听觉学习或者想要在忙碌中获取信息的用户来说，TTS 提供了一个极佳的解决方案。</p>
+<p>在 LobeChat 中，我们精心挑选了一系列高品质的声音选项 (OpenAI Audio, Microsoft Edge Speech)，以满足不同地域和文化背景用户的需求。用户可以根据个人喜好或者特定场景来选择合适的语音，从而获得个性化的交流体验。</p>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/text-to-image"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/17870709/297746445-0ff762b9-aa08-4337-afb7-12f932b6efbb.png" alt=""></a></p>
+<h3 id="6-text-to-image-%E6%96%87%E7%94%9F%E5%9B%BE"><code>6</code> <a href="https://lobehub.com/docs/usage/features/text-to-image">Text to Image 文生图</a></h3>
+<p>支持最新的文本到图片生成技术，LobeChat 现在能够让用户在与助手对话中直接调用文生图工具进行创作。<br>
+通过利用 <a href="https://openai.com/dall-e-3"><code>DALL-E 3</code></a>、<a href="https://www.midjourney.com/"><code>MidJourney</code></a> 和 <a href="https://pollinations.ai/"><code>Pollinations</code></a> 等 AI 工具的能力， 助手们现在可以将你的想法转化为图像。<br>
+同时可以更私密和沉浸式地完成你的创作过程。</p>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/plugin-system"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/17870709/268670883-33c43a5c-a512-467e-855c-fa299548cce5.png" alt=""></a></p>
+<h3 id="7-%E6%8F%92%E4%BB%B6%E7%B3%BB%E7%BB%9F-tools-calling"><code>7</code> <a href="https://lobehub.com/docs/usage/features/plugin-system">插件系统 (Tools Calling)</a></h3>
+<p>LobeChat 的插件生态系统是其核心功能的重要扩展，它极大地增强了 ChatGPT 的实用性和灵活性。</p>
+<p><video controls src="https://github.com/lobehub/lobe-chat/assets/28616219/f29475a3-f346-4196-a435-41a6373ab9e2" muted="false"></video></p>
+<p>通过利用插件，ChatGPT 能够实现实时信息的获取和处理，例如自动获取最新新闻头条，为用户提供即时且相关的资讯。</p>
+<p>此外，这些插件不仅局限于新闻聚合，还可以扩展到其他实用的功能，如快速检索文档、生成图象、获取电商平台数据，以及其他各式各样的第三方服务。</p>
+<blockquote>
+<p>通过文档了解更多 <a href="https://lobehub.com/docs/usage/plugins/basic">📘 插件使用</a></p>
+</blockquote>
+<!-- PLUGIN LIST --> 
+<table>
+<thead>
+<tr>
+<th>最近新增</th>
+<th>插件描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://chat-preview.lobehub.com/settings/agent">通义万象图像生成器</a><br/><sup>By <strong>YoungTx</strong> on <strong>2024-08-09</strong></sup></td>
+<td>此插件使用阿里巴巴的通义万象模型根据文本提示生成图像。<br/><code>图像</code> <code>通义</code> <code>万象</code></td>
+</tr>
+<tr>
+<td><a href="https://chat-preview.lobehub.com/settings/agent">购物工具</a><br/><sup>By <strong>shoppingtools</strong> on <strong>2024-07-19</strong></sup></td>
+<td>在 eBay 和 AliExpress 上搜索产品，查找 eBay 活动和优惠券。获取快速示例。<br/><code>购物</code> <code>e-bay</code> <code>ali-express</code> <code>优惠券</code></td>
+</tr>
+<tr>
+<td><a href="https://chat-preview.lobehub.com/settings/agent">Savvy Trader AI</a><br/><sup>By <strong>savvytrader</strong> on <strong>2024-06-27</strong></sup></td>
+<td>实时股票、加密货币和其他投资数据。<br/><code>股票</code> <code>分析</code></td>
+</tr>
+<tr>
+<td><a href="https://chat-preview.lobehub.com/settings/agent">Search1API</a><br/><sup>By <strong>fatwang2</strong> on <strong>2024-05-06</strong></sup></td>
+<td>搜索聚合服务，专为LLMs设计<br/><code>web</code> <code>search</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📊 Total plugins: <a href="https://github.com/lobehub/lobe-chat-plugins"><kbd><strong>49</strong></kbd></a></p>
+</blockquote>
+ <!-- PLUGIN LIST -->
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/agent-market"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/17870709/268670869-f1ffbf66-42b6-42cf-a937-9ce1f8328514.png" alt=""></a></p>
+<h3 id="8-%E5%8A%A9%E6%89%8B%E5%B8%82%E5%9C%BA-gpts"><code>8</code> <a href="https://lobehub.com/docs/usage/features/agent-market">助手市场 (GPTs)</a></h3>
+<p>在 LobeChat 的助手市场中，创作者们可以发现一个充满活力和创新的社区，它汇聚了众多精心设计的助手，这些助手不仅在工作场景中发挥着重要作用，也在学习过程中提供了极大的便利。<br>
+我们的市场不仅是一个展示平台，更是一个协作的空间。在这里，每个人都可以贡献自己的智慧，分享个人开发的助手。</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>通过 <a href="https://github.com/lobehub/lobe-chat-agents">🤖/🏪 提交助手</a> ，你可以轻松地将你的助手作品提交到我们的平台。我们特别强调的是，LobeChat 建立了一套精密的自动化国际化（i18n）工作流程， 它的强大之处在于能够无缝地将你的助手转化为多种语言版本。<br>
+这意味着，不论你的用户使用何种语言，他们都能无障碍地体验到你的助手。</p>
+</blockquote>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p>我欢迎所有用户加入这个不断成长的生态系统，共同参与到助手的迭代与优化中来。共同创造出更多有趣、实用且具有创新性的助手，进一步丰富助手的多样性和实用性。</p>
+</blockquote>
+<!-- AGENT LIST --> 
+<table>
+<thead>
+<tr>
+<th>最近新增</th>
+<th>助手说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://chat-preview.lobehub.com/market?agent=assistants-health-better">健身专家</a><br/><sup>By <strong><a href="https://github.com/Lockeysama">Lockeysama</a></strong> on <strong>2024-10-08</strong></sup></td>
+<td>知识渊博的健身专家<br/><code>健身</code> <code>咨询</code> <code>生活问题</code> <code>建议</code></td>
+</tr>
+<tr>
+<td><a href="https://chat-preview.lobehub.com/market?agent=code-review-and-fix">代码优化 / 错误修改</a><br/><sup>By <strong><a href="https://github.com/alphandbelt">alphandbelt</a></strong> on <strong>2024-10-08</strong></sup></td>
+<td>精通多种编程语言，优化代码结构，修复错误并提供优雅的解决方案。<br/><code>代码优化</code> <code>错误修改</code> <code>多种编程语言</code></td>
+</tr>
+<tr>
+<td><a href="https://chat-preview.lobehub.com/market?agent=cyber-specialist">伦理安全分析师</a><br/><sup>By <strong><a href="https://github.com/ayeantics">ayeantics</a></strong> on <strong>2024-10-08</strong></sup></td>
+<td>专注于识别和减轻网络和移动平台中的安全漏洞。<br/><code>网络安全</code> <code>伦理黑客</code> <code>漏洞评估</code> <code>咨询</code> <code>技术支持</code></td>
+</tr>
+<tr>
+<td><a href="https://chat-preview.lobehub.com/market?agent=minimal-artifact-architect">最小化的工件架构师</a><br/><sup>By <strong><a href="https://github.com/yaleh">yaleh</a></strong> on <strong>2024-10-06</strong></sup></td>
+<td>擅长评估和创建可重用的内容工件<br/><code>内容创作</code> <code>工件管理</code> <code>对话设计</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📊 Total agents: <a href="https://github.com/lobehub/lobe-chat-agents"><kbd><strong>410</strong></kbd> </a></p>
+</blockquote>
+ <!-- AGENT LIST -->
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/database"><img src="https://github.com/lobehub/lobe-chat/assets/17870709/c27a0234-a4e9-40e5-8bcb-42d5ce7e40f9" alt=""></a></p>
+<h3 id="9-%E6%94%AF%E6%8C%81%E6%9C%AC%E5%9C%B0--%E8%BF%9C%E7%A8%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><code>9</code> <a href="https://lobehub.com/docs/usage/features/database">支持本地 / 远程数据库</a></h3>
+<p>LobeChat 支持同时使用服务端数据库和本地数据库。根据您的需求，您可以选择合适的部署方案：</p>
+<ul>
+<li>本地数据库：适合希望对数据有更多掌控感和隐私保护的用户。LobeChat 采用了 CRDT (Conflict-Free Replicated Data Type) 技术，实现了多端同步功能。这是一项实验性功能，旨在提供无缝的数据同步体验。</li>
+<li>服务端数据库：适合希望更便捷使用体验的用户。LobeChat 支持 PostgreSQL 作为服务端数据库。关于如何配置服务端数据库的详细文档，请前往 <a href="https://lobehub.com/zh/docs/self-hosting/advanced/server-database">配置服务端数据库</a>。</li>
+</ul>
+<p>无论您选择哪种数据库，LobeChat 都能为您提供卓越的用户体验。</p>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/auth"><img src="https://github.com/lobehub/lobe-chat/assets/17870709/8ce70e15-40df-451e-b700-66090fe5b8c2" alt=""></a></p>
+<h3 id="10-%E6%94%AF%E6%8C%81%E5%A4%9A%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><code>10</code> <a href="https://lobehub.com/docs/usage/features/auth">支持多用户管理</a></h3>
+<p>LobeChat 支持多用户管理，提供了两种主要的用户认证和管理方案，以满足不同需求：</p>
+<ul>
+<li>
+<p><strong>next-auth</strong>：LobeChat 集成了 <code>next-auth</code>，一个灵活且强大的身份验证库，支持多种身份验证方式，包括 OAuth、邮件登录、凭证登录等。通过 <code>next-auth</code>，您可以轻松实现用户的注册、登录、会话管理以及社交登录等功能，确保用户数据的安全性和隐私性。</p>
+</li>
+<li>
+<p><a href="https://go.clerk.com/exgqLG0"><strong>Clerk</strong></a>：对于需要更高级用户管理功能的用户，LobeChat 还支持 <code>Clerk</code>，一个现代化的用户管理平台。<code>Clerk</code> 提供了更丰富的功能，如多因素认证 (MFA)、白名单、用户管理、登录活动监控等。通过 <code>Clerk</code>，您可以获得更高的安全性和灵活性，轻松应对生产级的用户管理需求。</p>
+</li>
+</ul>
+<p>您可以根据自己的需求，选择合适的用户管理方案。</p>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/pwa"><img src="https://gw.alipayobjects.com/zos/kitchen/69x6bllkX3/pwa.webp" alt=""></a></p>
+<h3 id="11-%E6%B8%90%E8%BF%9B%E5%BC%8F-web-%E5%BA%94%E7%94%A8-pwa"><code>11</code> <a href="https://lobehub.com/docs/usage/features/pwa">渐进式 Web 应用 (PWA)</a></h3>
+<p>我们深知在当今多设备环境下为用户提供无缝体验的重要性。为此，我们采用了渐进式 Web 应用 <a href="https://support.google.com/chrome/answer/9658361">PWA</a> 技术，<br>
+这是一种能够将网页应用提升至接近原生应用体验的现代 Web 技术。通过 PWA，LobeChat 能够在桌面和移动设备上提供高度优化的用户体验，同时保持轻量级和高性能的特点。<br>
+在视觉和感觉上，我们也经过精心设计，以确保它的界面与原生应用无差别，提供流畅的动画、响应式布局和适配不同设备的屏幕分辨率。</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>若您未熟悉 PWA 的安装过程，您可以按照以下步骤将 LobeChat 添加为您的桌面应用（也适用于移动设备）：</p>
+<ul>
+<li>在电脑上运行 Chrome 或 Edge 浏览器 .</li>
+<li>访问 LobeChat 网页 .</li>
+<li>在地址栏的右上角，单击 <kbd>安装</kbd> 图标 .</li>
+<li>根据屏幕上的指示完成 PWA 的安装 .</li>
+</ul>
+</blockquote>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/mobile"><img src="https://gw.alipayobjects.com/zos/kitchen/R441AuFS4W/mobile.webp" alt=""></a></p>
+<h3 id="12-%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E9%80%82%E9%85%8D"><code>12</code> <a href="https://lobehub.com/docs/usage/features/mobile">移动设备适配</a></h3>
+<p>针对移动设备进行了一系列的优化设计，以提升用户的移动体验。目前，我们正在对移动端的用户体验进行版本迭代，以实现更加流畅和直观的交互。如果您有任何建议或想法，我们非常欢迎您通过 GitHub Issues 或者 Pull Requests 提供反馈。</p>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<p><a href="https://lobehub.com/docs/usage/features/theme"><img src="https://gw.alipayobjects.com/zos/kitchen/pvus1lo%26Z7/darkmode.webp" alt=""></a></p>
+<h3 id="13-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98"><code>13</code> <a href="https://lobehub.com/docs/usage/features/theme">自定义主题</a></h3>
+<p>作为设计工程师出身，LobeChat 在界面设计上充分考虑用户的个性化体验，因此引入了灵活多变的主题模式，其中包括日间的亮色模式和夜间的深色模式。<br>
+除了主题模式的切换，还提供了一系列的颜色定制选项，允许用户根据自己的喜好来调整应用的主题色彩。无论是想要沉稳的深蓝，还是希望活泼的桃粉，或者是专业的灰白，用户都能够在 LobeChat 中找到匹配自己风格的颜色选择。</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>默认配置能够智能地识别用户系统的颜色模式，自动进行主题切换，以确保应用界面与操作系统保持一致的视觉体验。对于喜欢手动调控细节的用户，LobeChat 同样提供了直观的设置选项，针对聊天场景也提供了对话气泡模式和文档模式的选择。</p>
+</blockquote>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h3 id="%E6%9B%B4%E5%A4%9A%E7%89%B9%E6%80%A7">更多特性</h3>
+<p>除了上述功能特性以外，LobeChat 所具有的设计和技术能力将为你带来更多使用保障：</p>
+<ul>
+<li><input type="checkbox" id="checkbox0" checked="true"><label for="checkbox0">💎 </label><strong>精致 UI 设计</strong>：经过精心设计的界面，具有优雅的外观和流畅的交互效果，支持亮暗色主题，适配移动端。支持 PWA，提供更加接近原生应用的体验。</li>
+<li><input type="checkbox" id="checkbox1" checked="true"><label for="checkbox1">🗣️ </label><strong>流畅的对话体验</strong>：流式响应带来流畅的对话体验，并且支持完整的 Markdown 渲染，包括代码高亮、LaTex 公式、Mermaid 流程图等。</li>
+<li><input type="checkbox" id="checkbox2" checked="true"><label for="checkbox2">💨 </label><strong>快速部署</strong>：使用 Vercel 平台或者我们的 Docker 镜像，只需点击一键部署按钮，即可在 1 分钟内完成部署，无需复杂的配置过程。</li>
+<li><input type="checkbox" id="checkbox3" checked="true"><label for="checkbox3">🔒 </label><strong>隐私安全</strong>：所有数据保存在用户浏览器本地，保证用户的隐私安全。</li>
+<li><input type="checkbox" id="checkbox4" checked="true"><label for="checkbox4">🌐 </label><strong>自定义域名</strong>：如果用户拥有自己的域名，可以将其绑定到平台上，方便在任何地方快速访问对话助手。</li>
+</ul>
+<blockquote>
+<p>✨ 随着产品迭代持续更新，我们将会带来更多更多令人激动的功能！</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>[!NOTE]</p>
+<p>你可以在 Projects 中找到我们后续的 <a href="https://github.com/lobehub/lobe-chat/projects">Roadmap</a> 计划</p>
+</blockquote>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h2 id="%E2%9A%A1%EF%B8%8F-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95">⚡️ 性能测试</h2>
+<blockquote>
+<p>[!NOTE]</p>
+<p>完整测试报告可见 <a href="https://github.com/lobehub/lobe-chat/wiki/Lighthouse.zh-CN">📘 Lighthouse 性能测试</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Desktop</th>
+<th style="text-align:center">Mobile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="https://raw.githubusercontent.com/lobehub/lobe-chat/lighthouse/lighthouse/chat/desktop/pagespeed.svg" alt=""></td>
+<td style="text-align:center"><img src="https://raw.githubusercontent.com/lobehub/lobe-chat/lighthouse/lighthouse/chat/mobile/pagespeed.svg" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://lobehub.github.io/lobe-chat/lighthouse/chat/desktop/chat_preview_lobehub_com_chat.html">📑 Lighthouse 测试报告</a></td>
+<td style="text-align:center"><a href="https://lobehub.github.io/lobe-chat/lighthouse/chat/mobile/chat_preview_lobehub_com_chat.html">📑 Lighthouse 测试报告</a></td>
+</tr>
+</tbody>
+</table>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h2 id="%F0%9F%9B%B3-%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8">🛳 开箱即用</h2>
+<p>LobeChat 提供了 Vercel 的 自托管版本 和 <a href="https://hub.docker.com/r/lobehub/lobe-chat">Docker 镜像</a>，这使你可以在几分钟内构建自己的聊天机器人，无需任何基础知识。</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>完整教程请查阅 <a href="https://lobehub.com/docs/self-hosting/start">📘 构建属于自己的 Lobe Chat</a></p>
+</blockquote>
+<h3 id="a-%E4%BD%BF%E7%94%A8-vercelzeabur-%E6%88%96-sealos-%E9%83%A8%E7%BD%B2"><code>A</code> 使用 Vercel、Zeabur 或 Sealos 部署</h3>
+<p>如果想在 Vercel 或 Zeabur 上部署该服务，可以按照以下步骤进行操作：</p>
+<ul>
+<li>准备好你的 <a href="https://platform.openai.com/account/api-keys">OpenAI API Key</a> 。</li>
+<li>点击下方按钮开始部署： 直接使用 GitHub 账号登录即可，记得在环境变量页填入 <code>OPENAI_API_KEY</code> （必填） and <code>ACCESS_CODE</code>（推荐）；</li>
+<li>部署完毕后，即可开始使用；</li>
+<li>绑定自定义域名（可选）：Vercel 分配的域名 DNS 在某些区域被污染了，绑定自定义域名即可直连。目前 Zeabur 提供的域名还未被污染，大多数地区都可以直连。</li>
+</ul>
+<div align="center">
+</div><table>
+<thead>
+<tr>
+<th style="text-align:center">使用 Vercel 部署</th>
+<th style="text-align:center">使用 Zeabur 部署</th>
+<th style="text-align:center">使用 Sealos 部署</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flobehub%2Flobe-chat&amp;env=OPENAI_API_KEY,ACCESS_CODE&amp;envDescription=Find%20your%20OpenAI%20API%20Key%20by%20click%20the%20right%20Learn%20More%20button.%20%7C%20Access%20Code%20can%20protect%20your%20website&amp;envLink=https%3A%2F%2Fplatform.openai.com%2Faccount%2Fapi-keys&amp;project-name=lobe-chat&amp;repository-name=lobe-chat"><img src="https://vercel.com/button" alt=""></a></td>
+<td style="text-align:center"><a href="https://zeabur.com/templates/VZGGTI"><img src="https://zeabur.com/button.svg" alt=""></a></td>
+<td style="text-align:center"><a href="https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dlobe-chat"><img src="https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg" alt=""></a></td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="fork-%E4%B9%8B%E5%90%8E">Fork 之后</h4>
+<p>在 Fork 后，请只保留 &quot;upstream sync&quot; Action 并在你 fork 的 GitHub Repo 中禁用其他 Action。</p>
+<h4 id="%E4%BF%9D%E6%8C%81%E6%9B%B4%E6%96%B0">保持更新</h4>
+<p>如果你根据 README 中的一键部署步骤部署了自己的项目，你可能会发现总是被提示 “有可用更新”。这是因为 Vercel 默认为你创建新项目而非 fork 本项目，这将导致无法准确检测更新。</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>我们建议按照 <a href="https://lobehub.com/docs/self-hosting/advanced/upstream-sync">📘 自动同步更新</a> 步骤重新部署。</p>
+</blockquote>
+<br>
+<h3 id="b-%E4%BD%BF%E7%94%A8-docker-%E9%83%A8%E7%BD%B2"><code>B</code> 使用 Docker 部署</h3>
+<p><a href="https://hub.docker.com/r/lobehub/lobe-chat"><img src="https://img.shields.io/docker/v/lobehub/lobe-chat?color=369eff&amp;label=docker&amp;labelColor=black&amp;logo=docker&amp;logoColor=white&amp;style=flat-square" alt=""></a><br>
+<a href="https://hub.docker.com/r/lobehub/lobe-chat"><img src="https://img.shields.io/docker/image-size/lobehub/lobe-chat?color=369eff&amp;labelColor=black&amp;style=flat-square" alt=""></a><br>
+<a href="https://hub.docker.com/r/lobehub/lobe-chat"><img src="https://img.shields.io/docker/pulls/lobehub/lobe-chat?color=45cc11&amp;labelColor=black&amp;style=flat-square" alt=""></a></p>
+<p>我们提供了 Docker 镜像，供你在自己的私有设备上部署 LobeChat 服务。使用以下命令即可使用一键启动 LobeChat 服务：</p>
+<pre class="hljs"><code><div>$ docker run -d -p 3210:3210 \
+  -e OPENAI_API_KEY=sk-xxxx \
+  -e ACCESS_CODE=lobe66 \
+  --name lobe-chat \
+  lobehub/lobe-chat
+</div></code></pre>
+<blockquote>
+<p>[!TIP]</p>
+<p>如果你需要通过代理使用 OpenAI 服务，你可以使用 <code>OPENAI_PROXY_URL</code> 环境变量来配置代理地址：</p>
+</blockquote>
+<pre class="hljs"><code><div>$ docker run -d -p 3210:3210 \
+  -e OPENAI_API_KEY=sk-xxxx \
+  -e OPENAI_PROXY_URL=https://api-proxy.com/v1 \
+  -e ACCESS_CODE=lobe66 \
+  --name lobe-chat \
+  lobehub/lobe-chat
+</div></code></pre>
+<blockquote>
+<p>[!NOTE]</p>
+<p>有关 Docker 部署的详细说明，详见 <a href="https://lobehub.com/docs/self-hosting/platform/docker">📘 使用 Docker 部署</a></p>
+</blockquote>
+<br>
+<h3 id="%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</h3>
+<p>本项目提供了一些额外的配置项，使用环境变量进行设置：</p>
+<table>
+<thead>
+<tr>
+<th>环境变量</th>
+<th>类型</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OPENAI_API_KEY</code></td>
+<td>必选</td>
+<td>这是你在 OpenAI 账户页面申请的 API 密钥</td>
+<td><code>sk-xxxxxx...xxxxxx</code></td>
+</tr>
+<tr>
+<td><code>OPENAI_PROXY_URL</code></td>
+<td>可选</td>
+<td>如果你手动配置了 OpenAI 接口代理，可以使用此配置项来覆盖默认的 OpenAI API 请求基础 URL</td>
+<td><code>https://api.chatanywhere.cn</code> 或 <code>https://aihubmix.com/v1</code><br/>默认值:<br/><code>https://api.openai.com/v1</code></td>
+</tr>
+<tr>
+<td><code>ACCESS_CODE</code></td>
+<td>可选</td>
+<td>添加访问此服务的密码，你可以设置一个长密码以防被爆破，该值用逗号分隔时为密码数组</td>
+<td><code>awCTe)re_r74</code> or <code>rtrt_ewee3@09!</code> or <code>code1,code2,code3</code></td>
+</tr>
+<tr>
+<td><code>OPENAI_MODEL_LIST</code></td>
+<td>可选</td>
+<td>用来控制模型列表，使用 <code>+</code> 增加一个模型，使用 <code>-</code> 来隐藏一个模型，使用 <code>模型名=展示名</code> 来自定义模型的展示名，用英文逗号隔开。</td>
+<td><code>qwen-7b-chat,+glm-6b,-gpt-3.5-turbo</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!NOTE]</p>
+<p>完整环境变量可见 <a href="https://lobehub.com/docs/self-hosting/environment-variables">📘 环境变量</a></p>
+</blockquote>
+<br>
+<h3 id="%E8%8E%B7%E5%8F%96-openai-api-key">获取 OpenAI API Key</h3>
+<p>API Key 是使用 LobeChat 进行大语言模型会话的必要信息，本节以 OpenAI 模型服务商为例，简要介绍获取 API Key 的方式。</p>
+<h4 id="a-%E9%80%9A%E8%BF%87-openai-%E5%AE%98%E6%96%B9%E6%B8%A0%E9%81%93"><code>A</code> 通过 OpenAI 官方渠道</h4>
+<ul>
+<li>注册一个 <a href="https://platform.openai.com/signup">OpenAI 账户</a>，你需要使用国际手机号、非大陆邮箱进行注册；</li>
+<li>注册完毕后，前往 <a href="https://platform.openai.com/api-keys">API Keys</a> 页面，点击 <code>Create new secret key</code> 创建新的 API Key:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>步骤 1：打开创建窗口</th>
+<th>步骤 2：创建 API Key</th>
+<th>步骤 3：获取 API Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/28616219/296253192-ff2193dd-f125-4e58-82e8-91bc376c0d68.png" height="200"/></td>
+<td><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/28616219/296254170-803bacf0-4471-4171-ae79-0eab08d621d1.png" height="200"/></td>
+<td><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/28616219/296255167-f2745f2b-f083-4ba8-bc78-9b558e0002de.png" height="200"/></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>将此 API Key 填写到 LobeChat 的 API Key 配置中，即可开始使用。</li>
+</ul>
+<blockquote>
+<p>[!TIP]</p>
+<p>账户注册后，一般有 5 美元的免费额度，但有效期只有三个月。<br>
+如果你希望长期使用你的 API Key，你需要完成支付的信用卡绑定。由于 OpenAI 只支持外币信用卡，因此你需要找到合适的支付渠道，此处不再详细展开。</p>
+</blockquote>
+<br>
+<h4 id="b-%E9%80%9A%E8%BF%87-openai-%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BB%A3%E7%90%86%E5%95%86"><code>B</code> 通过 OpenAI 第三方代理商</h4>
+<p>如果你发现注册 OpenAI 账户或者绑定外币信用卡比较麻烦，可以考虑借助一些知名的 OpenAI 第三方代理商来获取 API Key，这可以有效降低获取 OpenAI API Key 的门槛。但与此同时，一旦使用三方服务，你可能也需要承担潜在的风险，<br>
+请根据你自己的实际情况自行决策。以下是常见的第三方模型代理商列表，供你参考：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>服务商</th>
+<th>特性说明</th>
+<th>Proxy 代理地址</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/17870709/296272721-c3ac0bf3-e433-4496-89c4-ebdc20689c17.jpg" width="48" /></td>
+<td><strong>AiHubMix</strong></td>
+<td>使用 OpenAI 企业接口，全站模型价格为官方 <strong>86 折</strong>（含 GPT-4 ）</td>
+<td><code>https://aihubmix.com/v1</code></td>
+<td><a href="https://lobe.li/XHnZIUP">获取</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>[!WARNING]</p>
+<p><strong>免责申明</strong>: 在此推荐的 OpenAI API Key 由第三方代理商提供，所以我们不对 API Key 的 <strong>有效性</strong> 和 <strong>安全性</strong> 负责，请你自行承担购买和使用 API Key 的风险。</p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]</p>
+<p>如果你是模型服务商，并认为自己的服务足够稳定且价格实惠，欢迎联系我们，我们会在自行体验和测试后酌情推荐。</p>
+</blockquote>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h2 id="%F0%9F%93%A6-%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F">📦 生态系统</h2>
+<table>
+<thead>
+<tr>
+<th>NPM</th>
+<th>仓库</th>
+<th>描述</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.npmjs.com/package/@lobehub/ui">@lobehub/ui</a></td>
+<td><a href="https://github.com/lobehub/lobe-ui">lobehub/lobe-ui</a></td>
+<td>构建 AIGC 网页应用程序而设计的开源 UI 组件库</td>
+<td><a href="https://www.npmjs.com/package/@lobehub/ui"><img src="https://img.shields.io/npm/v/@lobehub/ui?color=369eff&amp;labelColor=black&amp;logo=npm&amp;logoColor=white&amp;style=flat-square" alt=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/@lobehub/icons">@lobehub/icons</a></td>
+<td><a href="https://github.com/lobehub/lobe-icons">lobehub/lobe-icons</a></td>
+<td>主流 AI / LLM 模型和公司 SVG Logo 与 Icon 合集</td>
+<td><a href="https://www.npmjs.com/package/@lobehub/icons"><img src="https://img.shields.io/npm/v/@lobehub/icons?color=369eff&amp;labelColor=black&amp;logo=npm&amp;logoColor=white&amp;style=flat-square" alt=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/@lobehub/tts">@lobehub/tts</a></td>
+<td><a href="https://github.com/lobehub/lobe-tts">lobehub/lobe-tts</a></td>
+<td>AI TTS / STT 语音合成 / 识别 React Hooks 库</td>
+<td><a href="https://www.npmjs.com/package/@lobehub/tts"><img src="https://img.shields.io/npm/v/@lobehub/tts?color=369eff&amp;labelColor=black&amp;logo=npm&amp;logoColor=white&amp;style=flat-square" alt=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.npmjs.com/package/@lobehub/lint">@lobehub/lint</a></td>
+<td><a href="https://github.com/lobehub/lobe-lint">lobehub/lobe-lint</a></td>
+<td>LobeHub 代码样式规范 ESlint，Stylelint，Commitlint，Prettier，Remark 和 Semantic Release</td>
+<td><a href="https://www.npmjs.com/package/@lobehub/lint"><img src="https://img.shields.io/npm/v/@lobehub/lint?color=369eff&amp;labelColor=black&amp;logo=npm&amp;logoColor=white&amp;style=flat-square" alt=""></a></td>
+</tr>
+</tbody>
+</table>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h2 id="%F0%9F%A7%A9-%E6%8F%92%E4%BB%B6%E4%BD%93%E7%B3%BB">🧩 插件体系</h2>
+<p>插件提供了扩展 LobeChat <a href="https://lobehub.com/zh/blog/openai-function-call">Function Calling</a> 能力的方法。可以用于引入新的 Function Calling，甚至是新的消息结果渲染方式。如果你对插件开发感兴趣，请在 Wiki 中查阅我们的 <a href="https://lobehub.com/docs/usage/plugins/development">📘 插件开发指引</a> 。</p>
+<ul>
+<li><a href="https://github.com/lobehub/lobe-chat-plugins">lobe-chat-plugins</a>：插件索引从该仓库的 index.json 中获取插件列表并显示给用户。</li>
+<li><a href="https://github.com/lobehub/chat-plugin-template">chat-plugin-template</a>：插件开发模版，你可以通过项目模版快速新建插件项目。</li>
+<li><a href="https://github.com/lobehub/chat-plugin-sdk">@lobehub/chat-plugin-sdk</a>：插件 SDK 可帮助您创建出色的 Lobe Chat 插件。</li>
+<li><a href="https://github.com/lobehub/chat-plugins-gateway">@lobehub/chat-plugins-gateway</a>：插件网关是一个后端服务，作为 LobeChat 插件的网关。我们使用 Vercel 部署此服务。主要的 API POST /api/v1/runner 被部署为 Edge Function。</li>
+</ul>
+<blockquote>
+<p>[!NOTE]</p>
+<p>插件系统目前正在进行重大开发。您可以在以下 Issues 中了解更多信息:</p>
+<ul>
+<li><input type="checkbox" id="checkbox5" checked="true"><label for="checkbox5"></label><a href="https://github.com/lobehub/lobe-chat/issues/73"><strong>插件一期</strong></a>: 实现插件与主体分离，将插件拆分为独立仓库维护，并实现插件的动态加载</li>
+<li><input type="checkbox" id="checkbox6" checked="true"><label for="checkbox6"></label><a href="https://github.com/lobehub/lobe-chat/issues/97"><strong>插件二期</strong></a>: 插件的安全性与使用的稳定性，更加精准地呈现异常状态，插件架构的可维护性与开发者友好</li>
+<li><input type="checkbox" id="checkbox7" checked="true"><label for="checkbox7"></label><a href="https://github.com/lobehub/lobe-chat/issues/149"><strong>插件三期</strong></a>：更高阶与完善的自定义能力，支持插件鉴权与示例</li>
+</ul>
+</blockquote>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h2 id="%E2%8C%A8%EF%B8%8F-%E6%9C%AC%E5%9C%B0%E5%BC%80%E5%8F%91">⌨️ 本地开发</h2>
+<p>可以使用 GitHub Codespaces 进行在线开发：</p>
+<p><a href="https://codespaces.new/lobehub/lobe-chat"><img src="https://github.com/codespaces/badge.svg" alt=""></a></p>
+<p>或者使用以下命令进行本地开发：</p>
+<pre class="hljs"><code><div>$ git clone https://github.com/lobehub/lobe-chat.git
+$ cd lobe-chat
+$ pnpm install
+$ pnpm run dev
+</div></code></pre>
+<p>如果你希望了解更多详情，欢迎可以查阅我们的 <a href="https://github.com/lobehub/lobe-chat/wiki/index">📘 开发指南</a></p>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h2 id="%F0%9F%A4%9D-%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE">🤝 参与贡献</h2>
+<p>我们非常欢迎各种形式的贡献。如果你对贡献代码感兴趣，可以查看我们的 GitHub <a href="https://github.com/lobehub/lobe-chat/issues">Issues</a> 和 <a href="https://github.com/lobehub/lobe-chat/projects">Projects</a>，大展身手，向我们展示你的奇思妙想。</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>我们希望创建一个技术分享型社区，一个可以促进知识共享、想法交流，激发彼此鼓励和协作的环境。<br>
+同时欢迎联系我们提供产品功能和使用体验反馈，帮助我们将 LobeChat 建设得更好。</p>
+<p><strong>组织维护者:</strong> <a href="https://github.com/arvinxx">@arvinxx</a> <a href="https://github.com/canisminor1990">@canisminor1990</a></p>
+</blockquote>
+<p><a href="https://github.com/lobehub/lobe-chat/pulls"><img src="https://img.shields.io/badge/%F0%9F%A4%AF_pr_welcome-%E2%86%92-ffcb47?labelColor=black&amp;style=for-the-badge" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat-agents"><img src="https://img.shields.io/badge/%F0%9F%A4%96/%F0%9F%8F%AA_submit_agent-%E2%86%92-c4f042?labelColor=black&amp;style=for-the-badge" alt=""></a><br>
+<a href="https://github.com/lobehub/lobe-chat-plugins"><img src="https://img.shields.io/badge/%F0%9F%A7%A9/%F0%9F%8F%AA_submit_plugin-%E2%86%92-95f3d9?labelColor=black&amp;style=for-the-badge" alt=""></a></p>
+<a href="https://github.com/lobehub/lobe-chat/graphs/contributors" target="_blank">
+  <table>
+    <tr>
+      <th colspan="2">
+        <br><img src="https://contrib.rocks/image?repo=lobehub/lobe-chat"><br><br>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=active&amp;period=past_28_days&amp;owner_id=131470832&amp;repo_ids=643445235&#x2111;size=2x3&amp;color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=active&amp;period=past_28_days&amp;owner_id=131470832&amp;repo_ids=643445235&#x2111;size=2x3&amp;color_scheme=light">
+        </picture>
+      </td>
+      <td rowspan="2">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-participants-growth/thumbnail.png?activity=active&amp;period=past_28_days&amp;owner_id=131470832&amp;repo_ids=643445235&#x2111;size=4x7&amp;color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-participants-growth/thumbnail.png?activity=active&amp;period=past_28_days&amp;owner_id=131470832&amp;repo_ids=643445235&#x2111;size=4x7&amp;color_scheme=light">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=new&amp;period=past_28_days&amp;owner_id=131470832&amp;repo_ids=643445235&#x2111;size=2x3&amp;color_scheme=dark">
+          <img src="https://next.ossinsight.io/widgets/official/compose-org-active-contributors/thumbnail.png?activity=new&amp;period=past_28_days&amp;owner_id=131470832&amp;repo_ids=643445235&#x2111;size=2x3&amp;color_scheme=light">
+        </picture>
+      </td>
+    </tr>
+  </table>
+</a>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h2 id="%E2%9D%A4-%E7%A4%BE%E5%8C%BA%E8%B5%9E%E5%8A%A9">❤ 社区赞助</h2>
+<p>每一分支持都珍贵无比，汇聚成我们支持的璀璨银河！你就像一颗划破夜空的流星，瞬间点亮我们前行的道路。感谢你对我们的信任 —— 你的支持笔就像星辰导航，一次又一次地为项目指明前进的光芒。</p>
+<a href="https://opencollective.com/lobehub" target="_blank">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/lobehub/.github/blob/main/static/sponsor-dark.png?raw=true">
+    <img src="https://github.com/lobehub/.github/blob/main/static/sponsor-light.png?raw=true">
+  </picture>
+</a>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<h2 id="%F0%9F%94%97-%E6%9B%B4%E5%A4%9A%E5%B7%A5%E5%85%B7">🔗 更多工具</h2>
+<ul>
+<li><strong><a href="https://github.com/lobehub/sd-webui-lobe-theme">🅰️ Lobe SD Theme</a>:</strong> Stable Diffusion WebUI 的现代主题，精致的界面设计，高度可定制的 UI，以及提高效率的功能。</li>
+<li><strong><a href="https://github.com/lobehub/lobe-midjourney-webui">⛵️ Lobe Midjourney WebUI</a>:</strong> Midjourney WebUI, 能够根据文本提示快速生成丰富多样的图像，激发创造力，增强对话交流。</li>
+<li><strong><a href="https://github.com/lobehub/lobe-commit/tree/master/packages/lobe-i18n">🌏 Lobe i18n</a>:</strong> Lobe i18n 是一个由 ChatGPT 驱动的 i18n（国际化）翻译过程的自动化工具。它支持自动分割大文件、增量更新，以及为 OpenAI 模型、API 代理和温度提供定制选项的功能。</li>
+<li><strong><a href="https://github.com/lobehub/lobe-commit/tree/master/packages/lobe-commit">💌 Lobe Commit</a>:</strong> Lobe Commit 是一个 CLI 工具，它利用 Langchain/ChatGPT 生成基于 Gitmoji 的提交消息。</li>
+</ul>
+<div align="right">
+</div><p><a href="#readme-top"><img src="https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square" alt=""></a></p>
+
+<hr>
+<details><summary><h4>&#x1F4DD; License</h4></summary>
+</details><p><a href="https://app.fossa.com/projects/git%2Bgithub.com%2Flobehub%2Flobe-chat"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Flobehub%2Flobe-chat.svg?type=large" alt=""></a></p>
+
+<p>Copyright © 2023 <a href="https://github.com/lobehub">LobeHub</a>. <br /><br>
+This project is <a href="./LICENSE">Apache 2.0</a> licensed.</p>
+<!-- LINK GROUP -->
+
+</body>
+
+</html>
