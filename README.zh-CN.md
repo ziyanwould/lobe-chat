@@ -279,14 +279,14 @@ LobeChat 的插件生态系统是其核心功能的重要扩展，它极大地�
 
 <!-- AGENT LIST --> 
 
-| 最近新增                                                                                                                                                            | 助手说明                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| [拳击训练大师](https://chat-preview.lobehub.com/market?agent=boxing-master)<br/><sup>By **[Luyi-2333](https://github.com/Luyi-2333)** on **2024-10-15**</sup>         | 擅长拳击训练指导与个性化计划制定<br/>`拳击训练` `个性化计划` `健身指导` `进度评估` `技术提升` `健康与营养` |
-| [椰子](https://chat-preview.lobehub.com/market?agent=deep-thinker-ai)<br/><sup>By **[hia1234](https://github.com/hia1234)** on **2024-10-15**</sup>               | 在自己的回答中进行多次审查，确保聊天机器人所说的话有依据，并积极请求反馈，反复进行互动<br/>`编程` `一般`        |
-| [GitHub项目文档助手](https://chat-preview.lobehub.com/market?agent=github-doc-asst)<br/><sup>By **[Luyi-2333](https://github.com/Luyi-2333)** on **2024-10-14**</sup> | 专注开源项目文档编写与优化<br/>`文档优化` `开源项目` `撰写技巧` `git-hub`                 |
-| [眼科医生](https://chat-preview.lobehub.com/market?agent=ophthalmologist)<br/><sup>By **[yuphone](https://github.com/yuphone)** on **2024-10-14**</sup>             | 擅长眼科诊断与治疗建议提供<br/>`医疗` `眼科` `诊断` `建议` `专业`                       |
+| 最近新增                                                                                                                                                                               | 助手说明                                                                                   |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [机器视觉 latex](https://chat-preview.lobehub.com/market?agent=cv-latex)<br/><sup>By **[5xiao0qing5](https://github.com/5xiao0qing5)** on **2024-10-29**</sup>                         | 擅长机器学习与深度学习概念解析<br/>`机器学习` `深度学习` `图像处理` `计算机视觉` `la-te-x` |
+| [域名分析大师](https://chat-preview.lobehub.com/market?agent=domain)<br/><sup>By **[ccbikai](https://github.com/ccbikai)** on **2024-10-29**</sup>                                     | 擅长域名分析与幽默建议<br/>`域名分析` `幽默` `文化` `建站建议` `购买建议`                  |
+| [英戈・豪斯曼](https://chat-preview.lobehub.com/market?agent=pc-beschaffung-ingo-hausmann)<br/><sup>By **[bionicprompter](https://github.com/bionicprompter)** on **2024-10-29**</sup> | 英戈・豪斯曼希望就新购置的电脑进行咨询<br/>`公司` `硬件` `需求分析` `it` `应用`            |
+| [打印到表格](https://chat-preview.lobehub.com/market?agent=print-to-table)<br/><sup>By **[printtotable](https://github.com/printtotable)** on **2024-10-29**</sup>                     | 将图像数据转换为 Excel 中的组织表格。<br/>`数据提取` `表格` `广告` `影响者` `excel`        |
 
-> 📊 Total agents: [<kbd>**418**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
+> 📊 Total agents: [<kbd>**430**</kbd> ](https://github.com/lobehub/lobe-chat-agents)
 
  <!-- AGENT LIST -->
 
