@@ -10,10 +10,11 @@ import { featureFlagsSelectors, useServerConfigStore } from '@/store/serverConfi
 import { useSessionStore } from '@/store/session';
 
 export interface TopActionProps {
+  isPinned?: boolean | null;
   tab?: SidebarTabKey;
 }
 
-const TopActions = memo<TopActionProps>(({ tab }) => {
+const TopActions = memo<TopActionProps>(({ tab, isPinned }) => {
   const { t } = useTranslation('common');
   const switchBackToChat = useGlobalStore((s) => s.switchBackToChat);
   const { showMarket, enableKnowledgeBase } = useServerConfigStore(featureFlagsSelectors);
@@ -47,7 +48,7 @@ const TopActions = memo<TopActionProps>(({ tab }) => {
         }}
       >
         <ActionIcon
-          active={tab === SidebarTabKey.Chat}
+          active={tab === SidebarTabKey.Chat && !isPinned}
           icon={MessageSquare}
           placement={'right'}
           size="large"
