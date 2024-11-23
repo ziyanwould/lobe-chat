@@ -97,6 +97,7 @@ export interface ChatStreamPayload {
 export interface ChatCompetitionOptions {
   callback?: ChatStreamCallbacks;
   headers?: Record<string, any>;
+  ip?: string;
   signal?: AbortSignal;
   /**
    * userId for the chat completion

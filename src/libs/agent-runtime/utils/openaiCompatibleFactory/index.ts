@@ -200,6 +200,11 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
           callbacks: options?.callback,
           provider,
         };
+        const customHeaders = {
+          ...options?.headers, // 保留已有的 headers
+          'x-user-id': options?.user, // 添加 userid
+          'x-user-ip': options?.ip, // 添加 userip
+        };
         if (customClient?.createChatCompletionStream) {
           response = customClient.createChatCompletionStream(this.client, payload, this) as any;
         } else {
@@ -211,7 +216,10 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
             },
             {
               // https://github.com/lobehub/lobe-chat/pull/318
-              headers: { Accept: '*/*' },
+              headers: { 
+                Accept: '*/*' ,
+                ...customHeaders,
+              },
               signal: options?.signal,
             },
           );

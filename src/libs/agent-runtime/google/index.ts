@@ -56,6 +56,17 @@ export class LobeGoogleAI implements LobeRuntimeAI {
 
       const contents = await this.buildGoogleMessages(payload.messages, model);
 
+      // 创建自定义头部
+      const customHeaders = new Headers();
+      if (options?.headers) {
+        options.headers.forEach((value: string, key: string) =>
+          customHeaders.append(key, value),
+        );
+      }
+      // 根据需要在此处添加更多自定义头部。例如：
+      customHeaders.append('x-user-id',options?.user || 'unknown' );
+      customHeaders.append('x-user-ip',options?.ip || 'unknown' );
+
       const geminiStreamResult = await this.client
         .getGenerativeModel(
           {
@@ -86,7 +97,11 @@ export class LobeGoogleAI implements LobeRuntimeAI {
               },
             ],
           },
-          { apiVersion: 'v1beta', baseUrl: this.baseURL },
+          {
+            apiVersion: 'v1beta',
+            baseUrl: this.baseURL,
+            customHeaders: customHeaders,
+          },
         )
         .generateContentStream({
           contents,
