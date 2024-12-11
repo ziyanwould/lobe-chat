@@ -1,6 +1,149 @@
 [
   {
     "children": {
+      "improvements": ["Clean the gpt-4-vision-preview models."]
+    },
+    "date": "2024-12-10",
+    "version": "1.36.10"
+  },
+  {
+    "children": {
+      "improvements": ["Refactor the clerk user service implement."],
+      "fixes": ["Nullptr errors in NextAuth adapter."]
+    },
+    "date": "2024-12-10",
+    "version": "1.36.9"
+  },
+  {
+    "children": {
+      "improvements": ["Add GLM-4V-Flash from Zhipu."]
+    },
+    "date": "2024-12-10",
+    "version": "1.36.8"
+  },
+  {
+    "children": {
+      "fixes": ["Fix pricing with 0 digit."]
+    },
+    "date": "2024-12-10",
+    "version": "1.36.7"
+  },
+  {
+    "children": {
+      "improvements": ["Update groq, add llama3.3, Upgrade lobe-ui."]
+    },
+    "date": "2024-12-10",
+    "version": "1.36.6"
+  },
+  {
+    "children": {
+      "fixes": ["Fix wrong email linking in next-auth db adapter."]
+    },
+    "date": "2024-12-09",
+    "version": "1.36.5"
+  },
+  {
+    "children": {},
+    "date": "2024-12-09",
+    "version": "1.36.4"
+  },
+  {
+    "children": {
+      "fixes": ["Support request headers for chat."]
+    },
+    "date": "2024-12-08",
+    "version": "1.36.3"
+  },
+  {
+    "children": {
+      "improvements": ["Refactor async params route to adapt next15 breaking change."]
+    },
+    "date": "2024-12-07",
+    "version": "1.36.2"
+  },
+  {
+    "children": {
+      "improvements": ["Add gemini-exp-1206 model."]
+    },
+    "date": "2024-12-07",
+    "version": "1.36.1"
+  },
+  {
+    "children": {
+      "features": ["Add Higress ai model provider."]
+    },
+    "date": "2024-12-06",
+    "version": "1.36.0"
+  },
+  {
+    "children": {
+      "improvements": ["Refactor page params to adapt next15 breaking change."]
+    },
+    "date": "2024-12-06",
+    "version": "1.35.14"
+  },
+  {
+    "children": {},
+    "date": "2024-12-06",
+    "version": "1.35.13"
+  },
+  {
+    "children": {
+      "fixes": ["Fix typo of prompts."]
+    },
+    "date": "2024-12-05",
+    "version": "1.35.12"
+  },
+  {
+    "children": {},
+    "date": "2024-12-04",
+    "version": "1.35.11"
+  },
+  {
+    "children": {
+      "improvements": ["Refactor the server db model implement."]
+    },
+    "date": "2024-12-03",
+    "version": "1.35.10"
+  },
+  {
+    "children": {},
+    "date": "2024-12-03",
+    "version": "1.35.9"
+  },
+  {
+    "children": {
+      "improvements": ["Move schema and migration folder."]
+    },
+    "date": "2024-12-03",
+    "version": "1.35.8"
+  },
+  {
+    "children": {},
+    "date": "2024-12-03",
+    "version": "1.35.7"
+  },
+  {
+    "children": {
+      "improvements": ["Add QwQ 32B Preview model."]
+    },
+    "date": "2024-12-02",
+    "version": "1.35.6"
+  },
+  {
+    "children": {
+      "improvements": ["Deprecated the current client mode code."]
+    },
+    "date": "2024-12-02",
+    "version": "1.35.5"
+  },
+  {
+    "children": {},
+    "date": "2024-12-02",
+    "version": "1.35.4"
+  },
+  {
+    "children": {
       "improvements": ["Add gpt-4o-2024-11-20 model."]
     },
     "date": "2024-12-01",

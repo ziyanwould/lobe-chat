@@ -1,8 +1,8 @@
 /*
  * @Author: Liu Jiarong
  * @Date: 2024-10-31 21:41:53
- * @LastEditors: Liu Jiarong
- * @LastEditTime: 2024-11-24 00:10:52
+ * @LastEditors: 刘家荣 14731753+liujiarong2@user.noreply.gitee.com
+ * @LastEditTime: 2024-12-11 09:37:56
  * @FilePath: /lobe-chat/src/app/(backend)/webapi/chat/[provider]/route.ts
  * @Description: 
  * 
@@ -23,9 +23,10 @@ import { getTracePayload } from '@/utils/trace';
 export const runtime = 'edge';
 
 export const POST = checkAuth(async (req: Request, { params, jwtPayload, createRuntime }) => {
-  const { provider } = params;
+  const { provider } = await params;
   // 从请求头中获取用户的真实IP地址
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0] || req.headers.get('remote-address') || 'unknown';
+
 
   try {
     // ============  1. init chat model   ============ //

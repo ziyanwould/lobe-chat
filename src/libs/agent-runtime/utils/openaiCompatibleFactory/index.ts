@@ -201,7 +201,7 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
           provider,
         };
         const customHeaders = {
-          ...options?.headers, // 保留已有的 headers
+          ...options?.requestHeaders,// 保留已有的 headers
           'x-user-id': options?.user, // 添加 userid
           'x-user-ip': options?.ip, // 添加 userip
         };
