@@ -16,7 +16,7 @@ const FullscreenLoading = memo<{ title?: string }>(({ title }) => {
 
     // 根据当前域名选择链接
     const isDomestic = currentDomain.endsWith('.top');
-    setLinkHref(isDomestic ? 'https://robotai.liujiarong.me' : 'https://robotai.liujiarong.top');
+    setLinkHref(isDomestic ? 'https://robot.liujiarong.me' : 'https://robotai.liujiarong.top');
     setLinkText(isDomestic ? '加载太慢~试试海外加速版' : '加载太慢~试试国内加速版');
   }, []);
 
