@@ -2,6 +2,8 @@ import { GlobalStore } from '@/store/global';
 
 import { INITIAL_STATUS } from './initialState';
 
+const systemStatus = (s: GlobalStore) => s.status;
+
 const sessionGroupKeys = (s: GlobalStore): string[] =>
   s.status.expandSessionGroupKeys || INITIAL_STATUS.expandSessionGroupKeys;
 
@@ -19,13 +21,21 @@ const sessionWidth = (s: GlobalStore) => s.status.sessionsWidth;
 const filePanelWidth = (s: GlobalStore) => s.status.filePanelWidth;
 const inputHeight = (s: GlobalStore) => s.status.inputHeight;
 const threadInputHeight = (s: GlobalStore) => s.status.threadInputHeight;
-const systemStatus = (s: GlobalStore) => s.status;
+
+const isPgliteNotEnabled = () => false;
+
+const isPgliteNotInited = () => false;
+
+const isPgliteInited = (): boolean => true;
 
 export const systemStatusSelectors = {
   filePanelWidth,
   hidePWAInstaller,
   inZenMode,
   inputHeight,
+  isPgliteInited,
+  isPgliteNotEnabled,
+  isPgliteNotInited,
   mobileShowPortal,
   mobileShowTopic,
   sessionGroupKeys,

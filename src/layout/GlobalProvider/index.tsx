@@ -26,6 +26,9 @@ import StyleRegistry from './StyleRegistry';
 import Script from 'next/script';
 
 const parserFallbackLang = async () => {
+  // if the default language is not 'en-US', just return the default language as fallback lang
+  if (DEFAULT_LANG !== 'en-US') return DEFAULT_LANG;
+
   const header = await headers();
   /**
    * The arguments are as follows:

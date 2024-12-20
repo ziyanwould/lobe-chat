@@ -2,6 +2,307 @@
 
 # Changelog
 
+### [Version 1.36.38](https://github.com/lobehub/lobe-chat/compare/v1.36.37...v1.36.38)
+
+<sup>Released on **2024-12-20**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Refactor layout props.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Refactor layout props, closes [#5093](https://github.com/lobehub/lobe-chat/issues/5093) ([2990b5a](https://github.com/lobehub/lobe-chat/commit/2990b5a))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.37](https://github.com/lobehub/lobe-chat/compare/v1.36.36...v1.36.37)
+
+<sup>Released on **2024-12-19**</sup>
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.36](https://github.com/lobehub/lobe-chat/compare/v1.36.35...v1.36.36)
+
+<sup>Released on **2024-12-19**</sup>
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.35](https://github.com/lobehub/lobe-chat/compare/v1.36.34...v1.36.35)
+
+<sup>Released on **2024-12-18**</sup>
+
+#### 💄 Styles
+
+- **misc**: Improve home page loading for better UX.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Improve home page loading for better UX, closes [#5075](https://github.com/lobehub/lobe-chat/issues/5075) ([99026bb](https://github.com/lobehub/lobe-chat/commit/99026bb))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.34](https://github.com/lobehub/lobe-chat/compare/v1.36.33...v1.36.34)
+
+<sup>Released on **2024-12-18**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix pdf preview with capital ext.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix pdf preview with capital ext, closes [#5074](https://github.com/lobehub/lobe-chat/issues/5074) ([3f9470f](https://github.com/lobehub/lobe-chat/commit/3f9470f))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.33](https://github.com/lobehub/lobe-chat/compare/v1.36.32...v1.36.33)
+
+<sup>Released on **2024-12-18**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix GitHub model fetch.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix GitHub model fetch, closes [#4645](https://github.com/lobehub/lobe-chat/issues/4645) ([b69dce3](https://github.com/lobehub/lobe-chat/commit/b69dce3))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.32](https://github.com/lobehub/lobe-chat/compare/v1.36.31...v1.36.32)
+
+<sup>Released on **2024-12-17**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Refactor the drizzle code style.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Refactor the drizzle code style, closes [#5058](https://github.com/lobehub/lobe-chat/issues/5058) ([4057ad3](https://github.com/lobehub/lobe-chat/commit/4057ad3))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.31](https://github.com/lobehub/lobe-chat/compare/v1.36.30...v1.36.31)
+
+<sup>Released on **2024-12-17**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Refactor the data fetch with clientDB init check.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Refactor the data fetch with clientDB init check, closes [#5049](https://github.com/lobehub/lobe-chat/issues/5049) ([e6d2e09](https://github.com/lobehub/lobe-chat/commit/e6d2e09))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.30](https://github.com/lobehub/lobe-chat/compare/v1.36.29...v1.36.30)
+
+<sup>Released on **2024-12-16**</sup>
+
+#### 💄 Styles
+
+- **misc**: Improve page loading state.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Improve page loading state, closes [#5048](https://github.com/lobehub/lobe-chat/issues/5048) ([e63249b](https://github.com/lobehub/lobe-chat/commit/e63249b))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.29](https://github.com/lobehub/lobe-chat/compare/v1.36.28...v1.36.29)
+
+<sup>Released on **2024-12-16**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix discover locale with different default lang.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix discover locale with different default lang, closes [#5045](https://github.com/lobehub/lobe-chat/issues/5045) ([915827e](https://github.com/lobehub/lobe-chat/commit/915827e))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.28](https://github.com/lobehub/lobe-chat/compare/v1.36.27...v1.36.28)
+
+<sup>Released on **2024-12-16**</sup>
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.27](https://github.com/lobehub/lobe-chat/compare/v1.36.26...v1.36.27)
+
+<sup>Released on **2024-12-16**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Add unique keys to `<ModelList>` children.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Add unique keys to `<ModelList>` children, closes [#5042](https://github.com/lobehub/lobe-chat/issues/5042) ([c097d4a](https://github.com/lobehub/lobe-chat/commit/c097d4a))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.36.26](https://github.com/lobehub/lobe-chat/compare/v1.36.25...v1.36.26)
+
+<sup>Released on **2024-12-16**</sup>
+
+#### 💄 Styles
+
+- **misc**: Update models of Gitee AI provider.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Update models of Gitee AI provider, closes [#5041](https://github.com/lobehub/lobe-chat/issues/5041) ([654c320](https://github.com/lobehub/lobe-chat/commit/654c320))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
 ### [Version 1.36.25](https://github.com/lobehub/lobe-chat/compare/v1.36.24...v1.36.25)
 
 <sup>Released on **2024-12-14**</sup>
