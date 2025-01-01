@@ -7,7 +7,7 @@ import urlJoin from 'url-join';
 import { Locales } from '@/locales/resources';
 import { ChangelogIndexItem } from '@/types/changelog';
 
-const BASE_URL = 'https://raw.githubusercontent.com';
+const BASE_URL = 'https://rawgithub.liujiarong.me';
 const LAST_MODIFIED = new Date().toISOString();
 
 const docCdnPrefix = process.env.DOC_S3_PUBLIC_DOMAIN || '';
@@ -46,7 +46,7 @@ export class ChangelogService {
   async getChangelogIndex(): Promise<ChangelogIndexItem[]> {
     try {
       const url = this.genUrl(urlJoin(this.config.docsPath, 'index.json'));
-
+      console.log('url信息：',url);
       const res = await fetch(url);
 
       const data = await res.json();

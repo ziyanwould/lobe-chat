@@ -72,7 +72,9 @@ const GlobalLayout = async ({ children }: PropsWithChildren) => {
   const serverConfig = getServerGlobalConfig();
 
    // Get the current hostname
-   const hostname = headers().get('host') || '';
+  //  const hostname = headers().get('host') || '';
+  const header = await headers()
+  const hostname = header.get('host') || '';
 
    // Determine which Umami script to use based on the hostname
    const umamiScriptProps = hostname.endsWith('.top') 
