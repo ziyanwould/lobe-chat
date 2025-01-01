@@ -1,5 +1,130 @@
 [
   {
+    "children": {},
+    "date": "2025-01-01",
+    "version": "1.42.3"
+  },
+  {
+    "children": {
+      "improvements": ["Add o1 model in openai and openrouter models."]
+    },
+    "date": "2024-12-31",
+    "version": "1.42.2"
+  },
+  {
+    "children": {
+      "fixes": ["Fix custom max_token not saved from customModelCards."]
+    },
+    "date": "2024-12-29",
+    "version": "1.42.1"
+  },
+  {
+    "children": {
+      "features": ["Add custom stream handle support for LobeOpenAICompatibleFactory."]
+    },
+    "date": "2024-12-29",
+    "version": "1.42.0"
+  },
+  {
+    "children": {
+      "features": ["Support white list for discover assistant."]
+    },
+    "date": "2024-12-28",
+    "version": "1.41.0"
+  },
+  {
+    "children": {
+      "improvements": ["Update deepseek V3 model."]
+    },
+    "date": "2024-12-28",
+    "version": "1.40.4"
+  },
+  {
+    "children": {
+      "fixes": ["Fix fetch error in changelog modal."]
+    },
+    "date": "2024-12-26",
+    "version": "1.40.3"
+  },
+  {
+    "children": {
+      "improvements": ["Refactor tokens to contextWindowTokens."]
+    },
+    "date": "2024-12-26",
+    "version": "1.40.2"
+  },
+  {
+    "children": {
+      "fixes": ["Fix o1Models list."]
+    },
+    "date": "2024-12-26",
+    "version": "1.40.1"
+  },
+  {
+    "children": {
+      "improvements": ["Refactor services code style."],
+      "features": ["Add changelog modal."]
+    },
+    "date": "2024-12-26",
+    "version": "1.40.0"
+  },
+  {
+    "children": {
+      "improvements": ["Improve loading brand."]
+    },
+    "date": "2024-12-25",
+    "version": "1.39.3"
+  },
+  {
+    "children": {
+      "improvements": ["Refactor sensenova provider with LobeOpenAICompatibleFactory."]
+    },
+    "date": "2024-12-25",
+    "version": "1.39.2"
+  },
+  {
+    "children": {
+      "fixes": ["Fix image input on pglite."]
+    },
+    "date": "2024-12-24",
+    "version": "1.39.1"
+  },
+  {
+    "children": {
+      "features": ["Upgrade to next15 and react19."]
+    },
+    "date": "2024-12-23",
+    "version": "1.39.0"
+  },
+  {
+    "children": {
+      "features": ["Support thread in client pglite."]
+    },
+    "date": "2024-12-23",
+    "version": "1.38.0"
+  },
+  {
+    "children": {
+      "improvements": ["Move pglite to client service."]
+    },
+    "date": "2024-12-22",
+    "version": "1.37.2"
+  },
+  {
+    "children": {
+      "improvements": ["Refactor the client service to deprecated."]
+    },
+    "date": "2024-12-22",
+    "version": "1.37.1"
+  },
+  {
+    "children": {
+      "features": ["Support to use pglite as client db."]
+    },
+    "date": "2024-12-22",
+    "version": "1.37.0"
+  },
+  {
     "children": {
       "improvements": ["Refactor client mode upload to match server mode."]
     },

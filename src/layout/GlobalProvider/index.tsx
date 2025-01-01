@@ -17,6 +17,7 @@ import { ServerConfigStoreProvider } from '@/store/serverConfig';
 import { getAntdLocale } from '@/utils/locale';
 import { isMobileDevice } from '@/utils/server/responsive';
 
+import AntdV5MonkeyPatch from './AntdV5MonkeyPatch';
 import AppTheme from './AppTheme';
 import Debug from './Debug';
 import Locale from './Locale';
@@ -118,6 +119,7 @@ const GlobalLayout = async ({ children }: PropsWithChildren) => {
           <DebugUI />
           <Debug />
         </AppTheme>
+        <AntdV5MonkeyPatch />
       </Locale>
       <Script
         defer
