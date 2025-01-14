@@ -289,6 +289,7 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
 
           const toReleasedAt = () => {
             if (!item.created) return;
+            dayjs.extend(utc);
 
             // guarantee item.created in Date String format
             if (
@@ -307,8 +308,6 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
           const knownModel = LOBE_DEFAULT_MODEL_LIST.find((model) => model.id === item.id);
 
           if (knownModel) {
-            dayjs.extend(utc);
-
             const releasedAt = knownModel.releasedAt ?? toReleasedAt();
 
             return { ...knownModel, releasedAt };
