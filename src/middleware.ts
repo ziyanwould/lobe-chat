@@ -1,11 +1,11 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { UAParser } from 'ua-parser-js';
-import urlJoin from 'url-join';
 
 import { authEnv } from '@/config/auth';
 import { LOBE_THEME_APPEARANCE } from '@/const/theme';
 import NextAuthEdge from '@/libs/next-auth/edge';
+import { Locales } from '@/locales/resources';
 import { parseBrowserLanguage } from '@/utils/locale';
 import { RouteVariants } from '@/utils/server/routeVariants';
 
@@ -64,7 +64,7 @@ const defaultMiddleware = (request: NextRequest) => {
 
   // if it's a new user, there's no cookie
   // So we need to use the fallback language parsed by accept-language
-  const locale = parseBrowserLanguage(request.headers);
+  const locale = parseBrowserLanguage(request.headers) as Locales;
   // const locale =
   // request.cookies.get(LOBE_LOCALE_COOKIE)?.value ||
   // browserLanguage;
@@ -81,26 +81,27 @@ const defaultMiddleware = (request: NextRequest) => {
   });
 
   const url = new URL(request.url);
-  if (['/api', '/trpc', '/webapi'].some((path) => url.pathname.startsWith(path)))
-    return NextResponse.next();
 
-  // 处理 URL 重写
-  // 构建新路径: /${route}${originalPathname}
-  // 只对 GET 请求进行 URL 重写，确保其他类型的请求（包括 OPTIONS）不受影响
-  const nextPathname = `/${urlJoin(route, url.pathname)}`;
+  // skip all api requests
+  if (['/api', '/trpc', '/webapi'].some((path) => url.pathname.startsWith(path))) {
+    return NextResponse.next();
+  }
+
+  // refs: https://github.com/lobehub/lobe-chat/pull/5866
+  // new handle segment rewrite: /${route}${originalPathname}
+  // / -> /zh-CN__0__dark
+  // /discover -> /zh-CN__0__dark/discover
+  const nextPathname = `/${route}` + (url.pathname === '/' ? '' : url.pathname);
   console.log(`[rewrite] ${url.pathname} -> ${nextPathname}`);
+
   url.pathname = nextPathname;
 
-  return NextResponse.rewrite(url);
+  return NextResponse.rewrite(url, { status: 200 });
 };
-
-const publicRoute = ['/', '/discover'];
 
 // Initialize an Edge compatible NextAuth middleware
 const nextAuthMiddleware = NextAuthEdge.auth((req) => {
   const response = defaultMiddleware(req);
-  // skip the '/' route
-  if (publicRoute.some((url) => req.nextUrl.pathname.startsWith(url))) return response;
 
   // Just check if session exists
   const session = req.auth;
