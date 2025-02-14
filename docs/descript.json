@@ -1,0 +1,9 @@
+{
+"$schema": "https://github.com/ziyanwould/lobe-chat/new/main/docs/descript.json",
+"cloud": [],
+"data": [
+  "lobechat":"内网版专用",
+  "freelyai":"自由版专用",
+  "other":"温馨提示：因为最近系统不稳定，如果发现你的账号登录不了，请重新注册使用，敬请谅解"
+]
+}
