@@ -2,7 +2,7 @@
 
 import { FluentEmoji, Markdown } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
-import { memo ,useEffect} from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
 
@@ -45,19 +45,56 @@ const InboxWelcome = memo(() => {
   const mobile = useServerConfigStore((s) => s.isMobile);
   const greeting = useGreeting();
   const { showWelcomeSuggest, showCreateSession } = useServerConfigStore(featureFlagsSelectors);
+  const [changelogData, setChangelogData] = useState<string | null>(null);
 
-    useEffect(() => {
-      if (typeof window !== 'undefined') {
-        const currentDomain = window.location.hostname;
-  
-        // 根据域名选择链接和标题
-        if (currentDomain.startsWith('freelyai.') || currentDomain.startsWith('www.')) {
-         console.log('当前域名是：freelyai.')
-        } else {
-         console.log('当前域名不是：freelyai.')
-        }
+  useEffect(() => {
+    let domainType: string | null = null; // Store the domain type
+
+    if (typeof window !== 'undefined') {
+      const currentDomain = window.location.hostname;
+
+      // Determine the domain type
+      if (currentDomain.startsWith('freelyai.')) {
+        domainType = 'freelyai';
+        console.log('当前域名是：freelyai.');
+      } else if (currentDomain.startsWith('robot.')) {
+        domainType = 'lobechat';
+        console.log('当前域名是：robot.');
+      } else {
+        domainType = 'other';
+        console.log('当前域名是：其他.');
       }
-    }, []);
+    }
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://rawgithub.liujiarong.me/ziyanwould/lobe-chat/main/docs/descript.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('response.json()', data);
+
+        // Find the correct val based on domainType
+        if (domainType) {
+          const relevantEntry = data.community.find((item: any) => item.type === domainType);
+          if (relevantEntry) {
+              setChangelogData(relevantEntry.val);
+          } else {
+              setChangelogData('No matching data found for this domain.');
+          }
+        } else {
+          setChangelogData('Domain type could not be determined.');
+        }
+
+      } catch (error) {
+        console.error("Could not fetch changelog:", error);
+        setChangelogData('Failed to load changelog.');
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Center padding={16} width={'100%'}>
@@ -69,9 +106,9 @@ const InboxWelcome = memo(() => {
         <Markdown className={styles.desc} variant={'chat'}>
           {t(showCreateSession ? 'guide.defaultMessage' : 'guide.defaultMessageWithoutCreate', {
             appName: BRANDING_NAME,
-          })+'   \n 123455'}
+          }) + (changelogData ? `\n${changelogData}` : '   \n Loading...')}
         </Markdown>
-       
+
         {showWelcomeSuggest && (
           <>
             <AgentsSuggest mobile={mobile} />

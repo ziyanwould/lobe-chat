@@ -1,5 +1,5 @@
 import { ActionIcon } from '@lobehub/ui';
-import { Compass, FolderClosed, MessageSquare, Cat, Home, Images, Milestone, SmilePlus, Smartphone, Trophy, Palette, Gitlab } from 'lucide-react';
+import { Compass, FolderClosed, MessageSquare, Cat, Home, Images, Milestone, SmilePlus, Smartphone, Trophy, Palette, Gitlab, Rabbit } from 'lucide-react';
 import Link from 'next/link';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -81,6 +81,9 @@ const TopActions = memo<TopActionProps>(({ tab, isPinned }) => {
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://github.com/ziyanwould/AIForAl'} target="_blank">
         <ActionIcon icon={Gitlab} placement={'right'} size="large" title={'AIForAl'} />
+      </Link>
+      <Link aria-label={t('tab.discover')} href={'https://lobechat.liujiarong.top'} target="_blank">
+        <ActionIcon icon={Rabbit} placement={'right'} size="large" title={'LobeChat'} />
       </Link>
       {enableKnowledgeBase && (
         <Link aria-label={t('tab.files')} href={'/files'}>
