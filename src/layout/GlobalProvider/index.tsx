@@ -17,7 +17,6 @@ import StoreInitialization from './StoreInitialization';
 import StyleRegistry from './StyleRegistry';
 import Script from 'next/script';
 
-
 interface GlobalLayoutProps {
   appearance: string;
   children: ReactNode;
@@ -40,33 +39,45 @@ const GlobalLayout = async ({
   // get default feature flags to use with ssr
   const serverFeatureFlags = getServerFeatureFlagsValue();
   const header = await headers();
-   // Get the current hostname
+  // Get the current hostname
   //  const hostname = headers().get('host') || '';
   const hostname = header.get('host') || '';
 
-   // Determine which Umami script to use based on the hostname
-   const umamiScriptProps = hostname.endsWith('.top') 
-     ? {
-         'data-website-id': '2bfbc2b3-1e1f-48e0-ac6b-665117069b8d',
-         src: 'https://umami.liujiarong.top/script.js',
-       }
-     : {
-         'data-website-id': '4c715c06-37ac-4ee8-92ea-7169343ef4b2',
-         src: 'https://umami.liujiarong.me/script.js',
-       };
- 
-   // Determine which analytics script to use based on the hostname
-   const analyticsScriptProps = hostname.endsWith('.top')
-     ? {
-         'data-domain': 'liujiarong.top',
-         src: 'https://analytics.liujiarong.top/js/script.js',
-       }
-     : {
-         'data-domain': 'liujiarong.me',
-         src: 'https://analytics.liujiarong.top/js/script.js', // Assuming the source remains the same
-       };
+  // Determine which Umami script to use based on the hostname
+  let umamiScriptProps: any;
+  let analyticsScriptProps: any;
 
- // const isMobile = await isMobileDevice();
+  if (hostname.endsWith('.top')) {
+    umamiScriptProps = {
+      'data-website-id': '2bfbc2b3-1e1f-48e0-ac6b-665117069b8d',
+      src: 'https://umami.liujiarong.top/script.js',
+    };
+    analyticsScriptProps = {
+      'data-domain': 'liujiarong.top',
+      src: 'https://analytics.liujiarong.top/js/script.js',
+    };
+  } else if (hostname.endsWith('.online')) {
+    umamiScriptProps = {
+      'data-website-id': '90c00cc1-0af2-47ef-b805-734b36fd31e6',
+      src: 'https://umami.liujiarong.top/script.js',
+    };
+    analyticsScriptProps = {
+      'data-domain': 'liujiarong.online',
+      src: 'https://analytics.liujiarong.top/js/script.js',
+    };
+  } else { // Default to .me
+    umamiScriptProps = {
+      'data-website-id': '4c715c06-37ac-4ee8-92ea-7169343ef4b2',
+      src: 'https://umami.liujiarong.me/script.js',
+    };
+     analyticsScriptProps = {
+      'data-domain': 'liujiarong.me',
+      src: 'https://analytics.liujiarong.top/js/script.js', // Assuming the source remains the same
+    };
+  }
+  
+
+  // const isMobile = await isMobileDevice();
   const serverConfig = await getServerGlobalConfig();
   return (
     <StyleRegistry>
@@ -97,9 +108,9 @@ const GlobalLayout = async ({
       </Locale>
       <Script
         defer
-        {...umamiScriptProps} 
+        {...umamiScriptProps}
       />
-     <Script
+      <Script
         defer
         {...analyticsScriptProps}
       />

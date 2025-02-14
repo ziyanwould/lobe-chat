@@ -2,7 +2,7 @@
 
 import { FluentEmoji, Markdown } from '@lobehub/ui';
 import { createStyles } from 'antd-style';
-import { memo } from 'react';
+import { memo ,useEffect} from 'react';
 import { useTranslation } from 'react-i18next';
 import { Center, Flexbox } from 'react-layout-kit';
 
@@ -46,6 +46,19 @@ const InboxWelcome = memo(() => {
   const greeting = useGreeting();
   const { showWelcomeSuggest, showCreateSession } = useServerConfigStore(featureFlagsSelectors);
 
+    useEffect(() => {
+      if (typeof window !== 'undefined') {
+        const currentDomain = window.location.hostname;
+  
+        // 根据域名选择链接和标题
+        if (currentDomain.startsWith('freelyai.') || currentDomain.startsWith('www.')) {
+         console.log('当前域名是：freelyai.')
+        } else {
+         console.log('当前域名不是：freelyai.')
+        }
+      }
+    }, []);
+
   return (
     <Center padding={16} width={'100%'}>
       <Flexbox className={styles.container} gap={16} style={{ maxWidth: 800 }} width={'100%'}>
@@ -56,8 +69,9 @@ const InboxWelcome = memo(() => {
         <Markdown className={styles.desc} variant={'chat'}>
           {t(showCreateSession ? 'guide.defaultMessage' : 'guide.defaultMessageWithoutCreate', {
             appName: BRANDING_NAME,
-          })}
+          })+'   \n 123455'}
         </Markdown>
+       
         {showWelcomeSuggest && (
           <>
             <AgentsSuggest mobile={mobile} />

@@ -27,12 +27,12 @@ const TopActions = memo<TopActionProps>(({ tab, isPinned }) => {
       const currentDomain = window.location.hostname;
 
       // 根据域名选择链接和标题
-      if (currentDomain.startsWith('lobechat.')) {
+      if (currentDomain.startsWith('freelyai.') || currentDomain.startsWith('www.')) {
         setKnowledgeBaseLink('https://robot.liujiarong.top');
         setKnowledgeBaseTitle('知识库版'); // 设置动态标题
       } else {
-        setKnowledgeBaseLink('https://lobechat.liujiarong.top');
-        setKnowledgeBaseTitle('完整版'); // 设置动态标题
+        setKnowledgeBaseLink('https://freelyai.liujiarong.online');
+        setKnowledgeBaseTitle('自由版'); // 设置动态标题
       }
     }
   }, []);
