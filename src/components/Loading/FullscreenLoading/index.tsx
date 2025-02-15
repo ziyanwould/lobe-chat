@@ -28,41 +28,41 @@ const FullscreenLoading = memo<FullscreenLoadingProps>(({ activeStage, stages, c
     // 根据域名设置应用名称
     if (currentDomain.startsWith('www') || currentDomain.startsWith('freelyai')) {
       setAppName('Freely Ai');
-      setLogoImg('https://picsur.liujiarong.top/i/4b13d9ab-54be-4003-b546-cb6438025622.jpg')
+      setLogoImg('https://picsur.liujiarong.top/i/3a12ada0-2a35-4ba4-bbc2-8ff33228089a.png')
       if (isOnline) {
-        setLinkHref(isDomestic ? 'https://freelyai.liujiarong.me' : 'https://freelyai.liujiarong.online');
-        setLinkText(isDomestic ? '加载太慢~试试FreelyAi海外加速版' : '加载太慢~试试FreelyAi国内加速版');
+        setLinkHref('https://freelyai.liujiarong.me');
+        setLinkText('加载太慢~试试FreelyAi海外加速版');
       } else {
         //如果不是.online结尾，则使用原来的默认配置或者提供其他默认配置
-        setLinkHref('https://robot.liujiarong.me'); // 这里只是一个填充值，可以根据需求修改
-        setLinkText('加载太慢~试试其他加速版'); //同上
+        setLinkHref('https://freelyai.liujiarong.online'); // 这里只是一个填充值，可以根据需求修改
+        setLinkText('加载太慢~试试FreelyAi国内加速版'); //同上
       }
     } else if (currentDomain.startsWith('robot')) {
       setAppName('Robot Chat');
       setLogoImg('https://upimage.liujiarong.top/app/thumb.php?img=/i/2023/12/31/12kpwbs.png')
       if (isDomestic) {
-        setLinkHref(isDomestic ? 'https://robot.liujiarong.me' : 'https://robot.liujiarong.top');
-        setLinkText(isDomestic ? '加载太慢~试试Robot Chat海外加速版' : '加载太慢~试试Robot Chat国内加速版');
+        setLinkHref('https://robot.liujiarong.me');
+        setLinkText('加载太慢~试试Robot Chat海外加速版');
       } else {
         //如果不是.top结尾，则使用原来的默认配置或者提供其他默认配置
-        setLinkHref('https://robot.liujiarong.me'); // 这里只是一个填充值，可以根据需求修改
-        setLinkText('加载太慢~试试其他加速版'); //同上
+        setLinkHref('https://robot.liujiarong.top'); // 这里只是一个填充值，可以根据需求修改
+        setLinkText('加载太慢~试试Robot Chat国内加速版'); //同上
       }
 
     } else if (currentDomain.startsWith('lobechat')) {
-      setLogoImg('https://picsur.liujiarong.top/i/0598ea04-41bc-48d0-bebd-0619ad6aefdb.jpg')
+      setLogoImg('https://picsur.liujiarong.top/i/d2fe739a-c592-45bc-b1c0-1cc42449b89b.png')
       setAppName('LobeChat');
       if (isDomestic) {
-        setLinkHref(isDomestic ? 'https://lobechat.liujiarong.me' : 'https://lobechat.liujiarong.top');
-        setLinkText(isDomestic ? '加载太慢~试试LobeChat海外加速版' : '加载太慢~试试LobeChat国内加速版');
+        setLinkHref('https://lobechat.liujiarong.me');
+        setLinkText('加载太慢~试试LobeChat海外加速版');
       } else {
         //如果不是.top结尾，则使用原来的默认配置或者提供其他默认配置
-        setLinkHref('https://robot.liujiarong.me'); // 这里只是一个填充值，可以根据需求修改
-        setLinkText('加载太慢~试试其他加速版'); //同上
+        setLinkHref('https://lobechat.liujiarong.top'); // 这里只是一个填充值，可以根据需求修改
+        setLinkText('加载太慢~试试LobeChat国内加速版'); //同上
       }
     } else {
       setAppName('LobeChat');
-      setLogoImg('https://picsur.liujiarong.top/i/0598ea04-41bc-48d0-bebd-0619ad6aefdb.jpg')
+      setLogoImg('https://picsur.liujiarong.top/i/d2fe739a-c592-45bc-b1c0-1cc42449b89b.png')
       //如果都不是以上域名开头，则使用原来的默认配置或者提供其他默认配置
       setLinkHref('https://robot.liujiarong.me'); // 这里只是一个填充值，可以根据需求修改
       setLinkText('加载太慢~试试其他加速版'); //同上
