@@ -17,6 +17,7 @@ const FullscreenLoading = memo<FullscreenLoadingProps>(({ activeStage, stages, c
   const [linkHref, setLinkHref] = useState('');
   const [linkText, setLinkText] = useState('');
   const [appName, setAppName] = useState('LobeChat'); // 默认应用名
+  const [logoImg, setLogoImg] = useState(''); // 默认应用名
 
   useEffect(() => {
     // 获取当前域名
@@ -27,6 +28,7 @@ const FullscreenLoading = memo<FullscreenLoadingProps>(({ activeStage, stages, c
     // 根据域名设置应用名称
     if (currentDomain.startsWith('www') || currentDomain.startsWith('freelyai')) {
       setAppName('Freely Ai');
+      setLogoImg('https://picsur.liujiarong.top/i/4b13d9ab-54be-4003-b546-cb6438025622.jpg')
       if (isOnline) {
         setLinkHref(isDomestic ? 'https://freelyai.liujiarong.me' : 'https://freelyai.liujiarong.online');
         setLinkText(isDomestic ? '加载太慢~试试FreelyAi海外加速版' : '加载太慢~试试FreelyAi国内加速版');
@@ -37,6 +39,7 @@ const FullscreenLoading = memo<FullscreenLoadingProps>(({ activeStage, stages, c
       }
     } else if (currentDomain.startsWith('robot')) {
       setAppName('Robot Chat');
+      setLogoImg('https://upimage.liujiarong.top/app/thumb.php?img=/i/2023/12/31/12kpwbs.png')
       if (isDomestic) {
         setLinkHref(isDomestic ? 'https://robot.liujiarong.me' : 'https://robot.liujiarong.top');
         setLinkText(isDomestic ? '加载太慢~试试Robot Chat海外加速版' : '加载太慢~试试Robot Chat国内加速版');
@@ -47,6 +50,7 @@ const FullscreenLoading = memo<FullscreenLoadingProps>(({ activeStage, stages, c
       }
 
     } else if (currentDomain.startsWith('lobechat')) {
+      setLogoImg('https://picsur.liujiarong.top/i/0598ea04-41bc-48d0-bebd-0619ad6aefdb.jpg')
       setAppName('LobeChat');
       if (isDomestic) {
         setLinkHref(isDomestic ? 'https://lobechat.liujiarong.me' : 'https://lobechat.liujiarong.top');
@@ -58,6 +62,7 @@ const FullscreenLoading = memo<FullscreenLoadingProps>(({ activeStage, stages, c
       }
     } else {
       setAppName('LobeChat');
+      setLogoImg('https://picsur.liujiarong.top/i/0598ea04-41bc-48d0-bebd-0619ad6aefdb.jpg')
       //如果都不是以上域名开头，则使用原来的默认配置或者提供其他默认配置
       setLinkHref('https://robot.liujiarong.me'); // 这里只是一个填充值，可以根据需求修改
       setLinkText('加载太慢~试试其他加速版'); //同上
@@ -68,7 +73,7 @@ const FullscreenLoading = memo<FullscreenLoadingProps>(({ activeStage, stages, c
     <Flexbox height={'100%'} style={{ userSelect: 'none' }} width={'100%'}>
       <Center flex={1} gap={16} width={'100%'}>
         <Image
-          src="https://upimage.liujiarong.top/app/thumb.php?img=/i/2023/12/31/12kpwbs.png"
+          src={logoImg}
           width={48}
         />
         <span style={{ fontSize: 28, fontWeight: 600 }}>{appName}</span>
