@@ -32,13 +32,32 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
   async chat(payload: ChatStreamPayload, options?: ChatCompetitionOptions) {
     const { messages, model, ...params } = payload;
     // o1 series models on Azure OpenAI does not support streaming currently
-    const enableStreaming = model.startsWith('o1') ? false : (params.stream ?? true);
+    const enableStreaming = model.includes('o1') ? false : (params.stream ?? true);
+
+    // Convert 'system' role to 'user' or 'developer' based on the model
+    const systemToUserModels = new Set([
+      'o1-preview',
+      'o1-preview-2024-09-12',
+      'o1-mini',
+      'o1-mini-2024-09-12',
+    ]);
+
+    const updatedMessages = messages.map((message) => ({
+      ...message,
+      role:
+        (model.includes('o1') || model.includes('o3')) && message.role === 'system'
+          ? [...systemToUserModels].some((sub) => model.includes(sub))
+            ? 'user'
+            : 'developer'
+          : message.role,
+    }));
+
     try {
       const response = await this.client.chat.completions.create({
-        messages: messages as OpenAI.ChatCompletionMessageParam[],
+        messages: updatedMessages as OpenAI.ChatCompletionMessageParam[],
         model,
         ...params,
-        max_completion_tokens: 2048,
+        max_completion_tokens: null,
         stream: enableStreaming,
         tool_choice: params.tools ? 'auto' : undefined,
       });
