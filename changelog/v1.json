@@ -1,6 +1,35 @@
 [
   {
     "children": {
+      "fixes": ["Refine role assignment logic for specific Azure OpenAI models & Sensitive URL."],
+      "improvements": ["Add custom proxyUrl support for Volcengine."]
+    },
+    "date": "2025-02-23",
+    "version": "1.62.11"
+  },
+  {
+    "children": {
+      "fixes": ["Fix fetch on client check status display."]
+    },
+    "date": "2025-02-22",
+    "version": "1.62.10"
+  },
+  {
+    "children": {
+      "fixes": ["Next-auth user id not found in create agent index."]
+    },
+    "date": "2025-02-22",
+    "version": "1.62.9"
+  },
+  {
+    "children": {
+      "fixes": ["Fix image prompts with some user cases."]
+    },
+    "date": "2025-02-22",
+    "version": "1.62.8"
+  },
+  {
+    "children": {
       "improvements": ["Add Volcano Ark models."]
     },
     "date": "2025-02-21",
