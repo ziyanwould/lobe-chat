@@ -2,7 +2,7 @@
  * @Author: Liu Jiarong
  * @Date: 2024-10-31 21:41:53
  * @LastEditors: 刘家荣 14731753+liujiarong2@user.noreply.gitee.com
- * @LastEditTime: 2024-12-11 09:37:56
+ * @LastEditTime: 2025-03-11 17:59:10
  * @FilePath: /lobe-chat/src/app/(backend)/webapi/chat/[provider]/route.ts
  * @Description: 
  * 
@@ -52,7 +52,12 @@ export const POST = checkAuth(async (req: Request, { params, jwtPayload, createR
       });
     }
 
-    return await agentRuntime.chat(data, {ip, user: jwtPayload.userId, ...traceOptions });
+    return await agentRuntime.chat(data, {
+      ip,
+      user: jwtPayload.userId,
+      ...traceOptions,
+      signal: req.signal,
+    });
   } catch (e) {
     const {
       errorType = ChatErrorType.InternalServerError,
