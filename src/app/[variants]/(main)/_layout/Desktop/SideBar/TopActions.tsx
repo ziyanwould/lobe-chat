@@ -3,6 +3,7 @@ import { Compass, FolderClosed, MessageSquare, Cat, Home, Images, Milestone, Smi
 import Link from 'next/link';
 import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Flexbox } from 'react-layout-kit';
 
 import { useGlobalStore } from '@/store/global';
 import { SidebarTabKey } from '@/store/global/initialState';
@@ -38,7 +39,7 @@ const TopActions = memo<TopActionProps>(({ tab, isPinned }) => {
   }, []);
 
   return (
-    <>
+    <Flexbox gap={8}>
       <Link
         aria-label={t('tab.chat')}
         href={'/chat'}
@@ -107,7 +108,7 @@ const TopActions = memo<TopActionProps>(({ tab, isPinned }) => {
           />
         </Link>
       )}
-    </>
+    </Flexbox>
   );
 });
 
