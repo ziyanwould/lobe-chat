@@ -201,6 +201,7 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
 
     async chat({ responseMode, ...payload }: ChatStreamPayload, options?: ChatCompetitionOptions) {
       try {
+        const inputStartAt = Date.now();
         const postPayload = chatCompletion?.handlePayload
           ? chatCompletion.handlePayload(payload, this._options)
           : ({
@@ -257,10 +258,14 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
             debugStream(useForDebugStream).catch(console.error);
           }
 
-          const streamHandler = chatCompletion?.handleStream || OpenAIStream;
-          return StreamingResponse(streamHandler(prod, streamOptions), {
-            headers: options?.headers,
-          });
+          return StreamingResponse(
+            chatCompletion?.handleStream
+              ? chatCompletion.handleStream(prod, streamOptions.callbacks)
+              : OpenAIStream(prod, { ...streamOptions, inputStartAt }),
+            {
+              headers: options?.headers,
+            },
+          );
         }
 
         if (debug?.chatCompletion?.()) {
@@ -273,10 +278,14 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
           chatCompletion?.handleTransformResponseToStream || transformResponseToStream;
         const stream = transformHandler(response as unknown as OpenAI.ChatCompletion);
 
-        const streamHandler = chatCompletion?.handleStream || OpenAIStream;
-        return StreamingResponse(streamHandler(stream, streamOptions), {
-          headers: options?.headers,
-        });
+        return StreamingResponse(
+          chatCompletion?.handleStream
+            ? chatCompletion.handleStream(stream, streamOptions.callbacks)
+            : OpenAIStream(stream, { ...streamOptions, inputStartAt }),
+          {
+            headers: options?.headers,
+          },
+        );
       } catch (error) {
         throw this.handleError(error);
       }
