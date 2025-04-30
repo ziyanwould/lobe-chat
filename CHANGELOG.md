@@ -2,6 +2,259 @@
 
 # Changelog
 
+### [Version 1.84.8](https://github.com/lobehub/lobe-chat/compare/v1.84.7...v1.84.8)
+
+<sup>Released on **2025-04-29**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix stdio mcp server env issue.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix stdio mcp server env issue, closes [#7648](https://github.com/lobehub/lobe-chat/issues/7648) ([bad222a](https://github.com/lobehub/lobe-chat/commit/bad222a))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.84.7](https://github.com/lobehub/lobe-chat/compare/v1.84.6...v1.84.7)
+
+<sup>Released on **2025-04-29**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix custom provider and knowledge base crash.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix custom provider and knowledge base crash, closes [#7645](https://github.com/lobehub/lobe-chat/issues/7645) ([2cbc179](https://github.com/lobehub/lobe-chat/commit/2cbc179))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.84.6](https://github.com/lobehub/lobe-chat/compare/v1.84.5...v1.84.6)
+
+<sup>Released on **2025-04-29**</sup>
+
+#### 💄 Styles
+
+- **misc**: Fix OpenRouter models config, improve mcp stdio custom field.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Fix OpenRouter models config, closes [#7638](https://github.com/lobehub/lobe-chat/issues/7638) ([15171dd](https://github.com/lobehub/lobe-chat/commit/15171dd))
+- **misc**: Improve mcp stdio custom field, closes [#7632](https://github.com/lobehub/lobe-chat/issues/7632) ([71683b7](https://github.com/lobehub/lobe-chat/commit/71683b7))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.84.5](https://github.com/lobehub/lobe-chat/compare/v1.84.4...v1.84.5)
+
+<sup>Released on **2025-04-29**</sup>
+
+#### 💄 Styles
+
+- **misc**: Add Qwen3 models.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Add Qwen3 models, closes [#7628](https://github.com/lobehub/lobe-chat/issues/7628) ([da05f51](https://github.com/lobehub/lobe-chat/commit/da05f51))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.84.4](https://github.com/lobehub/lobe-chat/compare/v1.84.3...v1.84.4)
+
+<sup>Released on **2025-04-28**</sup>
+
+#### 💄 Styles
+
+- **misc**: Improve stdio mcp server install experience.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Improve stdio mcp server install experience, closes [#7621](https://github.com/lobehub/lobe-chat/issues/7621) ([177f7c2](https://github.com/lobehub/lobe-chat/commit/177f7c2))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.84.3](https://github.com/lobehub/lobe-chat/compare/v1.84.2...v1.84.3)
+
+<sup>Released on **2025-04-28**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix mcp server stdio spawn ENOENT in electron bundle, Fix mobile agent settings and textarea scroll, Remove `gpt-4o-search-preview` unsupported parameters.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix mcp server stdio spawn ENOENT in electron bundle, closes [#7616](https://github.com/lobehub/lobe-chat/issues/7616) ([e85d59b](https://github.com/lobehub/lobe-chat/commit/e85d59b))
+- **misc**: Fix mobile agent settings and textarea scroll, closes [#7618](https://github.com/lobehub/lobe-chat/issues/7618) ([c45f2b0](https://github.com/lobehub/lobe-chat/commit/c45f2b0))
+- **misc**: Remove `gpt-4o-search-preview` unsupported parameters, closes [#7586](https://github.com/lobehub/lobe-chat/issues/7586) ([d2060ca](https://github.com/lobehub/lobe-chat/commit/d2060ca))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.84.2](https://github.com/lobehub/lobe-chat/compare/v1.84.1...v1.84.2)
+
+<sup>Released on **2025-04-28**</sup>
+
+#### 💄 Styles
+
+- **mcp**: Support stdio env params.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **mcp**: Support stdio env params, closes [#7613](https://github.com/lobehub/lobe-chat/issues/7613) ([14ce360](https://github.com/lobehub/lobe-chat/commit/14ce360))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.84.1](https://github.com/lobehub/lobe-chat/compare/v1.84.0...v1.84.1)
+
+<sup>Released on **2025-04-28**</sup>
+
+#### 💄 Styles
+
+- **misc**: Improve hotkey for delete messages.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Styles
+
+- **misc**: Improve hotkey for delete messages, closes [#7599](https://github.com/lobehub/lobe-chat/issues/7599) ([af848fc](https://github.com/lobehub/lobe-chat/commit/af848fc))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+## [Version 1.84.0](https://github.com/lobehub/lobe-chat/compare/v1.83.8...v1.84.0)
+
+<sup>Released on **2025-04-28**</sup>
+
+#### ✨ Features
+
+- **misc**: Upgrade to lobe ui v2 with better design style.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's improved
+
+- **misc**: Upgrade to lobe ui v2 with better design style, closes [#7238](https://github.com/lobehub/lobe-chat/issues/7238) ([6913f70](https://github.com/lobehub/lobe-chat/commit/6913f70))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.83.8](https://github.com/lobehub/lobe-chat/compare/v1.83.7...v1.83.8)
+
+<sup>Released on **2025-04-28**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Fix cloud data sync.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Fix cloud data sync, closes [#7600](https://github.com/lobehub/lobe-chat/issues/7600) ([1214544](https://github.com/lobehub/lobe-chat/commit/1214544))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
 ### [Version 1.83.7](https://github.com/lobehub/lobe-chat/compare/v1.83.6...v1.83.7)
 
 <sup>Released on **2025-04-27**</sup>
