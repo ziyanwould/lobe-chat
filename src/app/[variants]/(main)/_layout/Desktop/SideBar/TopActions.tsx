@@ -67,34 +67,34 @@ const TopActions = memo<TopActionProps>(({ tab, isPinned }) => {
         />
       </Link>
       <Link aria-label={t('tab.discover')} href={knowledgeBaseLink}>
-        <ActionIcon icon={SmilePlus} placement={'right'} size="large" title={knowledgeBaseTitle} />
+        <ActionIcon icon={SmilePlus} size="large" title={knowledgeBaseTitle} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://chatnio.liujiarong.top'} target="_blank">
-        <ActionIcon icon={Cat} placement={'right'} size="large" title={'国内大模型'} />
+        <ActionIcon icon={Cat} size="large" title={'国内大模型'} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://aichat.liujiarong.top'} target="_blank">
-        <ActionIcon icon={Images} placement={'right'} size="large" title={'绘图模型'} />
+        <ActionIcon icon={Images} size="large" title={'绘图模型'} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://www.liujiarong.top/stable-ui/'} target="_blank">
-        <ActionIcon icon={Palette} placement={'right'} size="large" title={'stable-ui(AI生图)'} />
+        <ActionIcon icon={Palette} size="large" title={'stable-ui(AI生图)'} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://aidea.liujiarong.top'} target="_blank">
-        <ActionIcon icon={Smartphone} placement={'right'} size="large" title={'移动端'} />
+        <ActionIcon icon={Smartphone} size="large" title={'移动端'} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://chat.liujiarong.top'} target="_blank">
-        <ActionIcon icon={Trophy} placement={'right'} size="large" title={'VIP'} />
+        <ActionIcon icon={Trophy} size="large" title={'VIP'} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://www.liujiarong.top'} target="_blank">
-        <ActionIcon icon={Home} placement={'right'} size="large" title={'首页'} />
+        <ActionIcon icon={Home} size="large" title={'首页'} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://homarr.liujiarong.top'} target="_blank">
-        <ActionIcon icon={Milestone} placement={'right'} size="large" title={'导航'} />
+        <ActionIcon icon={Milestone} size="large" title={'导航'} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://github.com/ziyanwould/AIForAl'} target="_blank">
-        <ActionIcon icon={Gitlab} placement={'right'} size="large" title={'AIForAl'} />
+        <ActionIcon icon={Gitlab} size="large" title={'AIForAl'} tooltipProps={{ placement: 'right' }} />
       </Link>
       <Link aria-label={t('tab.discover')} href={'https://lobechat.liujiarong.top'} target="_blank">
-        <ActionIcon icon={Rabbit} placement={'right'} size="large" title={'LobeChat'} />
+        <ActionIcon icon={Rabbit} size="large" title={'LobeChat'} tooltipProps={{ placement: 'right' }} />
       </Link>
       {enableKnowledgeBase && (
         <Link aria-label={t('tab.files')} href={'/files'}>
