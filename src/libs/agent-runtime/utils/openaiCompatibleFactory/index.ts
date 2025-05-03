@@ -68,7 +68,7 @@ interface OpenAICompatibleFactoryOptions<T extends Record<string, any> = any> {
     ) => OpenAI.ChatCompletionCreateParamsStreaming;
     handleStream?: (
       stream: Stream<OpenAI.ChatCompletionChunk> | ReadableStream,
-      callbacks?: ChatStreamCallbacks,
+      { callbacks, inputStartAt }: { callbacks?: ChatStreamCallbacks; inputStartAt?: number },
     ) => ReadableStream;
     handleStreamBizErrorType?: (error: {
       message: string;
@@ -260,7 +260,10 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
 
           return StreamingResponse(
             chatCompletion?.handleStream
-              ? chatCompletion.handleStream(prod, streamOptions.callbacks)
+              ? chatCompletion.handleStream(prod, {
+                  callbacks: streamOptions.callbacks,
+                  inputStartAt,
+                })
               : OpenAIStream(prod, { ...streamOptions, inputStartAt }),
             {
               headers: options?.headers,
@@ -280,7 +283,10 @@ export const LobeOpenAICompatibleFactory = <T extends Record<string, any> = any>
 
         return StreamingResponse(
           chatCompletion?.handleStream
-            ? chatCompletion.handleStream(stream, streamOptions.callbacks)
+            ? chatCompletion.handleStream(stream, {
+                callbacks: streamOptions.callbacks,
+                inputStartAt,
+              })
             : OpenAIStream(stream, { ...streamOptions, inputStartAt }),
           {
             headers: options?.headers,
