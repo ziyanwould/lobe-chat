@@ -119,7 +119,7 @@ const InboxWelcome = memo(() => {
                   ns="welcome"
                   values={{ appName: BRANDING_NAME }}
                 />
-               <p>{changelogData ? `\n${changelogData}` : '   \n Loading...'}</p>
+               <Markdown>{changelogData ? `  \n${changelogData}` : '   \n Loading...'}</Markdown>
                 </>
               );
             }
