@@ -109,6 +109,7 @@ const InboxWelcome = memo(() => {
           customRender={(dom, context) => {
             if (context.text.includes('<plus />')) {
               return (
+                <>
                 <Trans
                   components={{
                     br: <br />,
@@ -118,6 +119,8 @@ const InboxWelcome = memo(() => {
                   ns="welcome"
                   values={{ appName: BRANDING_NAME }}
                 />
+               <p>{changelogData ? `\n${changelogData}` : '   \n Loading...'}</p>
+                </>
               );
             }
             return dom;
