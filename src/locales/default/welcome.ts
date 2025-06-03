@@ -6,6 +6,7 @@ export default {
     },
     defaultMessage:
       '我是您的私人智能助理 {{appName}} ，请问现在能帮您做什么？<br />如果需要获得更加专业或定制的助手，可以点击 <plus /> 创建自定义助手',
+    defaultMessage2: '我是您的私人智能助理，如果需要获得更加专业或定制的助手，可以点击 <plus /> 创建自定义助手',
     defaultMessageWithoutCreate: '我是您的私人智能助理 {{appName}} ，请问现在能帮您做什么？',
     qa: {
       q01: 'LobeHub 是什么？',

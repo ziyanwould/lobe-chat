@@ -115,7 +115,7 @@ const InboxWelcome = memo(() => {
                     br: <br />,
                     plus: <AddButton />,
                   }}
-                  i18nKey="guide.defaultMessage"
+                  i18nKey="guide.defaultMessage2"
                   ns="welcome"
                   values={{ appName: BRANDING_NAME }}
                 />
