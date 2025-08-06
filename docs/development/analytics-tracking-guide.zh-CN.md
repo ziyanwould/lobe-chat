@@ -3,7 +3,7 @@
 ## 📋 目录
 
 - [功能概述](#功能概述)
-- [用户ID和IP追踪](#用户id和ip追踪)
+- [用户 ID 和 IP 追踪](#用户id和ip追踪)
 - [统计网站配置](#统计网站配置)
 - [环境变量详解](#环境变量详解)
 - [配置示例](#配置示例)
@@ -15,14 +15,15 @@
 
 LobeChat 支持两种类型的追踪功能：
 
-1. **用户ID和IP追踪** - 用于AI模型调用时的用户识别和安全控制
+1. **用户 ID 和 IP 追踪** - 用于 AI 模型调用时的用户识别和安全控制
 2. **统计网站追踪** - 用于网站访问量、用户行为等数据分析
 
-## 🔍 用户ID和IP追踪
+## 🔍 用户 ID 和 IP 追踪
 
 ### 功能说明
 
-用户ID和IP追踪功能会在AI模型调用时自动传递用户信息，主要用于：
+用户 ID 和 IP 追踪功能会在 AI 模型调用时自动传递用户信息，主要用于：
+
 - 用户行为分析
 - 安全控制（防止滥用）
 - 个性化服务
@@ -30,11 +31,11 @@ LobeChat 支持两种类型的追踪功能：
 
 ### 实现位置
 
-#### 1. API路由层 (`src/app/(backend)/webapi/chat/[provider]/route.ts`)
+#### 1. API 路由层 (`src/app/(backend)/webapi/chat/[provider]/route.ts`)
 
 ```typescript
 // 第18行：获取用户真实IP地址
-const ip = req.headers.get('x-forwarded-for')?.split(',')[0] || 
+const ip = req.headers.get('x-forwarded-for')?.split(',')[0] ||
           req.headers.get('remote-address') || 'unknown';
 
 // 第44-48行：传递给AI模型
@@ -53,33 +54,39 @@ return await modelRuntime.chat(data, {
 export interface ChatMethodOptions {
   callback?: ChatStreamCallbacks;
   headers?: Record<string, any>;
-  ip?: string;           // 用户IP地址
+  ip?: string; // 用户IP地址
   requestHeaders?: Record<string, any>;
   signal?: AbortSignal;
-  user?: string;         // 用户ID
+  user?: string; // 用户ID
 }
 ```
 
-#### 3. AI模型实现
+#### 3. AI 模型实现
 
-**Google AI模型** (`src/libs/model-runtime/google/index.ts`)
+**Google AI 模型** (`src/libs/model-runtime/google/index.ts`)
+
 ```typescript
 // 第171-172行：添加自定义headers
 customHeaders.append('x-user-id', options?.user || 'unknown');
 customHeaders.append('x-user-ip', options?.ip || 'unknown');
+
+// 注意：Google AI模型API不支持headers参数，所以这些headers不会传递到API调用中
+// 但保留了代码结构以便将来可能的扩展
 ```
 
-**OpenAI兼容工厂** (`src/libs/model-runtime/utils/openaiCompatibleFactory/index.ts`)
+**OpenAI 兼容工厂** (`src/libs/model-runtime/utils/openaiCompatibleFactory/index.ts`)
+
 ```typescript
 // 第253-254行：添加自定义headers
 'x-user-id': options?.user, // 添加 userid
 'x-user-ip': options?.ip,   // 添加 userip
 ```
 
-### IP地址获取逻辑
+### IP 地址获取逻辑
 
-IP地址按以下优先级获取：
-1. `x-forwarded-for` 头（第一个IP）
+IP 地址按以下优先级获取：
+
+1. `x-forwarded-for` 头（第一个 IP）
 2. `remote-address` 头
 3. 默认值 `'unknown'`
 
@@ -87,16 +94,16 @@ IP地址按以下优先级获取：
 
 ### 支持的统计平台
 
-| 平台 | 组件文件 | 环境变量 | 说明 |
-|------|----------|----------|------|
-| **Plausible Analytics** | `Plausible.tsx` | `PLAUSIBLE_DOMAIN` | 标准统计 |
-| **Plausible Outbound** | `PlausibleOutbound.tsx` | `PLAUSIBLE_OUTBOUND_DOMAIN` | 外部链接追踪 |
-| **Matomo Analytics** | `Matomo.tsx` | `MATOMO_SITE_ID` | 开源统计平台 |
-| **Umami Analytics** | `Umami.tsx` | `UMAMI_WEBSITE_ID` | 隐私友好统计 |
-| **Google Analytics** | `Google.tsx` | `GOOGLE_ANALYTICS_MEASUREMENT_ID` | Google统计 |
-| **Vercel Analytics** | `Vercel.tsx` | `ENABLE_VERCEL_ANALYTICS` | Vercel内置统计 |
-| **Microsoft Clarity** | `Clarity.tsx` | `CLARITY_PROJECT_ID` | 用户体验分析 |
-| **PostHog Analytics** | `Posthog.tsx` | `POSTHOG_KEY` | 产品分析平台 |
+| 平台                    | 组件文件                | 环境变量                          | 说明            |
+| ----------------------- | ----------------------- | --------------------------------- | --------------- |
+| **Plausible Analytics** | `Plausible.tsx`         | `PLAUSIBLE_DOMAIN`                | 标准统计        |
+| **Plausible Outbound**  | `PlausibleOutbound.tsx` | `PLAUSIBLE_OUTBOUND_DOMAIN`       | 外部链接追踪    |
+| **Matomo Analytics**    | `Matomo.tsx`            | `MATOMO_SITE_ID`                  | 开源统计平台    |
+| **Umami Analytics**     | `Umami.tsx`             | `UMAMI_WEBSITE_ID`                | 隐私友好统计    |
+| **Google Analytics**    | `Google.tsx`            | `GOOGLE_ANALYTICS_MEASUREMENT_ID` | Google 统计     |
+| **Vercel Analytics**    | `Vercel.tsx`            | `ENABLE_VERCEL_ANALYTICS`         | Vercel 内置统计 |
+| **Microsoft Clarity**   | `Clarity.tsx`           | `CLARITY_PROJECT_ID`              | 用户体验分析    |
+| **PostHog Analytics**   | `Posthog.tsx`           | `POSTHOG_KEY`                     | 产品分析平台    |
 
 ### 组件架构
 
@@ -122,14 +129,42 @@ src/components/Analytics/
 const Analytics = () => {
   return (
     <>
-      {/* 条件渲染，只在配置时加载 */}
+      {analyticsEnv.ENABLE_VERCEL_ANALYTICS && <Vercel />}
+      {analyticsEnv.ENABLE_GOOGLE_ANALYTICS && <Google />}
       {analyticsEnv.ENABLED_PLAUSIBLE_ANALYTICS && (
-        <Plausible domain={analyticsEnv.PLAUSIBLE_DOMAIN} />
+        <Plausible
+          domain={analyticsEnv.PLAUSIBLE_DOMAIN}
+          scriptBaseUrl={analyticsEnv.PLAUSIBLE_SCRIPT_BASE_URL}
+        />
       )}
-      {analyticsEnv.ENABLED_MATOMO_ANALYTICS && (
-        <Matomo trackerUrl={analyticsEnv.MATOMO_TRACKER_URL} />
+      {analyticsEnv.ENABLED_PLAUSIBLE_OUTBOUND_ANALYTICS &&
+        analyticsEnv.PLAUSIBLE_OUTBOUND_DOMAIN && (
+          <PlausibleOutbound
+            domain={analyticsEnv.PLAUSIBLE_OUTBOUND_DOMAIN}
+            scriptBaseUrl={analyticsEnv.PLAUSIBLE_SCRIPT_BASE_URL}
+          />
+        )}
+      {analyticsEnv.ENABLED_MATOMO_ANALYTICS &&
+        analyticsEnv.MATOMO_TRACKER_URL &&
+        analyticsEnv.MATOMO_SITE_ID && (
+          <Matomo
+            siteId={analyticsEnv.MATOMO_SITE_ID}
+            trackerUrl={analyticsEnv.MATOMO_TRACKER_URL}
+          />
+        )}
+      {analyticsEnv.ENABLED_UMAMI_ANALYTICS && (
+        <Umami
+          scriptUrl={analyticsEnv.UMAMI_SCRIPT_URL}
+          websiteId={analyticsEnv.UMAMI_WEBSITE_ID}
+        />
       )}
-      {/* ... 其他统计组件 */}
+      {analyticsEnv.ENABLED_CLARITY_ANALYTICS && (
+        <Clarity projectId={analyticsEnv.CLARITY_PROJECT_ID} />
+      )}
+      {!!analyticsEnv.REACT_SCAN_MONITOR_API_KEY && (
+        <ReactScan apiKey={analyticsEnv.REACT_SCAN_MONITOR_API_KEY} />
+      )}
+      {isDesktop && <Desktop />}
     </>
   );
 };
@@ -143,60 +178,68 @@ const Analytics = () => {
 
 ### 用户追踪相关
 
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| 无需配置 | - | - | 用户ID和IP追踪自动启用 |
+| 环境变量 | 类型 | 默认值 | 说明                       |
+| -------- | ---- | ------ | -------------------------- |
+| 无需配置 | -    | -      | 用户 ID 和 IP 追踪自动启用 |
 
 ### 统计网站相关
 
 #### Plausible Analytics
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| `PLAUSIBLE_DOMAIN` | string | - | 网站域名 |
-| `PLAUSIBLE_SCRIPT_BASE_URL` | string | `https://plausible.io` | 脚本基础URL |
+
+| 环境变量                    | 类型   | 默认值                 | 说明         |
+| --------------------------- | ------ | ---------------------- | ------------ |
+| `PLAUSIBLE_DOMAIN`          | string | -                      | 网站域名     |
+| `PLAUSIBLE_SCRIPT_BASE_URL` | string | `https://plausible.io` | 脚本基础 URL |
 
 #### Plausible Outbound Links
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| `PLAUSIBLE_OUTBOUND_DOMAIN` | string | - | 外部链接追踪域名 |
-| `PLAUSIBLE_SCRIPT_BASE_URL` | string | `https://plausible.io` | 脚本基础URL |
+
+| 环境变量                    | 类型   | 默认值                 | 说明             |
+| --------------------------- | ------ | ---------------------- | ---------------- |
+| `PLAUSIBLE_OUTBOUND_DOMAIN` | string | -                      | 外部链接追踪域名 |
+| `PLAUSIBLE_SCRIPT_BASE_URL` | string | `https://plausible.io` | 脚本基础 URL     |
 
 #### Matomo Analytics
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| `MATOMO_SITE_ID` | string | - | Matomo站点ID |
-| `MATOMO_TRACKER_URL` | string | `//matomo.liujiarong.top/` | 追踪器URL |
+
+| 环境变量             | 类型   | 默认值                     | 说明           |
+| -------------------- | ------ | -------------------------- | -------------- |
+| `MATOMO_SITE_ID`     | string | -                          | Matomo 站点 ID |
+| `MATOMO_TRACKER_URL` | string | `//matomo.liujiarong.top/` | 追踪器 URL     |
 
 #### Umami Analytics
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| `UMAMI_WEBSITE_ID` | string | - | Umami网站ID |
-| `UMAMI_SCRIPT_URL` | string | `https://analytics.umami.is/script.js` | 脚本URL |
+
+| 环境变量           | 类型   | 默认值                                 | 说明          |
+| ------------------ | ------ | -------------------------------------- | ------------- |
+| `UMAMI_WEBSITE_ID` | string | -                                      | Umami 网站 ID |
+| `UMAMI_SCRIPT_URL` | string | `https://analytics.umami.is/script.js` | 脚本 URL      |
 
 #### Google Analytics
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| `GOOGLE_ANALYTICS_MEASUREMENT_ID` | string | - | GA4测量ID |
+
+| 环境变量                          | 类型   | 默认值 | 说明        |
+| --------------------------------- | ------ | ------ | ----------- |
+| `GOOGLE_ANALYTICS_MEASUREMENT_ID` | string | -      | GA4 测量 ID |
 
 #### Vercel Analytics
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| `ENABLE_VERCEL_ANALYTICS` | boolean | `false` | 是否启用Vercel统计 |
+
+| 环境变量                  | 类型    | 默认值  | 说明                 |
+| ------------------------- | ------- | ------- | -------------------- |
+| `ENABLE_VERCEL_ANALYTICS` | boolean | `false` | 是否启用 Vercel 统计 |
 
 #### Microsoft Clarity
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| `CLARITY_PROJECT_ID` | string | - | Clarity项目ID |
+
+| 环境变量             | 类型   | 默认值 | 说明            |
+| -------------------- | ------ | ------ | --------------- |
+| `CLARITY_PROJECT_ID` | string | -      | Clarity 项目 ID |
 
 #### PostHog Analytics
-| 环境变量 | 类型 | 默认值 | 说明 |
-|----------|------|--------|------|
-| `POSTHOG_KEY` | string | - | PostHog API密钥 |
-| `POSTHOG_HOST` | string | `https://app.posthog.com` | PostHog主机URL |
+
+| 环境变量       | 类型   | 默认值                    | 说明             |
+| -------------- | ------ | ------------------------- | ---------------- |
+| `POSTHOG_KEY`  | string | -                         | PostHog API 密钥 |
+| `POSTHOG_HOST` | string | `https://app.posthog.com` | PostHog 主机 URL |
 
 ## 📝 配置示例
 
-### 示例1：启用所有统计平台
+### 示例 1：启用所有统计平台
 
 ```bash
 # .env.local 文件
@@ -231,7 +274,7 @@ POSTHOG_KEY=your-posthog-key
 POSTHOG_HOST=https://app.posthog.com
 ```
 
-### 示例2：仅启用隐私友好统计
+### 示例 2：仅启用隐私友好统计
 
 ```bash
 # .env.local 文件
@@ -248,7 +291,7 @@ MATOMO_SITE_ID=your-matomo-site-id
 MATOMO_TRACKER_URL=//your-matomo-instance.com/
 ```
 
-### 示例3：仅启用Google Analytics
+### 示例 3：仅启用 Google Analytics
 
 ```bash
 # .env.local 文件
@@ -354,20 +397,20 @@ export interface ChatMethodOptions {
   // ... 现有字段
   ip?: string;
   user?: string;
-  sessionId?: string;     // 新增：会话ID
-  userAgent?: string;     // 新增：用户代理
-  referrer?: string;      // 新增：来源页面
+  sessionId?: string; // 新增：会话ID
+  userAgent?: string; // 新增：用户代理
+  referrer?: string; // 新增：来源页面
 }
 ```
 
-#### 2. 在API路由中获取新字段
+#### 2. 在 API 路由中获取新字段
 
 在 `src/app/(backend)/webapi/chat/[provider]/route.ts` 中：
 
 ```typescript
 export const POST = checkAuth(async (req: Request, { params, jwtPayload, createRuntime }) => {
   // ... 现有代码
-  
+
   // 获取新的追踪信息
   const userAgent = req.headers.get('user-agent') || 'unknown';
   const referrer = req.headers.get('referer') || 'unknown';
@@ -385,15 +428,18 @@ export const POST = checkAuth(async (req: Request, { params, jwtPayload, createR
 });
 ```
 
-#### 3. 在AI模型中传递新字段
+#### 3. 在 AI 模型中传递新字段
 
-在相应的AI模型实现中添加新的headers：
+在相应的 AI 模型实现中添加新的 headers：
 
 ```typescript
 // 在Google AI模型或OpenAI兼容工厂中
 customHeaders.append('x-user-agent', options?.userAgent || 'unknown');
 customHeaders.append('x-referrer', options?.referrer || 'unknown');
 customHeaders.append('x-session-id', options?.sessionId || 'unknown');
+
+// 注意：对于Google AI模型，由于API限制，这些headers不会传递到API调用中
+// 但对于OpenAI兼容的工厂，这些headers会正常传递
 ```
 
 ## 🛠️ 维护指南
@@ -459,8 +505,8 @@ const MatomoAnalytics = memo<MatomoAnalyticsProps>(({ trackerUrl, siteId }) => {
 #### 2. 修改用户追踪时
 
 - ✅ 更新类型定义
-- ✅ 在API路由中获取新字段
-- ✅ 在AI模型中传递新字段
+- ✅ 在 API 路由中获取新字段
+- ✅ 在 AI 模型中传递新字段
 - ✅ 添加相应的测试用例
 
 #### 3. 环境变量配置时
@@ -478,11 +524,13 @@ const MatomoAnalytics = memo<MatomoAnalyticsProps>(({ trackerUrl, siteId }) => {
 **症状**: 统计平台显示没有数据
 
 **检查步骤**:
+
 1. 确认环境变量是否正确设置
 2. 检查浏览器控制台是否有错误
 3. 验证网络请求是否成功
 
 **解决方案**:
+
 ```bash
 # 检查环境变量
 echo $PLAUSIBLE_DOMAIN
@@ -494,14 +542,16 @@ echo $UMAMI_WEBSITE_ID
 
 #### 2. 用户追踪不工作
 
-**症状**: AI模型调用时没有收到用户信息
+**症状**: AI 模型调用时没有收到用户信息
 
 **检查步骤**:
-1. 确认API路由中的IP获取逻辑
-2. 检查AI模型是否正确添加headers
-3. 验证JWT payload是否包含用户ID
+
+1. 确认 API 路由中的 IP 获取逻辑
+2. 检查 AI 模型是否正确添加 headers
+3. 验证 JWT payload 是否包含用户 ID
 
 **解决方案**:
+
 ```typescript
 // 在API路由中添加调试日志
 console.log('User IP:', ip);
@@ -516,11 +566,13 @@ console.log('Custom headers:', customHeaders);
 **症状**: 修改环境变量后功能没有变化
 
 **检查步骤**:
+
 1. 确认环境变量文件位置正确
 2. 检查变量名拼写是否正确
 3. 重启开发服务器
 
 **解决方案**:
+
 ```bash
 # 重启开发服务器
 npm run dev
@@ -559,7 +611,7 @@ console.log('Umami:', window.umami);
 
 #### 3. 服务端调试
 
-在API路由中添加调试信息：
+在 API 路由中添加调试信息：
 
 ```typescript
 // 在chat route中添加
@@ -582,9 +634,9 @@ console.log('User ID:', jwtPayload.userId);
 2. 添加适当的类型定义
 3. 更新相关文档
 4. 添加测试用例
-5. 提交Pull Request
+5. 提交 Pull Request
 
 ---
 
-**最后更新**: 2024年12月
-**维护者**: LobeChat开发团队 
+**最后更新**: 2024 年 12 月
+**维护者**: LobeChat 开发团队
