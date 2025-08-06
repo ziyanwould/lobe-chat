@@ -8,7 +8,9 @@ import Google from './Google';
 import Vercel from './Vercel';
 
 const Plausible = dynamic(() => import('./Plausible'));
+const PlausibleOutbound = dynamic(() => import('./PlausibleOutbound'));
 const Umami = dynamic(() => import('./Umami'));
+const Matomo = dynamic(() => import('./Matomo'));
 const Clarity = dynamic(() => import('./Clarity'));
 const ReactScan = dynamic(() => import('./ReactScan'));
 
@@ -21,6 +23,18 @@ const Analytics = () => {
         <Plausible
           domain={analyticsEnv.PLAUSIBLE_DOMAIN}
           scriptBaseUrl={analyticsEnv.PLAUSIBLE_SCRIPT_BASE_URL}
+        />
+      )}
+      {analyticsEnv.ENABLED_PLAUSIBLE_OUTBOUND_ANALYTICS && (
+        <PlausibleOutbound
+          domain={analyticsEnv.PLAUSIBLE_OUTBOUND_DOMAIN}
+          scriptBaseUrl={analyticsEnv.PLAUSIBLE_SCRIPT_BASE_URL}
+        />
+      )}
+      {analyticsEnv.ENABLED_MATOMO_ANALYTICS && (
+        <Matomo
+          trackerUrl={analyticsEnv.MATOMO_TRACKER_URL}
+          siteId={analyticsEnv.MATOMO_SITE_ID}
         />
       )}
       {analyticsEnv.ENABLED_UMAMI_ANALYTICS && (

@@ -9,6 +9,13 @@ export const getAnalyticsConfig = () => {
       PLAUSIBLE_SCRIPT_BASE_URL: z.string(),
       PLAUSIBLE_DOMAIN: z.string().optional(),
 
+      ENABLED_PLAUSIBLE_OUTBOUND_ANALYTICS: z.boolean(),
+      PLAUSIBLE_OUTBOUND_DOMAIN: z.string().optional(),
+
+      ENABLED_MATOMO_ANALYTICS: z.boolean(),
+      MATOMO_TRACKER_URL: z.string().optional(),
+      MATOMO_SITE_ID: z.string().optional(),
+
       ENABLED_POSTHOG_ANALYTICS: z.boolean(),
       POSTHOG_KEY: z.string().optional(),
       POSTHOG_HOST: z.string(),
@@ -34,6 +41,15 @@ export const getAnalyticsConfig = () => {
       ENABLED_PLAUSIBLE_ANALYTICS: !!process.env.PLAUSIBLE_DOMAIN,
       PLAUSIBLE_DOMAIN: process.env.PLAUSIBLE_DOMAIN,
       PLAUSIBLE_SCRIPT_BASE_URL: process.env.PLAUSIBLE_SCRIPT_BASE_URL || 'https://plausible.io',
+
+      // Plausible Outbound Analytics
+      ENABLED_PLAUSIBLE_OUTBOUND_ANALYTICS: !!process.env.PLAUSIBLE_OUTBOUND_DOMAIN,
+      PLAUSIBLE_OUTBOUND_DOMAIN: process.env.PLAUSIBLE_OUTBOUND_DOMAIN,
+
+      // Matomo Analytics
+      ENABLED_MATOMO_ANALYTICS: !!process.env.MATOMO_SITE_ID,
+      MATOMO_TRACKER_URL: process.env.MATOMO_TRACKER_URL || '//matomo.liujiarong.top/',
+      MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
 
       // Posthog Analytics
       ENABLED_POSTHOG_ANALYTICS: !!process.env.POSTHOG_KEY,

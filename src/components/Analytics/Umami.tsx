@@ -9,8 +9,19 @@ interface UmamiAnalyticsProps {
 }
 
 const UmamiAnalytics = memo<UmamiAnalyticsProps>(
-  ({ scriptUrl, websiteId }) =>
-    websiteId && <Script data-website-id={websiteId} defer src={scriptUrl} />,
+  ({ scriptUrl, websiteId }) => {
+    if (!websiteId) return null;
+
+    return (
+      <Script
+        defer
+        src={scriptUrl}
+        data-website-id={websiteId}
+      />
+    );
+  },
 );
+
+UmamiAnalytics.displayName = 'UmamiAnalytics';
 
 export default UmamiAnalytics;
