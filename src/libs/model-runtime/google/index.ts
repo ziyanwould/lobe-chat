@@ -165,9 +165,7 @@ export class LobeGoogleAI implements LobeRuntimeAI {
       // 兼容旧代码：自定义 headers
       const customHeaders = new Headers();
       if (options?.headers) {
-        options.headers.forEach((value: string, key: string) =>
-          customHeaders.append(key, value),
-        );
+        options.headers.forEach((value: string, key: string) => customHeaders.append(key, value));
       }
       customHeaders.append('x-user-id', options?.user || 'unknown');
       customHeaders.append('x-user-ip', options?.ip || 'unknown');
@@ -226,7 +224,6 @@ export class LobeGoogleAI implements LobeRuntimeAI {
         config,
         contents,
         model,
-        headers: Object.fromEntries(customHeaders.entries()),
       });
 
       const googleStream = this.createEnhancedStream(geminiStreamResponse, controller.signal);

@@ -25,18 +25,21 @@ const Analytics = () => {
           scriptBaseUrl={analyticsEnv.PLAUSIBLE_SCRIPT_BASE_URL}
         />
       )}
-      {analyticsEnv.ENABLED_PLAUSIBLE_OUTBOUND_ANALYTICS && (
-        <PlausibleOutbound
-          domain={analyticsEnv.PLAUSIBLE_OUTBOUND_DOMAIN}
-          scriptBaseUrl={analyticsEnv.PLAUSIBLE_SCRIPT_BASE_URL}
-        />
-      )}
-      {analyticsEnv.ENABLED_MATOMO_ANALYTICS && (
-        <Matomo
-          trackerUrl={analyticsEnv.MATOMO_TRACKER_URL}
-          siteId={analyticsEnv.MATOMO_SITE_ID}
-        />
-      )}
+      {analyticsEnv.ENABLED_PLAUSIBLE_OUTBOUND_ANALYTICS &&
+        analyticsEnv.PLAUSIBLE_OUTBOUND_DOMAIN && (
+          <PlausibleOutbound
+            domain={analyticsEnv.PLAUSIBLE_OUTBOUND_DOMAIN}
+            scriptBaseUrl={analyticsEnv.PLAUSIBLE_SCRIPT_BASE_URL}
+          />
+        )}
+      {analyticsEnv.ENABLED_MATOMO_ANALYTICS &&
+        analyticsEnv.MATOMO_TRACKER_URL &&
+        analyticsEnv.MATOMO_SITE_ID && (
+          <Matomo
+            siteId={analyticsEnv.MATOMO_SITE_ID}
+            trackerUrl={analyticsEnv.MATOMO_TRACKER_URL}
+          />
+        )}
       {analyticsEnv.ENABLED_UMAMI_ANALYTICS && (
         <Umami
           scriptUrl={analyticsEnv.UMAMI_SCRIPT_URL}

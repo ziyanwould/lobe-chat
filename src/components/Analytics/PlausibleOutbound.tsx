@@ -14,9 +14,10 @@ const PlausibleOutboundAnalytics = memo<PlausibleOutboundAnalyticsProps>(
 
     return (
       <Script
-        defer
         data-domain={domain}
+        defer
         src={`${scriptBaseUrl}/js/script.outbound-links.js`}
+        strategy="lazyOnload"
       />
     );
   },
@@ -24,4 +25,4 @@ const PlausibleOutboundAnalytics = memo<PlausibleOutboundAnalyticsProps>(
 
 PlausibleOutboundAnalytics.displayName = 'PlausibleOutboundAnalytics';
 
-export default PlausibleOutboundAnalytics; 
+export default PlausibleOutboundAnalytics;
