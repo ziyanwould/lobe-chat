@@ -2,6 +2,56 @@
 
 # Changelog
 
+### [Version 1.127.3](https://github.com/lobehub/lobe-chat/compare/v1.127.2...v1.127.3)
+
+<sup>Released on **2025-09-11**</sup>
+
+#### ♻ Code Refactoring
+
+- **misc**: Refactor model runtime folder structure and add more tests.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### Code refactoring
+
+- **misc**: Refactor model runtime folder structure and add more tests, closes [#9210](https://github.com/lobehub/lobe-chat/issues/9210) ([7fe17e4](https://github.com/lobehub/lobe-chat/commit/7fe17e4))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
+### [Version 1.127.2](https://github.com/lobehub/lobe-chat/compare/v1.127.1...v1.127.2)
+
+<sup>Released on **2025-09-11**</sup>
+
+#### 🐛 Bug Fixes
+
+- **misc**: Delete files should delete chunks、embedings、fileChunk.
+
+<br/>
+
+<details>
+<summary><kbd>Improvements and Fixes</kbd></summary>
+
+#### What's fixed
+
+- **misc**: Delete files should delete chunks、embedings、fileChunk, closes [#9196](https://github.com/lobehub/lobe-chat/issues/9196) ([4ee1d29](https://github.com/lobehub/lobe-chat/commit/4ee1d29))
+
+</details>
+
+<div align="right">
+
+[![](https://img.shields.io/badge/-BACK_TO_TOP-151515?style=flat-square)](#readme-top)
+
+</div>
+
 ### [Version 1.127.1](https://github.com/lobehub/lobe-chat/compare/v1.127.0...v1.127.1)
 
 <sup>Released on **2025-09-11**</sup>
