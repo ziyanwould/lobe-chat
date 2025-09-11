@@ -246,7 +246,11 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
           callbacks: options?.callback,
           provider: this.id,
         };
-
+        const customHeaders = {
+          ...options?.requestHeaders, // 保留已有的 headers
+          'x-user-id': options?.user, // 添加 userid
+          'x-user-ip': options?.ip, // 添加 userip
+        };
         if (customClient?.createChatCompletionStream) {
           response = customClient.createChatCompletionStream(this.client, payload, this) as any;
         } else {
@@ -267,7 +271,7 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
 
           response = await this.client.chat.completions.create(finalPayload, {
             // https://github.com/lobehub/lobe-chat/pull/318
-            headers: { Accept: '*/*', ...options?.requestHeaders },
+            headers: { Accept: '*/*', ...customHeaders },
             signal: options?.signal,
           });
         }

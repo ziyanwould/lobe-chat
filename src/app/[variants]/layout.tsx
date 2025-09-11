@@ -37,8 +37,9 @@ const RootLayout = async ({ children, params, modal }: RootLayoutProps) => {
           // eslint-disable-next-line @next/next/no-sync-scripts
           <script crossOrigin="anonymous" src="https://unpkg.com/react-scan/dist/auto.global.js" />
         )}
+        <Analytics />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <NuqsAdapter>
           <GlobalProvider
             appearance={theme}
@@ -55,7 +56,6 @@ const RootLayout = async ({ children, params, modal }: RootLayoutProps) => {
             <PWAInstall />
           </GlobalProvider>
         </NuqsAdapter>
-        <Analytics />
         {inVercel && <SpeedInsights />}
       </body>
     </html>
