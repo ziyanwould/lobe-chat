@@ -284,6 +284,7 @@
     "zustand-utils": "^2.1.0"
   },
   "devDependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.862.0",
     "@commitlint/cli": "^19.8.1",
     "@edge-runtime/vm": "^5.0.0",
     "@huggingface/tasks": "^0.15.9",
@@ -292,6 +293,7 @@
     "@lobehub/lint": "^1.26.2",
     "@lobehub/market-types": "^1.11.4",
     "@lobehub/seo-cli": "^1.7.0",
+    "@napi-rs/canvas": "^0.1.70",
     "@next/bundle-analyzer": "^15.5.3",
     "@next/eslint-plugin-next": "^15.5.3",
     "@peculiar/webcrypto": "^1.5.0",
@@ -365,7 +367,8 @@
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "vite": "^7.1.5",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "vitest-canvas-mock": "^0.3.3"
   },
   "packageManager": "pnpm@10.15.1",
   "publishConfig": {
