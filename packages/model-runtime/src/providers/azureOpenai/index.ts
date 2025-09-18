@@ -122,7 +122,10 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
   }
 
   // Create image using Azure OpenAI Images API (gpt-image-1 or DALL·E deployments)
-  async createImage(payload: CreateImagePayload): Promise<CreateImageResponse> {
+  async createImage(
+    payload: CreateImagePayload,
+    _options?: ChatMethodOptions,
+  ): Promise<CreateImageResponse> {
     const { model, params } = payload;
     azureImageLogger('Creating image with model: %s and params: %O', model, params);
 
@@ -153,8 +156,8 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
       // Azure/OpenAI Images: remove unsupported/auto values where appropriate
       if (userInput.size === 'auto') delete userInput.size;
 
-      // Build options: do not force response_format for gpt-image-1
-      const options: any = {
+      // Build request payload for images API
+      const imageOptions: any = {
         model,
         n: 1,
         ...(isImageEdit ? { input_fidelity: 'high' } : {}),
@@ -162,12 +165,18 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
       };
 
       // For generate, ensure no 'image' field is sent
-      if (!isImageEdit) delete options.image;
+      if (!isImageEdit) delete imageOptions.image;
 
       // Call Azure Images API
+      const requestHeaders = {
+        'Accept': '*/*',
+        'x-user-id': _options?.user || 'unknown',
+        'x-user-ip': _options?.ip || 'unknown',
+      } as Record<string, string>;
+
       const img = isImageEdit
-        ? await this.client.images.edit(options)
-        : await this.client.images.generate(options);
+        ? await this.client.images.edit(imageOptions, { headers: requestHeaders })
+        : await this.client.images.generate(imageOptions, { headers: requestHeaders });
 
       // Normalize possible string JSON response -- Sometimes Azure Image API returns a text/plain Content-Type
       let result: any = img as any;

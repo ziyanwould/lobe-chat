@@ -15,6 +15,7 @@ const log = createDebug('lobe-image:openai-compatible');
 async function generateByImageMode(
   client: OpenAI,
   payload: CreateImagePayload,
+  requestHeaders?: Record<string, string>,
 ): Promise<CreateImageResponse> {
   const { model, params } = payload;
 
@@ -75,8 +76,8 @@ async function generateByImageMode(
 
   // Determine if it's an image editing operation
   const img = isImageEdit
-    ? await client.images.edit(options as any)
-    : await client.images.generate(options as any);
+    ? await client.images.edit(options as any, { headers: requestHeaders })
+    : await client.images.generate(options as any, { headers: requestHeaders });
 
   // Check the integrity of response data
   if (!img || !img.data || !Array.isArray(img.data) || img.data.length === 0) {
@@ -143,6 +144,7 @@ async function processImageUrlForChat(imageUrl: string): Promise<string> {
 async function generateByChatModel(
   client: OpenAI,
   payload: CreateImagePayload,
+  requestHeaders?: Record<string, string>,
 ): Promise<CreateImageResponse> {
   const { model, params } = payload;
   const actualModel = model.replace(':image', ''); // Remove :image suffix
@@ -176,16 +178,19 @@ async function generateByChatModel(
   }
 
   // Call chat completion API
-  const response = await client.chat.completions.create({
-    messages: [
-      {
-        content,
-        role: 'user',
-      },
-    ],
-    model: actualModel,
-    stream: false,
-  });
+  const response = await client.chat.completions.create(
+    {
+      messages: [
+        {
+          content,
+          role: 'user',
+        },
+      ],
+      model: actualModel,
+      stream: false,
+    },
+    { headers: requestHeaders },
+  );
 
   log('Chat API response: %O', response);
 
@@ -219,17 +224,18 @@ export async function createOpenAICompatibleImage(
   client: OpenAI,
   payload: CreateImagePayload,
   _provider: string, // eslint-disable-line @typescript-eslint/no-unused-vars
+  requestHeaders?: Record<string, string>,
 ): Promise<CreateImageResponse> {
   try {
     const { model } = payload;
 
     // Check if it's a chat model for image generation (via :image suffix)
     if (model.endsWith(':image')) {
-      return await generateByChatModel(client, payload);
+      return await generateByChatModel(client, payload, requestHeaders);
     }
 
     // Default to traditional images API
-    return await generateByImageMode(client, payload);
+    return await generateByImageMode(client, payload, requestHeaders);
   } catch (error) {
     const err = error as Error;
     log('Error in createImage: %O', err);

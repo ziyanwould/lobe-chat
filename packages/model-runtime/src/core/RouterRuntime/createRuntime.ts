@@ -199,14 +199,14 @@ export const createRouterRuntime = ({
       }
     }
 
-    async createImage(payload: CreateImagePayload) {
+    async createImage(payload: CreateImagePayload, options?: ChatMethodOptions) {
       const runtime = await this.getRuntimeByModel(payload.model);
-      return runtime.createImage!(payload);
+      return runtime.createImage!(payload, options);
     }
 
-    async textToImage(payload: TextToImagePayload) {
+    async textToImage(payload: TextToImagePayload, options?: ChatMethodOptions) {
       const runtime = await this.getRuntimeByModel(payload.model);
-      return runtime.textToImage!(payload);
+      return runtime.textToImage!(payload, options);
     }
 
     async models() {

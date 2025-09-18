@@ -140,10 +140,16 @@ export const imageRouter = router({
         checkAbortSignal(signal);
 
         log('Agent runtime initialized, calling createImage');
-        const response = await agentRuntime.createImage({
-          model,
-          params: params as unknown as RuntimeImageGenParams,
-        });
+        const response = await agentRuntime.createImage(
+          {
+            model,
+            params: params as unknown as RuntimeImageGenParams,
+          },
+          {
+            ip: ctx.ip,
+            user: ctx.userId || ctx.jwtPayload?.userId,
+          },
+        );
 
         if (!response) {
           log('Create image response is empty');

@@ -22,7 +22,10 @@ export class LobeBflAI implements LobeRuntimeAI {
     log('BFL AI initialized');
   }
 
-  async createImage(payload: CreateImagePayload): Promise<CreateImageResponse> {
+  async createImage(
+    payload: CreateImagePayload,
+    options?: import('../../types').ChatMethodOptions,
+  ): Promise<CreateImageResponse> {
     const { model, params } = payload;
     log('Creating image with model: %s and params: %O', model, params);
 
@@ -30,7 +33,9 @@ export class LobeBflAI implements LobeRuntimeAI {
       return await createBflImage(payload, {
         apiKey: this.apiKey,
         baseURL: this.baseURL,
+        ip: options?.ip,
         provider: 'bfl',
+        user: options?.user,
       });
     } catch (error) {
       log('Error in createImage: %O', error);

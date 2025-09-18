@@ -61,26 +61,21 @@ export interface ChatMethodOptions {
 }
 ```
 
-#### 3. AI 模型实现
+#### 3. AI 模型实现（聊天与绘图）
 
-**Google AI 模型** (`src/libs/model-runtime/google/index.ts`)
-
-```typescript
-// 第171-172行：添加自定义headers
-customHeaders.append('x-user-id', options?.user || 'unknown');
-customHeaders.append('x-user-ip', options?.ip || 'unknown');
-
-// 注意：Google AI模型API不支持headers参数，所以这些headers不会传递到API调用中
-// 但保留了代码结构以便将来可能的扩展
-```
-
-**OpenAI 兼容工厂** (`src/libs/model-runtime/utils/openaiCompatibleFactory/index.ts`)
-
-```typescript
-// 第253-254行：添加自定义headers
-'x-user-id': options?.user, // 添加 userid
-'x-user-ip': options?.ip,   // 添加 userip
-```
+- OpenAI 兼容工厂（聊天）`packages/model-runtime/src/core/openaiCompatibleFactory/index.ts`
+  - 在 `chat()` 中为请求注入 `x-user-id`、`x-user-ip`。
+- OpenAI 兼容工厂（绘图）`packages/model-runtime/src/core/openaiCompatibleFactory/createImage.ts`
+  - `images.generate/edit` 与 `chat.completions.create`（`:image` 后缀）均附带 `x-user-id`、`x-user-ip`。
+- Azure OpenAI（绘图）`packages/model-runtime/src/providers/azureOpenai/index.ts`
+  - `createImage(payload, options?)` 支持 headers，附带 `x-user-id`、`x-user-ip`。
+- 其他绘图 Provider：统一附带 headers
+  - MiniMax：`packages/model-runtime/src/providers/minimax/createImage.ts`
+  - Qwen：`packages/model-runtime/src/providers/qwen/createImage.ts`（任务创建 / 查询、编辑）
+  - Volcengine：`packages/model-runtime/src/providers/volcengine/createImage.ts`
+  - BFL：`packages/model-runtime/src/providers/bfl/*`
+  - SiliconCloud：`packages/model-runtime/src/providers/siliconcloud/createImage.ts`
+  - Google：聊天已支持 headers 结构；SDK 当前不支持每次请求动态 headers，后续如需可改为按请求实例化 client。
 
 ### IP 地址获取逻辑
 
@@ -89,6 +84,19 @@ IP 地址按以下优先级获取：
 1. `x-forwarded-for` 头（第一个 IP）
 2. `remote-address` 头
 3. 默认值 `'unknown'`
+
+### 异步生图链路（重要）
+
+- Lambda 路由上下文提取 IP：`src/libs/trpc/lambda/context.ts`
+- 透传至异步 caller：`src/server/routers/lambda/image.ts` → `src/server/routers/async/caller.ts`（设置 `x-forwarded-for`）
+- 异步服务端读取 IP：`src/libs/trpc/async/context.ts`
+- 执行绘图：`src/server/routers/async/image.ts` 调用 `agentRuntime.createImage({...}, { user, ip })`
+
+注意：若使用 Nginx/Cloudflare 等反向代理，请确保保留 `X-Forwarded-For`。Nginx 示例：
+
+```nginx
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+```
 
 ## 📊 统计网站配置
 
@@ -492,7 +500,11 @@ const MatomoAnalytics = memo<MatomoAnalyticsProps>(({ trackerUrl, siteId }) => {
 });
 ```
 
-### 代码审查要点
+### 代码审查要点（用户追踪）
+
+- 聊天与绘图路径是否都传入 `ChatMethodOptions` 的 `user/ip`。
+- Provider 的 HTTP 请求是否附带 `x-user-id/x-user-ip`。
+- 代理层是否正确保留 `X-Forwarded-For`。
 
 #### 1. 新增统计组件时
 

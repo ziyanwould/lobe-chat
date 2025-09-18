@@ -51,12 +51,20 @@
   - Hooked in: `packages/model-runtime/src/providers/siliconcloud/index.ts`.
   - Models: `packages/model-bank/src/aiModels/siliconcloud.ts` includes `Qwen/Qwen-Image`, `Qwen/Qwen-Image-Edit`, `Kwai-Kolors/Kolors`.
   - Env: `.env.example` adds `SILICONCLOUD_API_KEY`, `SILICONCLOUD_PROXY_URL`, `SILICONCLOUD_BASE_URL`.
+
 - Image provider UX: prioritize SiliconCloud in selector (no global provider reordering).
   - Change: `src/store/aiInfra/slices/aiProvider/selectors.ts` returns SiliconCloud first in `enabledImageModelList`.
+
 - Defaults updated for image generation.
   - Default provider/model: `SiliconCloud` / `Qwen/Qwen-Image` in `src/store/image/slices/generationConfig/initialState.ts`.
   - Tests synced: `src/store/image/slices/generationConfig/selectors.test.ts`.
+
 - Reverted an earlier attempt to reorder the global provider list to avoid broad UI impact.
+
+- User headers for image-gen: propagate `x-user-id` / `x-user-ip` across async image pipeline and providers.
+  - Pipeline: `src/libs/trpc/lambda/context.ts` (extract IP), `src/server/routers/lambda/image.ts` (pass IP), `src/server/routers/async/caller.ts` (forward `x-forwarded-for`), `src/libs/trpc/async/context.ts` (read IP), `src/server/routers/async/image.ts` (pass `{ user, ip }`).
+  - Providers updated: Azure/OpenAI, OpenAI-compatible, Volcengine, MiniMax, Qwen, BFL, SiliconCloud all attach headers.
+  - Note: Ensure reverse proxies keep `X-Forwarded-For`.
 
 Verification
 

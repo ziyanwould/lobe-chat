@@ -23,7 +23,9 @@ const BASE_URL = 'https://api.bfl.ai';
 interface BflCreateImageOptions {
   apiKey: string;
   baseURL?: string;
+  ip?: string;
   provider: string;
+  user?: string;
 }
 
 /**
@@ -128,6 +130,8 @@ async function submitTask(
     headers: {
       'Content-Type': 'application/json',
       'x-key': options.apiKey,
+      'x-user-id': options.user || 'unknown',
+      'x-user-ip': options.ip || 'unknown',
     },
     method: 'POST',
   });
@@ -164,6 +168,8 @@ async function queryTaskStatus(
     headers: {
       'accept': 'application/json',
       'x-key': options.apiKey,
+      'x-user-id': options.user || 'unknown',
+      'x-user-ip': options.ip || 'unknown',
     },
     method: 'GET',
   });

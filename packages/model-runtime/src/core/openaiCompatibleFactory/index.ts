@@ -51,7 +51,10 @@ export const CHAT_MODELS_BLOCK_LIST = [
 type ConstructorOptions<T extends Record<string, any> = any> = ClientOptions & T;
 export type CreateImageOptions = Omit<ClientOptions, 'apiKey'> & {
   apiKey: string;
+  ip?: string;
   provider: string;
+  // User tracking information for upstream middleware
+  user?: string;
 };
 
 export interface CustomClientOptions<T extends Record<string, any> = any> {
@@ -357,18 +360,27 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
       }
     }
 
-    async createImage(payload: CreateImagePayload) {
+    async createImage(payload: CreateImagePayload, options?: ChatMethodOptions) {
       // If custom createImage implementation is provided, use it
       if (customCreateImage) {
         return customCreateImage(payload, {
           ...this._options,
           apiKey: this._options.apiKey!,
+          ip: options?.ip,
+
           provider,
+          // Pass user tracking information
+          user: options?.user,
         });
       }
 
       // Use the new createOpenAICompatibleImage function
-      return createOpenAICompatibleImage(this.client, payload, provider);
+      const headers: Record<string, string> = {
+        'Accept': '*/*',
+        'x-user-id': options?.user || 'unknown',
+        'x-user-ip': options?.ip || 'unknown',
+      };
+      return createOpenAICompatibleImage(this.client, payload, provider, headers);
     }
 
     async models() {
@@ -444,9 +456,16 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
       }
     }
 
-    async textToImage(payload: TextToImagePayload) {
+    async textToImage(payload: TextToImagePayload, options?: ChatMethodOptions) {
       try {
-        const res = await this.client.images.generate(payload);
+        const res = await this.client.images.generate(payload as any, {
+          headers: {
+            'Accept': '*/*',
+            'x-user-id': options?.user || 'unknown',
+            'x-user-ip': options?.ip || 'unknown',
+          },
+          signal: options?.signal,
+        });
         return (res.data || []).map((o) => o.url) as string[];
       } catch (error) {
         throw this.handleError(error);

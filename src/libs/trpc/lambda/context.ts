@@ -29,6 +29,8 @@ export interface OIDCAuth {
 export interface AuthContext {
   authorizationHeader?: string | null;
   clerkAuth?: IClerkAuth;
+  // client ip
+  ip?: string;
   jwtPayload?: ClientSecretPayload | null;
   marketAccessToken?: string;
   nextAuth?: User;
@@ -46,6 +48,7 @@ export interface AuthContext {
 export const createContextInner = async (params?: {
   authorizationHeader?: string | null;
   clerkAuth?: IClerkAuth;
+  ip?: string;
   marketAccessToken?: string;
   nextAuth?: User;
   oidcAuth?: OIDCAuth | null;
@@ -58,6 +61,7 @@ export const createContextInner = async (params?: {
   return {
     authorizationHeader: params?.authorizationHeader,
     clerkAuth: params?.clerkAuth,
+    ip: params?.ip,
     marketAccessToken: params?.marketAccessToken,
     nextAuth: params?.nextAuth,
     oidcAuth: params?.oidcAuth,
@@ -86,6 +90,11 @@ export const createLambdaContext = async (request: NextRequest): Promise<LambdaC
 
   const authorization = request.headers.get(LOBE_CHAT_AUTH_HEADER);
   const userAgent = request.headers.get('user-agent') || undefined;
+  // try to get client ip
+  const ip =
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    request.headers.get('remote-address') ||
+    undefined;
 
   // get marketAccessToken from cookies
   const cookieHeader = request.headers.get('cookie');
@@ -95,6 +104,7 @@ export const createLambdaContext = async (request: NextRequest): Promise<LambdaC
   log('marketAccessToken from cookie:', marketAccessToken ? '[HIDDEN]' : 'undefined');
   const commonContext = {
     authorizationHeader: authorization,
+    ip,
     marketAccessToken,
     userAgent,
   };

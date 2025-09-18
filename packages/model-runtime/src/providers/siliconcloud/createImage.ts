@@ -78,6 +78,9 @@ export async function createImage(
     headers: {
       'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
+      // Add user tracking headers for upstream middleware capture
+      'x-user-id': options?.user || 'unknown',
+      'x-user-ip': options?.ip || 'unknown',
     },
     method: 'POST',
   };

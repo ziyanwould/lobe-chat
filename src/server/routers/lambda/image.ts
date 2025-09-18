@@ -221,6 +221,7 @@ export const imageRouter = router({
 
       // 使用统一的 caller 工厂创建 caller
       const asyncCaller = await createAsyncCaller({
+        ip: ctx.ip,
         jwtPayload: ctx.jwtPayload,
         userId: ctx.userId,
       });

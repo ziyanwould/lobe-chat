@@ -374,7 +374,7 @@ describe('createRouterRuntime', () => {
 
       const result = await runtime.textToImage(payload);
       expect(result).toBe('image-response');
-      expect(mockTextToImage).toHaveBeenCalledWith(payload);
+      expect(mockTextToImage).toHaveBeenCalledWith(payload, undefined);
     });
   });
 

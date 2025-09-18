@@ -46,16 +46,24 @@ export const preferredRegion = [
 
 export const POST = checkAuth(async (req: Request, { params, jwtPayload }) => {
   const { provider } = await params;
+  // 从请求头中获取用户的真实IP地址
+  const ip =
+    req.headers.get('x-forwarded-for')?.split(',')[0] ||
+    req.headers.get('remote-address') ||
+    'unknown';
 
   try {
     // ============  1. init chat model   ============ //
     const agentRuntime = await initModelRuntimeWithUserPayload(provider, jwtPayload);
 
-    // ============  2. create chat completion   ============ //
+    // ============  2. create image generation   ============ //
 
     const data = (await req.json()) as TextToImagePayload;
 
-    const images = await agentRuntime.textToImage(data);
+    const images = await agentRuntime.textToImage(data, {
+      ip,
+      user: jwtPayload.userId,
+    });
 
     return NextResponse.json(images);
   } catch (e) {
