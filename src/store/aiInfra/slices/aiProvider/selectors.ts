@@ -10,7 +10,14 @@ const enabledAiProviderList = (s: AIProviderStoreState) =>
 const disabledAiProviderList = (s: AIProviderStoreState) =>
   s.aiProviderList.filter((item) => !item.enabled);
 
-const enabledImageModelList = (s: AIProviderStoreState) => s.enabledImageModelList || [];
+// Ensure SiliconCloud appears first in the image model provider list order
+const enabledImageModelList = (s: AIProviderStoreState) => {
+  const list = s.enabledImageModelList || [];
+  if (!list.length) return list;
+  const silicon = list.filter((i) => i.id === 'siliconcloud');
+  const others = list.filter((i) => i.id !== 'siliconcloud');
+  return [...silicon, ...others];
+};
 
 const isProviderEnabled = (id: string) => (s: AIProviderStoreState) =>
   enabledAiProviderList(s).some((i) => i.id === id);

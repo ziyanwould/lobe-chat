@@ -1,130 +1,65 @@
-# LobeChat Development Guidelines
+# Repository Guidelines
 
-This document serves as a comprehensive guide for all team members when developing LobeChat.
+## Project Structure & Module Organization
 
-## Tech Stack
+- Monorepo with `pnpm` packages. Key dirs: `apps/` (apps), `packages/` (shared libs), `src/` (core sources), `docs/` (documentation), `.cursor/rules/` (engineering rules).
+- Follow patterns in existing code when adding modules. Co-locate related tests and stories with their components when practical.
 
-Built with modern technologies:
+## Build, Test, and Development Commands
 
-- **Frontend**: Next.js 15, React 19, TypeScript
-- **UI Components**: Ant Design, @lobehub/ui, antd-style
-- **State Management**: Zustand, SWR
-- **Database**: PostgreSQL, PGLite, Drizzle ORM
-- **Testing**: Vitest, Testing Library
-- **Package Manager**: pnpm (monorepo structure)
-- **Build Tools**: Next.js (Turbopack in dev, Webpack in prod)
+- Install deps: `pnpm i`
+- Type check: `bun run type-check`
+- Run tests (web): `bunx vitest run --silent='passed-only' '[file-path-pattern]'`
+- Run tests (package): `cd packages/<name> && bunx vitest run --silent='passed-only' '[file-path-pattern]'`
+- Notes: wrap file paths in single quotes; never run `bun run test`. Use `bun` for scripts and `bunx` for CLIs. Start/build apps from their directory via `bun run dev` / `bun run build` when available.
 
-## Directory Structure
+## Coding Style & Naming Conventions
 
-The project follows a well-organized monorepo structure:
+- TypeScript: strict typing; prefer `interface` for object shapes; use generics for reusable APIs.
+- React: functional components with hooks; use Ant Design, `@lobehub/ui`, and `antd-style` per patterns.
+- State/Data: Zustand + SWR; Drizzle ORM with plural `snake_case` tables and explicit FKs.
+- Follow existing ESLint/Prettier settings; keep changes small and focused.
 
-- `apps/` - Main applications
-- `packages/` - Shared packages and libraries
-- `src/` - Main source code
-- `docs/` - Documentation
-- `.cursor/rules/` - Development rules and guidelines
+## Testing Guidelines
 
-## Development Workflow
+- Frameworks: Vitest + Testing Library. Always add tests for new code.
+- Scope: start with unit tests close to changed code; expand as needed.
+- Naming: prefer `*.test.ts` / `*.test.tsx`.
+- If a test fails twice, stop and ask for help.
 
-### Git Workflow
+## Internationalization
 
-- Use rebase for git pull
-- Git commit messages should prefix with gitmoji
-- Git branch name format: `username/feat/feature-name`
-- Use `.github/PULL_REQUEST_TEMPLATE.md` for PR descriptions
+- Add keys in `src/locales/default/namespace.ts` using nested objects.
+- Provide at least `zh-CN` translations for preview. Do not run `pnpm i18n` manually (CI handles it).
 
-### Package Management
+## Commit & Pull Request Guidelines
 
-- Use `pnpm` as the primary package manager
-- Use `bun` to run npm scripts
-- Use `bunx` to run executable npm packages
-- Navigate to specific packages using `cd packages/<package-name>`
+- Branches: `username/feat/feature-name`.
+- Commits: prefix with a gitmoji (e.g., `:sparkles:`), clear intent.
+- Pull: prefer rebase (`git pull --rebase`).
+- PRs: use `.github/PULL_REQUEST_TEMPLATE.md`; include summary, linked issues, screenshots/notes, and testing steps.
 
-### Code Style Guidelines
+## Additional Tips
 
-#### TypeScript
+- Error handling and accessibility are required; log meaningfully.
+- Keep secrets out of VCS; use environment files per app/package.
 
-- Follow strict TypeScript practices for type safety and code quality
-- Use proper type annotations
-- Prefer interfaces over types for object shapes
-- Use generics for reusable components
+## Recent Changes / Worklog
 
-#### React Components
+- Image generation: added SiliconCloud provider integration.
+  - New: `packages/model-runtime/src/providers/siliconcloud/createImage.ts` (OpenAI-compatible `/images/generations`, proxy/base URL, robust error mapping).
+  - Hooked in: `packages/model-runtime/src/providers/siliconcloud/index.ts`.
+  - Models: `packages/model-bank/src/aiModels/siliconcloud.ts` includes `Qwen/Qwen-Image`, `Qwen/Qwen-Image-Edit`, `Kwai-Kolors/Kolors`.
+  - Env: `.env.example` adds `SILICONCLOUD_API_KEY`, `SILICONCLOUD_PROXY_URL`, `SILICONCLOUD_BASE_URL`.
+- Image provider UX: prioritize SiliconCloud in selector (no global provider reordering).
+  - Change: `src/store/aiInfra/slices/aiProvider/selectors.ts` returns SiliconCloud first in `enabledImageModelList`.
+- Defaults updated for image generation.
+  - Default provider/model: `SiliconCloud` / `Qwen/Qwen-Image` in `src/store/image/slices/generationConfig/initialState.ts`.
+  - Tests synced: `src/store/image/slices/generationConfig/selectors.test.ts`.
+- Reverted an earlier attempt to reorder the global provider list to avoid broad UI impact.
 
-- Use functional components with hooks
+Verification
 
-#### Database Schema
-
-- Follow Drizzle ORM naming conventions
-- Use plural snake_case for table names
-- Implement proper foreign key relationships
-- Follow the schema style guide
-
-### Testing Strategy
-
-**Required Rule**: `testing-guide/testing-guide.mdc`
-
-**Commands**:
-
-- Web: `bunx vitest run --silent='passed-only' '[file-path-pattern]'`
-- Packages: `cd packages/[package-name] && bunx vitest run --silent='passed-only' '[file-path-pattern]'`
-
-**Important Notes**:
-
-- Wrap file paths in single quotes to avoid shell expansion
-- Never run `bun run test` - this runs all tests and takes ~10 minutes
-- If a test fails twice, stop and ask for help
-- Always add tests for new code
-
-### Type Checking
-
-- Use `bun run type-check` to check for type errors
-- Ensure all TypeScript errors are resolved before committing
-
-### Internationalization
-
-- Add new keys to `src/locales/default/namespace.ts`
-- Translate at least `zh-CN` files for development preview
-- Use hierarchical nested objects, not flat keys
-- Don't run `pnpm i18n` manually (handled by CI)
-
-## Available Development Rules
-
-The project provides comprehensive rules in `.cursor/rules/` directory:
-
-### Core Development
-
-- `backend-architecture.mdc` - Three-layer architecture and data flow
-- `react-component.mdc` - Component patterns and UI library usage
-- `drizzle-schema-style-guide.mdc` - Database schema conventions
-- `define-database-model.mdc` - Model templates and CRUD patterns
-- `i18n.mdc` - Internationalization workflow
-
-### State Management & UI
-
-- `zustand-slice-organization.mdc` - Store organization patterns
-- `zustand-action-patterns.mdc` - Action implementation patterns
-- `packages/react-layout-kit.mdc` - Flex layout component usage
-
-### Testing & Quality
-
-- `testing-guide/testing-guide.mdc` - Comprehensive testing strategy
-- `code-review.mdc` - Code review process and standards
-
-### Desktop (Electron)
-
-- `desktop-feature-implementation.mdc` - Main/renderer process patterns
-- `desktop-local-tools-implement.mdc` - Tool integration workflow
-- `desktop-menu-configuration.mdc` - Menu system configuration
-- `desktop-window-management.mdc` - Window management patterns
-- `desktop-controller-tests.mdc` - Controller testing guide
-
-## Best Practices
-
-- **Conservative for existing code, modern approaches for new features**
-- **Code Language**: Use Chinese for files with existing Chinese comments, American English for new files
-- Always add tests for new functionality
-- Follow the established patterns in the codebase
-- Use proper error handling and logging
-- Implement proper accessibility features
-- Consider internationalization from the start
+- Type check: `bun run type-check`
+- Targeted tests: `bunx vitest run --silent='passed-only' 'src/store/image/slices/generationConfig/selectors.test.ts'`
+- Manual: open Image page, confirm SiliconCloud appears first and defaults apply.

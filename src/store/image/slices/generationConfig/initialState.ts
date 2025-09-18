@@ -7,8 +7,8 @@ import {
   gptImage1ParamsSchema,
 } from 'model-bank';
 
-export const DEFAULT_AI_IMAGE_PROVIDER = ModelProvider.OpenAI;
-export const DEFAULT_AI_IMAGE_MODEL = 'gpt-image-1';
+export const DEFAULT_AI_IMAGE_PROVIDER = ModelProvider.SiliconCloud;
+export const DEFAULT_AI_IMAGE_MODEL = 'Qwen/Qwen-Image';
 export const DEFAULT_IMAGE_NUM = 4;
 
 export interface GenerationConfigState {

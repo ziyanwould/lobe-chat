@@ -2,6 +2,7 @@ import { createOpenAICompatibleRuntime } from '../../core/openaiCompatibleFactor
 import { ChatCompletionErrorPayload, ModelProvider } from '../../types';
 import { AgentRuntimeErrorType } from '../../types/error';
 import { processMultiProviderModelList } from '../../utils/modelParse';
+import { createImage } from './createImage';
 
 export interface SiliconCloudModelCard {
   id: string;
@@ -68,6 +69,7 @@ export const LobeSiliconCloudAI = createOpenAICompatibleRuntime({
       return result;
     },
   },
+  createImage,
   debug: {
     chatCompletion: () => process.env.DEBUG_SILICONCLOUD_CHAT_COMPLETION === '1',
   },

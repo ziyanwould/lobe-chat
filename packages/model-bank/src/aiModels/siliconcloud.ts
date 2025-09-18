@@ -1354,6 +1354,47 @@ const siliconcloudImageModels: AIImageModelCard[] = [
     releasedAt: '2024-07-06',
     type: 'image',
   },
+  {
+    description:
+      'Qwen-Image 是由阿里云通义千问团队开发的高质量文本到图像生成模型。该模型具有强大的中英文理解能力，能够根据详细的文本描述生成高质量、富有创意的图像。支持多种尺寸和艺术风格的图像生成。',
+    displayName: 'Qwen Image',
+    enabled: true,
+    id: 'Qwen/Qwen-Image',
+    parameters: {
+      prompt: {
+        default: '',
+      },
+      seed: { default: null },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '720x1280', '768x1024', '960x1280', '1280x720', '1024x768'],
+      },
+    },
+    releasedAt: '2024-08-01',
+    type: 'image',
+  },
+  {
+    description:
+      'Qwen-Image-Edit 是由阿里云通义千问团队开发的图像编辑模型。该模型支持基于文本描述对现有图像进行编辑和修改，能够实现图像的局部调整、风格转换、物体添加删除等多种编辑功能。',
+    displayName: 'Qwen Image Edit',
+    enabled: true,
+    id: 'Qwen/Qwen-Image-Edit',
+    parameters: {
+      imageUrls: {
+        default: [],
+      },
+      prompt: {
+        default: '',
+      },
+      seed: { default: null },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '720x1280', '768x1024', '960x1280', '1280x720', '1024x768'],
+      },
+    },
+    releasedAt: '2024-08-01',
+    type: 'image',
+  },
 ];
 
 export const allModels = [...siliconcloudChatModels, ...siliconcloudImageModels];

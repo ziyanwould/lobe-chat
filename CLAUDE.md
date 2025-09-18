@@ -98,3 +98,23 @@ Some useful rules of this project. Read them when needed.
 - `desktop-menu-configuration.mdc` - App menu, context menu, tray menu
 - `desktop-window-management.mdc` - Window creation, state management, multi-window
 - `desktop-controller-tests.mdc` - Controller unit testing guide
+
+## Recent Changes / Worklog
+
+- SiliconCloud image generation support
+  - Added `packages/model-runtime/src/providers/siliconcloud/createImage.ts` (OpenAI-compatible `/images/generations`, proxy/base URL, structured error handling) and wired into `providers/siliconcloud/index.ts`.
+  - Updated model bank: `packages/model-bank/src/aiModels/siliconcloud.ts` includes `Qwen/Qwen-Image`, `Qwen/Qwen-Image-Edit`, `Kwai-Kolors/Kolors`.
+  - Environment: `.env.example` now documents `SILICONCLOUD_API_KEY`, `SILICONCLOUD_PROXY_URL`, `SILICONCLOUD_BASE_URL`.
+
+- Image model list ordering
+  - Only for image selector UI: SiliconCloud appears first via `enabledImageModelList` refinement in `src/store/aiInfra/slices/aiProvider/selectors.ts` (no global provider reordering).
+
+- Default image configuration
+  - Defaults changed to `SiliconCloud` / `Qwen/Qwen-Image` in `src/store/image/slices/generationConfig/initialState.ts`.
+  - Synced tests in `src/store/image/slices/generationConfig/selectors.test.ts`.
+
+Verification
+
+- Type check: `bun run type-check`
+- Focused tests: `bunx vitest run --silent='passed-only' 'src/store/image/slices/generationConfig/selectors.test.ts'`
+- Manual: open image generation UI, confirm provider order and defaults.

@@ -57,7 +57,7 @@ describe('imageGenerationConfigSelectors', () => {
 
     it('should return the default model from initial state', () => {
       const result = imageGenerationConfigSelectors.model(initialStore);
-      expect(result).toBe('gpt-image-1'); // Default model from initialState
+      expect(result).toBe('Qwen/Qwen-Image'); // Default model from initialState
     });
   });
 
@@ -70,7 +70,7 @@ describe('imageGenerationConfigSelectors', () => {
 
     it('should return the default provider from initial state', () => {
       const result = imageGenerationConfigSelectors.provider(initialStore);
-      expect(result).toBe('openai'); // Default provider from initialState
+      expect(result).toBe('siliconcloud'); // Default provider from initialState
     });
   });
 
