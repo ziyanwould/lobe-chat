@@ -16,7 +16,6 @@ import {
   Embeddings,
   EmbeddingsOptions,
   EmbeddingsPayload,
-  ModelProvider,
   TextToImagePayload,
   TextToSpeechOptions,
   TextToSpeechPayload,
@@ -427,7 +426,7 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
               endpoint: desensitizedEndpoint,
               error: error as any,
               errorType: ErrorType.invalidAPIKey,
-              provider: this.id as ModelProvider,
+              provider: this.id,
             });
           }
 
@@ -445,7 +444,7 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
             endpoint: desensitizedEndpoint,
             error: errorResult,
             errorType: AgentRuntimeErrorType.InsufficientQuota,
-            provider: this.id as ModelProvider,
+            provider: this.id,
           });
         }
 
@@ -454,7 +453,7 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
             endpoint: desensitizedEndpoint,
             error: errorResult,
             errorType: AgentRuntimeErrorType.ModelNotFound,
-            provider: this.id as ModelProvider,
+            provider: this.id,
           });
         }
 
@@ -465,7 +464,7 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
             endpoint: desensitizedEndpoint,
             error: errorResult,
             errorType: AgentRuntimeErrorType.ExceededContextWindow,
-            provider: this.id as ModelProvider,
+            provider: this.id,
           });
         }
       }
@@ -474,7 +473,7 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
         endpoint: desensitizedEndpoint,
         error: errorResult,
         errorType: RuntimeError || ErrorType.bizError,
-        provider: this.id as ModelProvider,
+        provider: this.id,
       });
     }
 
