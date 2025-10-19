@@ -1,4 +1,4 @@
-import { InferenceClient } from '@huggingface/inference';
+import { HfInference } from '@huggingface/inference';
 import { ModelProvider } from 'model-bank';
 import urlJoin from 'url-join';
 
@@ -27,7 +27,7 @@ export const params = {
     },
   },
   customClient: {
-    createChatCompletionStream: (client: InferenceClient, payload, instance) => {
+    createChatCompletionStream: (client: HfInference, payload, instance) => {
       const hfRes = client.chatCompletionStream({
         endpointUrl: instance.baseURL ? urlJoin(instance.baseURL, payload.model) : instance.baseURL,
         max_tokens: payload.max_tokens,
@@ -47,10 +47,7 @@ export const params = {
 
       return convertIterableToStream(hfRes);
     },
-    createClient: (options) =>
-      new InferenceClient(options.apiKey ?? '', {
-        endpointUrl: options.baseURL ?? undefined,
-      }),
+    createClient: (options) => new HfInference(options.apiKey ?? ''),
   },
   debug: {
     chatCompletion: () => process.env.DEBUG_HUGGINGFACE_CHAT_COMPLETION === '1',
