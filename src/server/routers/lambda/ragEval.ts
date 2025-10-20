@@ -202,6 +202,7 @@ export const ragEvalRouter = router({
       );
 
       const asyncCaller = await createAsyncCaller({
+        ip: ctx.ip,
         userId: ctx.userId,
         jwtPayload: ctx.jwtPayload,
       });

@@ -31,7 +31,11 @@ export class ChunkService {
     return this.chunkClient.chunkContent(params);
   }
 
-  async asyncEmbeddingFileChunks(fileId: string, payload: ClientSecretPayload) {
+  async asyncEmbeddingFileChunks(
+    fileId: string,
+    payload: ClientSecretPayload,
+    options?: { ip?: string },
+  ) {
     const result = await this.fileModel.findById(fileId);
 
     if (!result) return;
@@ -44,7 +48,11 @@ export class ChunkService {
 
     await this.fileModel.update(fileId, { embeddingTaskId: asyncTaskId });
 
-    const asyncCaller = await createAsyncCaller({ jwtPayload: payload, userId: this.userId });
+    const asyncCaller = await createAsyncCaller({
+      ip: options?.ip,
+      jwtPayload: payload,
+      userId: this.userId,
+    });
 
     // trigger embedding task asynchronously
     try {
@@ -67,13 +75,17 @@ export class ChunkService {
   /**
    * parse file to chunks with async task
    */
-  async asyncParseFileToChunks(fileId: string, payload: ClientSecretPayload, skipExist?: boolean) {
+  async asyncParseFileToChunks(
+    fileId: string,
+    payload: ClientSecretPayload,
+    options?: { ip?: string; skipExist?: boolean },
+  ) {
     const result = await this.fileModel.findById(fileId);
 
     if (!result) return;
 
     // skip if already exist chunk tasks
-    if (skipExist && result.chunkTaskId) return;
+    if (options?.skipExist && result.chunkTaskId) return;
 
     // 1. create a asyncTaskId
     const asyncTaskId = await this.asyncTaskModel.create({
@@ -83,7 +95,11 @@ export class ChunkService {
 
     await this.fileModel.update(fileId, { chunkTaskId: asyncTaskId });
 
-    const asyncCaller = await createAsyncCaller({ jwtPayload: payload, userId: this.userId });
+    const asyncCaller = await createAsyncCaller({
+      ip: options?.ip,
+      jwtPayload: payload,
+      userId: this.userId,
+    });
 
     // trigger parse file task asynchronously
     asyncCaller.file.parseFileToChunks({ fileId: fileId, taskId: asyncTaskId }).catch(async (e) => {

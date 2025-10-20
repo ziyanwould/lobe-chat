@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
 import fetch from 'node-fetch';
-import { RequestFilteringAgentOptions, useAgent as ssrfAgent } from 'request-filtering-agent';
 
 import { appEnv } from '@/envs/app';
+import {
+  RequestFilteringAgentOptions,
+  createRequestFilteringAgent,
+} from '@/libs/requestFilteringAgent';
 
 /**
  * just for a proxy
@@ -18,7 +21,7 @@ export const POST = async (req: Request) => {
       allowPrivateIPAddress: appEnv.SSRF_ALLOW_PRIVATE_IP_ADDRESS,
       denyIPAddressList: [],
     };
-    const res = await fetch(url, { agent: ssrfAgent(url, options) });
+    const res = await fetch(url, { agent: createRequestFilteringAgent(url, options) });
 
     return new Response(await res.arrayBuffer(), { headers: { ...res.headers } });
   } catch (err) {

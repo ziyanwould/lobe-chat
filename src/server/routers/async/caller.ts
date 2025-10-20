@@ -73,6 +73,7 @@ export const createAsyncCaller = async (
   if (isDesktop) {
     // Desktop 环境：使用 caller 直接同线程调用方法
     const asyncContext = await createAsyncContextInner({
+      ip: options.ip,
       jwtPayload,
       // 参考 src/libs/trpc/async/asyncAuth.ts
       secret: serverDBEnv.KEY_VAULTS_SECRET,

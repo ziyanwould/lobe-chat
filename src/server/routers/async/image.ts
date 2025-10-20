@@ -146,7 +146,7 @@ export const imageRouter = router({
             params: params as unknown as RuntimeImageGenParams,
           },
           {
-            ip: ctx.ip,
+            ip: ctx.ip || 'unknown',
             user: ctx.userId || ctx.jwtPayload?.userId,
           },
         );

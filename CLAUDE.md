@@ -113,9 +113,11 @@ Some useful rules of this project. Read them when needed.
   - Defaults changed to `SiliconCloud` / `Qwen/Qwen-Image` in `src/store/image/slices/generationConfig/initialState.ts`.
   - Synced tests in `src/store/image/slices/generationConfig/selectors.test.ts`.
 
-- User headers for image generation
-  - End-to-end propagation of `x-user-id` / `x-user-ip` for async image flow and providers.
-  - Async flow: `src/libs/trpc/lambda/context.ts` extracts IP; `src/server/routers/lambda/image.ts` passes; `src/server/routers/async/caller.ts` forwards as `x-forwarded-for`; `src/libs/trpc/async/context.ts` reads; `src/server/routers/async/image.ts` calls `createImage` with `{ user, ip }`.
+- User headers for async model calls
+  - Async auth keeps `ctx.ip` (`src/libs/trpc/async/asyncAuth.ts`) and `createAsyncCaller` forwards it across desktop/remote flows (`src/server/routers/async/caller.ts`).
+  - Image pipeline: `src/libs/trpc/lambda/context.ts` extracts IP → `src/server/routers/lambda/image.ts` passes → caller forwards → `src/libs/trpc/async/context.ts` reads → `src/server/routers/async/image.ts` calls `createImage` with `{ user, ip }`.
+  - Chunk & embedding tasks: `src/server/services/chunk/index.ts` propagates IP when triggering async jobs; `src/server/routers/lambda/chunk.ts` / `src/server/routers/async/file.ts` supply the caller options.
+  - RAG evaluation: `src/server/routers/lambda/ragEval.ts` passes IP to async caller; `src/server/routers/async/ragEval.ts` invokes `agentRuntime.chat` with `{ user, ip }`.
   - Providers updated: Azure/OpenAI, OpenAI-compatible factory (images.generate/edit & chat fallback), Volcengine, MiniMax, Qwen, BFL, SiliconCloud.
   - Ops note: ensure reverse proxies preserve `X-Forwarded-For`.
 

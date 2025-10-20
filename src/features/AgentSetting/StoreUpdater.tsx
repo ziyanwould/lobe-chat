@@ -4,7 +4,7 @@ import { ForwardedRef, memo, useImperativeHandle } from 'react';
 import { createStoreUpdater } from 'zustand-utils';
 
 import { AgentSettingsInstance, useAgentSettings } from './hooks/useAgentSettings';
-import { State, useStoreApi } from './store';
+import { State, initialState, useStoreApi } from './store';
 
 export interface StoreUpdaterProps
   extends Partial<
@@ -18,8 +18,8 @@ const StoreUpdater = memo<StoreUpdaterProps>(
     const storeApi = useStoreApi();
     const useStoreUpdater = createStoreUpdater(storeApi);
 
-    useStoreUpdater('meta', meta);
-    useStoreUpdater('config', config);
+    useStoreUpdater('meta', meta ?? initialState.meta);
+    useStoreUpdater('config', config ?? initialState.config);
     useStoreUpdater('onConfigChange', onConfigChange);
     useStoreUpdater('onMetaChange', onMetaChange);
     useStoreUpdater('loading', loading);

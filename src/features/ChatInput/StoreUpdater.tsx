@@ -5,6 +5,7 @@ import { createStoreUpdater } from 'zustand-utils';
 
 import { ChatInputEditor, useChatInputEditor } from './hooks/useChatInputEditor';
 import { PublicState, useStoreApi } from './store';
+import { initialState } from './store/initialState';
 
 export interface StoreUpdaterProps extends Partial<PublicState> {
   chatInputEditorRef?: ForwardedRef<ChatInputEditor | null>;
@@ -27,8 +28,8 @@ const StoreUpdater = memo<StoreUpdaterProps>(
 
     useStoreUpdater('mobile', mobile);
     useStoreUpdater('sendMenu', sendMenu);
-    useStoreUpdater('leftActions', leftActions);
-    useStoreUpdater('rightActions', rightActions);
+    useStoreUpdater('leftActions', leftActions ?? initialState.leftActions);
+    useStoreUpdater('rightActions', rightActions ?? initialState.rightActions);
 
     useStoreUpdater('sendButtonProps', sendButtonProps);
     useStoreUpdater('onSend', onSend);

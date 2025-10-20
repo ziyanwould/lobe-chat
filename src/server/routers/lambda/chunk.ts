@@ -42,7 +42,13 @@ export const chunkRouter = router({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const asyncTaskId = await ctx.chunkService.asyncEmbeddingFileChunks(input.id, ctx.jwtPayload);
+      const asyncTaskId = await ctx.chunkService.asyncEmbeddingFileChunks(
+        input.id,
+        ctx.jwtPayload,
+        {
+          ip: ctx.ip,
+        },
+      );
 
       return { id: asyncTaskId, success: true };
     }),
@@ -55,11 +61,10 @@ export const chunkRouter = router({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const asyncTaskId = await ctx.chunkService.asyncParseFileToChunks(
-        input.id,
-        ctx.jwtPayload,
-        input.skipExist,
-      );
+      const asyncTaskId = await ctx.chunkService.asyncParseFileToChunks(input.id, ctx.jwtPayload, {
+        ip: ctx.ip,
+        skipExist: input.skipExist,
+      });
 
       return { id: asyncTaskId, success: true };
     }),
@@ -95,7 +100,9 @@ export const chunkRouter = router({
       }
 
       // 2. create a new asyncTask for chunking
-      const asyncTaskId = await ctx.chunkService.asyncParseFileToChunks(input.id, ctx.jwtPayload);
+      const asyncTaskId = await ctx.chunkService.asyncParseFileToChunks(input.id, ctx.jwtPayload, {
+        ip: ctx.ip,
+      });
 
       return { id: asyncTaskId, success: true };
     }),

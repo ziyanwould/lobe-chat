@@ -9,6 +9,7 @@ import { createWithEqualityFn } from 'zustand/traditional';
 import { Store, store } from './action';
 
 export type { State } from './initialState';
+export { initialState } from './initialState';
 
 export const createStore = () => createWithEqualityFn(subscribeWithSelector(store), shallow);
 

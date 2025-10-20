@@ -15,21 +15,25 @@ const UserUpdater = memo(() => {
 
   const useStoreUpdater = createStoreUpdater(useUserStore);
 
-  const lobeUser = {
-    avatar: user?.imageUrl,
-    firstName: user?.firstName,
-    fullName: user?.fullName,
-    id: user?.id,
-    latestName: user?.lastName,
-    username: user?.username,
-  } as LobeUser;
+  const lobeUser: LobeUser | undefined = user
+    ? {
+        avatar: user.imageUrl,
+        firstName: user.firstName,
+        fullName: user.fullName,
+        id: user.id,
+        latestName: user.lastName,
+        username: user.username,
+      }
+    : undefined;
 
   useStoreUpdater('isLoaded', isLoaded);
   useStoreUpdater('user', lobeUser);
   useStoreUpdater('isSignedIn', isSignedIn);
 
-  useStoreUpdater('clerkUser', user);
-  useStoreUpdater('clerkSession', session);
+  const activeSession = session?.status === 'active' ? session : undefined;
+
+  useStoreUpdater('clerkUser', user ?? undefined);
+  useStoreUpdater('clerkSession', activeSession);
   useStoreUpdater('clerkSignIn', openSignIn);
   useStoreUpdater('clerkOpenUserProfile', openUserProfile);
   useStoreUpdater('clerkSignOut', signOut);
