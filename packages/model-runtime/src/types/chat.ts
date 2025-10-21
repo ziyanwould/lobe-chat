@@ -142,6 +142,10 @@ export interface ChatMethodOptions {
    */
   headers?: Record<string, any>;
   /**
+   * client ip for the chat completion
+   */
+  ip?: string;
+  /**
    * send the request to the ai api endpoint
    */
   requestHeaders?: Record<string, any>;

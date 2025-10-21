@@ -35,6 +35,7 @@ export const asyncAuth = asyncTrpc.middleware(async (opts) => {
 
     return opts.next({
       ctx: {
+        ip: ctx.ip,
         jwtPayload: ctx.jwtPayload,
         userId: ctx.userId,
       },

@@ -9,8 +9,8 @@ import {
 
 import { DEFAULT_IMAGE_CONFIG } from '@/const/settings';
 
-export const DEFAULT_AI_IMAGE_PROVIDER = ModelProvider.OpenAI;
-export const DEFAULT_AI_IMAGE_MODEL = 'gpt-image-1';
+export const DEFAULT_AI_IMAGE_PROVIDER = ModelProvider.SiliconCloud;
+export const DEFAULT_AI_IMAGE_MODEL = 'Qwen/Qwen-Image';
 
 export interface GenerationConfigState {
   parameters: RuntimeImageGenParams;

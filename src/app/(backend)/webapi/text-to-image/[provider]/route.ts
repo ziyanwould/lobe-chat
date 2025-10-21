@@ -46,6 +46,10 @@ export const preferredRegion = [
 
 export const POST = checkAuth(async (req: Request, { params, jwtPayload }) => {
   const { provider } = await params;
+  const ip =
+    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    req.headers.get('remote-address') ||
+    'unknown';
 
   try {
     // ============  1. init chat model   ============ //
@@ -55,7 +59,10 @@ export const POST = checkAuth(async (req: Request, { params, jwtPayload }) => {
 
     const data = (await req.json()) as TextToImagePayload;
 
-    const images = await agentRuntime.textToImage(data);
+    const images = await agentRuntime.textToImage(data, {
+      ip,
+      user: jwtPayload.userId,
+    });
 
     return NextResponse.json(images);
   } catch (e) {

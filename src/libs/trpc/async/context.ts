@@ -9,6 +9,7 @@ import { KeyVaultsGateKeeper } from '@/server/modules/KeyVaultsEncrypt';
 const log = debug('lobe-async:context');
 
 export interface AsyncAuthContext {
+  ip?: string;
   jwtPayload: ClientSecretPayload;
   secret: string;
   serverDB?: LobeChatDatabase;
@@ -20,10 +21,12 @@ export interface AsyncAuthContext {
  * This is useful for testing when we don't want to mock Next.js' request/response
  */
 export const createAsyncContextInner = async (params?: {
+  ip?: string | null;
   jwtPayload?: ClientSecretPayload;
   secret?: string;
   userId?: string | null;
 }): Promise<AsyncAuthContext> => ({
+  ip: params?.ip || undefined,
   jwtPayload: params?.jwtPayload || {},
   secret: params?.secret || '',
   userId: params?.userId,
@@ -71,7 +74,12 @@ export const createAsyncRouteContext = async (request: NextRequest): Promise<Asy
       Object.keys(payload || {}),
     );
 
-    return createAsyncContextInner({ jwtPayload: payload, secret, userId });
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+      request.headers.get('remote-address') ||
+      undefined;
+
+    return createAsyncContextInner({ ip, jwtPayload: payload, secret, userId });
   } catch (error) {
     log('Error creating async route context: %O', error);
     throw error;

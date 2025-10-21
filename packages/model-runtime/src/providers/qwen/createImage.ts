@@ -36,7 +36,11 @@ interface QwenImageEditResponse {
 /**
  * Create an image generation task with Qwen API for text-to-image models
  */
-async function createImageTask(payload: CreateImagePayload, apiKey: string): Promise<string> {
+async function createImageTask(
+  payload: CreateImagePayload,
+  apiKey: string,
+  options: CreateImageOptions,
+): Promise<string> {
   const { model, params } = payload;
   // I can only say that the design of Alibaba Cloud's API is really bad; each model has a different endpoint path.
   const endpoint = `https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-synthesis`;
@@ -64,6 +68,8 @@ async function createImageTask(payload: CreateImagePayload, apiKey: string): Pro
       'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
       'X-DashScope-Async': 'enable',
+      'x-user-id': options.user || 'unknown',
+      'x-user-ip': options.ip || 'unknown',
     },
     method: 'POST',
   });
@@ -93,6 +99,7 @@ async function createImageTask(payload: CreateImagePayload, apiKey: string): Pro
 async function createImageEdit(
   payload: CreateImagePayload,
   apiKey: string,
+  options: CreateImageOptions,
 ): Promise<CreateImageResponse> {
   const { model, params } = payload;
   const endpoint = `https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation`;
@@ -127,6 +134,8 @@ async function createImageEdit(
     headers: {
       'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
+      'x-user-id': options.user || 'unknown',
+      'x-user-ip': options.ip || 'unknown',
     },
     method: 'POST',
   });
@@ -168,14 +177,20 @@ async function createImageEdit(
 /**
  * Query the status of an image generation task
  */
-async function queryTaskStatus(taskId: string, apiKey: string): Promise<QwenImageTaskResponse> {
+async function queryTaskStatus(
+  taskId: string,
+  apiKey: string,
+  options: CreateImageOptions,
+): Promise<QwenImageTaskResponse> {
   const endpoint = `https://dashscope.aliyuncs.com/api/v1/tasks/${taskId}`;
 
   log('Querying task status for: %s', taskId);
 
   const response = await fetch(endpoint, {
     headers: {
-      Authorization: `Bearer ${apiKey}`,
+      'Authorization': `Bearer ${apiKey}`,
+      'x-user-id': options.user || 'unknown',
+      'x-user-ip': options.ip || 'unknown',
     },
   });
 
@@ -209,14 +224,14 @@ export async function createQwenImage(
     // Check if this is qwen-image-edit model for image-to-image
     if (model === 'qwen-image-edit') {
       log('Using multimodal-generation API for qwen-image-edit model');
-      return await createImageEdit(payload, apiKey);
+      return await createImageEdit(payload, apiKey, options);
     }
 
     // Default to text-to-image workflow for other qwen models
     log('Using text2image API for model: %s', model);
 
     // 1. Create image generation task
-    const taskId = await createImageTask(payload, apiKey);
+    const taskId = await createImageTask(payload, apiKey, options);
 
     // 2. Poll task status until completion using asyncifyPolling
     const result = await asyncifyPolling<QwenImageTaskResponse, CreateImageResponse>({
@@ -255,7 +270,7 @@ export async function createQwenImage(
         debug: (message: any, ...args: any[]) => log(message, ...args),
         error: (message: any, ...args: any[]) => log(message, ...args),
       },
-      pollingQuery: () => queryTaskStatus(taskId, apiKey),
+      pollingQuery: () => queryTaskStatus(taskId, apiKey, options),
     });
 
     return result;

@@ -100,13 +100,19 @@ export const ragEvalRouter = router({
         // 做一次生成 LLM 答案生成
         const { messages } = chainAnswerWithContext({ context, knowledge: [], question });
 
-        const response = await agentRuntime.chat({
-          messages: messages!,
-          model: !!languageModel ? languageModel : DEFAULT_MODEL,
-          responseMode: 'json',
-          stream: false,
-          temperature: 1,
-        });
+        const response = await agentRuntime.chat(
+          {
+            messages: messages!,
+            model: !!languageModel ? languageModel : DEFAULT_MODEL,
+            responseMode: 'json',
+            stream: false,
+            temperature: 1,
+          },
+          {
+            ip: ctx.ip || 'unknown',
+            user: ctx.userId || ctx.jwtPayload?.userId,
+          },
+        );
 
         const data = (await response.json()) as OpenAI.ChatCompletion;
 

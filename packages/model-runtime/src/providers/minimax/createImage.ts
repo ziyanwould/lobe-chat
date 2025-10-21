@@ -46,6 +46,8 @@ export async function createMiniMaxImage(
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
+        'x-user-id': options.user || 'unknown',
+        'x-user-ip': options.ip || 'unknown',
       },
       method: 'POST',
     });

@@ -174,7 +174,12 @@ export async function createGoogleImage(
   client: GoogleGenAI,
   provider: string,
   payload: CreateImagePayload,
+  _options?: { ip?: string, user?: string; },
 ): Promise<CreateImageResponse> {
+  const { user: _user, ip: _ip } = _options || {};
+  void _user;
+  void _ip;
+
   try {
     const { model } = payload;
 

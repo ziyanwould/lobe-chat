@@ -28,8 +28,11 @@ export interface LobeRuntimeAI {
 
   models?(): Promise<any>;
 
-  textToImage?: (payload: TextToImagePayload) => Promise<string[]>;
-  createImage?: (payload: CreateImagePayload) => Promise<CreateImageResponse>;
+  textToImage?: (payload: TextToImagePayload, options?: ChatMethodOptions) => Promise<string[]>;
+  createImage?: (
+    payload: CreateImagePayload,
+    options?: ChatMethodOptions,
+  ) => Promise<CreateImageResponse>;
 
   textToSpeech?: (
     payload: TextToSpeechPayload,
@@ -46,7 +49,10 @@ export abstract class LobeOpenAICompatibleRuntime {
   abstract client: OpenAI;
 
   abstract chat(payload: ChatStreamPayload, options?: ChatMethodOptions): Promise<Response>;
-  abstract createImage(payload: CreateImagePayload): Promise<CreateImageResponse>;
+  abstract createImage(
+    payload: CreateImagePayload,
+    options?: ChatMethodOptions,
+  ): Promise<CreateImageResponse>;
   abstract generateObject(
     payload: GenerateObjectPayload,
     options?: GenerateObjectOptions,

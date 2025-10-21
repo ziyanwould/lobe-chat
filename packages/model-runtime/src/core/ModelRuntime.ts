@@ -69,12 +69,12 @@ export class ModelRuntime {
     return this._runtime.generateObject!(payload);
   }
 
-  async textToImage(payload: TextToImagePayload) {
-    return this._runtime.textToImage?.(payload);
+  async textToImage(payload: TextToImagePayload, options?: ChatMethodOptions) {
+    return this._runtime.textToImage?.(payload, options);
   }
 
-  async createImage(payload: CreateImagePayload) {
-    return this._runtime.createImage?.(payload);
+  async createImage(payload: CreateImagePayload, options?: ChatMethodOptions) {
+    return this._runtime.createImage?.(payload, options);
   }
 
   async models() {

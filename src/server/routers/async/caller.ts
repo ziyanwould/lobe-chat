@@ -14,12 +14,18 @@ import { KeyVaultsGateKeeper } from '@/server/modules/KeyVaultsEncrypt';
 import { asyncRouter } from './index';
 import type { AsyncRouter } from './index';
 
-export const createAsyncServerClient = async (userId: string, payload: ClientSecretPayload) => {
+export const createAsyncServerClient = async (
+  userId: string,
+  payload: ClientSecretPayload,
+  ip?: string,
+) => {
   const gateKeeper = await KeyVaultsGateKeeper.initWithEnvKey();
   const headers: Record<string, string> = {
     Authorization: `Bearer ${serverDBEnv.KEY_VAULTS_SECRET}`,
     [LOBE_CHAT_AUTH_HEADER]: await gateKeeper.encrypt(JSON.stringify({ payload, userId })),
   };
+
+  if (ip) headers['x-forwarded-for'] = ip;
 
   if (process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
     headers['x-vercel-protection-bypass'] = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
@@ -49,6 +55,7 @@ const helperFunc = () => {
 export type UnifiedAsyncCaller = ReturnType<typeof helperFunc>;
 
 interface CreateCallerOptions {
+  ip?: string;
   jwtPayload: any;
   userId: string;
 }
@@ -60,11 +67,12 @@ interface CreateCallerOptions {
 export const createAsyncCaller = async (
   options: CreateCallerOptions,
 ): Promise<UnifiedAsyncCaller> => {
-  const { userId, jwtPayload } = options;
+  const { userId, jwtPayload, ip } = options;
 
   if (isDesktop) {
     // Desktop 环境：使用 caller 直接同线程调用方法
     const asyncContext = await createAsyncContextInner({
+      ip,
       jwtPayload,
       // 参考 src/libs/trpc/async/asyncAuth.ts
       secret: serverDBEnv.KEY_VAULTS_SECRET,
@@ -79,7 +87,7 @@ export const createAsyncCaller = async (
   // 非 Desktop 环境：使用 HTTP Client
   // http client 调用方式是 client.a.b.mutate(), 我希望统一成 caller.a.b() 的调用方式
   else {
-    const httpClient = await createAsyncServerClient(userId, jwtPayload);
+    const httpClient = await createAsyncServerClient(userId, jwtPayload, ip);
     const createRecursiveProxy = (client: any, path: string[]): any => {
       // The target is a dummy function, so that 'apply' can be triggered.
       return new Proxy(() => {}, {

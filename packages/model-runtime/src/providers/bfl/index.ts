@@ -2,6 +2,7 @@ import createDebug from 'debug';
 import { ClientOptions } from 'openai';
 
 import { LobeRuntimeAI } from '../../core/BaseAI';
+import { ChatMethodOptions } from '../../types';
 import { AgentRuntimeErrorType } from '../../types/error';
 import { CreateImagePayload, CreateImageResponse } from '../../types/image';
 import { AgentRuntimeError } from '../../utils/createError';
@@ -22,7 +23,10 @@ export class LobeBflAI implements LobeRuntimeAI {
     log('BFL AI initialized');
   }
 
-  async createImage(payload: CreateImagePayload): Promise<CreateImageResponse> {
+  async createImage(
+    payload: CreateImagePayload,
+    options?: ChatMethodOptions,
+  ): Promise<CreateImageResponse> {
     const { model, params } = payload;
     log('Creating image with model: %s and params: %O', model, params);
 
@@ -30,7 +34,9 @@ export class LobeBflAI implements LobeRuntimeAI {
       return await createBflImage(payload, {
         apiKey: this.apiKey,
         baseURL: this.baseURL,
+        ip: options?.ip,
         provider: 'bfl',
+        user: options?.user,
       });
     } catch (error) {
       log('Error in createImage: %O', error);

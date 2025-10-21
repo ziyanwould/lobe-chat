@@ -62,7 +62,12 @@ export async function createVolcengineImage(
   log('Volcengine API options: %O', requestOptions);
 
   // Call Volcengine image generation API
-  const response = await client.images.generate(requestOptions as any);
+  const response = await client.images.generate(requestOptions as any, {
+    headers: {
+      'x-user-id': options.user || 'unknown',
+      'x-user-ip': options.ip || 'unknown',
+    },
+  });
 
   log('Volcengine API response: %O', response);
 

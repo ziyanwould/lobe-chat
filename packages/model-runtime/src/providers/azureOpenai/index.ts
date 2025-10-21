@@ -42,7 +42,7 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
 
   baseURL: string;
 
-  async chat(payload: ChatStreamPayload, options?: ChatMethodOptions) {
+  async chat(payload: ChatStreamPayload, options: ChatMethodOptions = {}) {
     const { messages, model, ...params } = payload;
     // o1 series models on Azure OpenAI does not support streaming currently
     const enableStreaming = model.includes('o1') ? false : (params.stream ?? true);
@@ -123,7 +123,10 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
   }
 
   // Create image using Azure OpenAI Images API (gpt-image-1 or DALL·E deployments)
-  async createImage(payload: CreateImagePayload): Promise<CreateImageResponse> {
+  async createImage(
+    payload: CreateImagePayload,
+    options?: ChatMethodOptions,
+  ): Promise<CreateImageResponse> {
     const { model, params } = payload;
     azureImageLogger('Creating image with model: %s and params: %O', model, params);
 
@@ -155,7 +158,7 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
       if (userInput.size === 'auto') delete userInput.size;
 
       // Build options: do not force response_format for gpt-image-1
-      const options: any = {
+      const requestOptions: any = {
         model,
         n: 1,
         ...(isImageEdit ? { input_fidelity: 'high' } : {}),
@@ -163,12 +166,16 @@ export class LobeAzureOpenAI implements LobeRuntimeAI {
       };
 
       // For generate, ensure no 'image' field is sent
-      if (!isImageEdit) delete options.image;
+      if (!isImageEdit) delete requestOptions.image;
 
       // Call Azure Images API
+      const requestHeaders = {
+        'x-user-id': options?.user || 'unknown',
+        'x-user-ip': options?.ip || 'unknown',
+      };
       const img = isImageEdit
-        ? await this.client.images.edit(options)
-        : await this.client.images.generate(options);
+        ? await this.client.images.edit(requestOptions, { headers: requestHeaders })
+        : await this.client.images.generate(requestOptions, { headers: requestHeaders });
 
       // Normalize possible string JSON response -- Sometimes Azure Image API returns a text/plain Content-Type
       let result: any = img as any;

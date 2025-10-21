@@ -15,6 +15,10 @@ export const maxDuration = 300;
 
 export const POST = checkAuth(async (req: Request, { params, jwtPayload, createRuntime }) => {
   const { provider } = await params;
+  const ip =
+    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    req.headers.get('remote-address') ||
+    'unknown';
 
   try {
     // ============  1. init chat model   ============ //
@@ -38,6 +42,7 @@ export const POST = checkAuth(async (req: Request, { params, jwtPayload, createR
     }
 
     return await modelRuntime.chat(data, {
+      ip,
       user: jwtPayload.userId,
       ...traceOptions,
       signal: req.signal,

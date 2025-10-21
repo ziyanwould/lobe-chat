@@ -57,7 +57,9 @@ export const CHAT_MODELS_BLOCK_LIST = [
 type ConstructorOptions<T extends Record<string, any> = any> = ClientOptions & T;
 export type CreateImageOptions = Omit<ClientOptions, 'apiKey'> & {
   apiKey: string;
+  ip?: string;
   provider: string;
+  user?: string;
 };
 
 export interface CustomClientOptions<T extends Record<string, any> = any> {
@@ -262,6 +264,12 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
           },
         };
 
+        const customHeaders = {
+          ...options?.requestHeaders,
+          'x-user-id': options?.user,
+          'x-user-ip': options?.ip,
+        };
+
         if (customClient?.createChatCompletionStream) {
           log('using custom client for chat completion stream');
           response = customClient.createChatCompletionStream(
@@ -289,7 +297,7 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
 
           response = await this.client.chat.completions.create(finalPayload, {
             // https://github.com/lobehub/lobe-chat/pull/318
-            headers: { Accept: '*/*', ...options?.requestHeaders },
+            headers: { Accept: '*/*', ...customHeaders },
             signal: options?.signal,
           });
         }
@@ -351,7 +359,7 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
       }
     }
 
-    async createImage(payload: CreateImagePayload) {
+    async createImage(payload: CreateImagePayload, options?: ChatMethodOptions) {
       const log = debug(`${this.logPrefix}:createImage`);
 
       // If custom createImage implementation is provided, use it
@@ -360,13 +368,20 @@ export const createOpenAICompatibleRuntime = <T extends Record<string, any> = an
         return customCreateImage(payload, {
           ...this._options,
           apiKey: this._options.apiKey!,
+          ip: options?.ip,
           provider,
+          user: options?.user,
         });
       }
 
       log('using default createOpenAICompatibleImage');
       // Use the new createOpenAICompatibleImage function
-      return createOpenAICompatibleImage(this.client, payload, this.id);
+      const headers: Record<string, string> = {
+        'Accept': '*/*',
+        'x-user-id': options?.user || 'unknown',
+        'x-user-ip': options?.ip || 'unknown',
+      };
+      return createOpenAICompatibleImage(this.client, payload, this.id, headers);
     }
 
     async models() {

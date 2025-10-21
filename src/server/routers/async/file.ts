@@ -244,7 +244,9 @@ export const fileRouter = router({
 
           // if enable auto embedding, trigger the embedding task
           if (fileEnv.CHUNKS_AUTO_EMBEDDING) {
-            await chunkService.asyncEmbeddingFileChunks(input.fileId, ctx.jwtPayload);
+            await chunkService.asyncEmbeddingFileChunks(input.fileId, ctx.jwtPayload, {
+              ip: ctx.ip,
+            });
           }
 
           return { success: true };

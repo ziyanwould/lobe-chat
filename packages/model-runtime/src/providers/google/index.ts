@@ -315,8 +315,14 @@ export class LobeGoogleAI implements LobeRuntimeAI {
    * Generate images using Google AI Imagen API or Gemini Chat Models
    * @see https://ai.google.dev/gemini-api/docs/image-generation#imagen
    */
-  async createImage(payload: CreateImagePayload): Promise<CreateImageResponse> {
-    return createGoogleImage(this.client, this.provider, payload);
+  async createImage(
+    payload: CreateImagePayload,
+    options?: ChatMethodOptions,
+  ): Promise<CreateImageResponse> {
+    return createGoogleImage(this.client, this.provider, payload, {
+      ip: options?.ip,
+      user: options?.user,
+    });
   }
 
   /**
