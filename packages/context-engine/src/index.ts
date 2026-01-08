@@ -19,6 +19,7 @@ export {
 
 // Processors
 export {
+  GroupMessageFlattenProcessor,
   HistoryTruncateProcessor,
   InputTemplateProcessor,
   MessageCleanupProcessor,
@@ -32,6 +33,7 @@ export {
 export type {
   FunctionCallChecker,
   GenerateToolsParams,
+  LobeToolManifest,
   PluginEnableChecker,
   ToolNameGenerator,
   ToolsEngineOptions,

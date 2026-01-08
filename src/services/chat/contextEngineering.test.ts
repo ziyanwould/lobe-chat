@@ -1,4 +1,4 @@
-import { ChatMessage } from '@lobechat/types';
+import { UIChatMessage } from '@lobechat/types';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import * as isCanUseFCModule from '@/helpers/isCanUseFC';
@@ -72,7 +72,7 @@ describe('contextEngineering', () => {
           ],
         }, // Message with files
         { content: 'Hey', role: 'assistant' }, // Regular user message
-      ] as ChatMessage[];
+      ] as UIChatMessage[];
 
       const output = await contextEngineering({
         messages,
@@ -140,7 +140,7 @@ describe('contextEngineering', () => {
           ],
         }, // Message with files
         { content: 'Hey', role: 'assistant' }, // Regular user message
-      ] as ChatMessage[];
+      ] as UIChatMessage[];
       const output = await contextEngineering({
         messages,
         provider: 'openai',
@@ -192,7 +192,7 @@ describe('contextEngineering', () => {
         role: 'assistant',
         tool_calls: [],
       },
-    ] as ChatMessage[];
+    ] as UIChatMessage[];
 
     const result = await contextEngineering({
       messages,
@@ -222,7 +222,7 @@ describe('contextEngineering', () => {
           signature: 'thinking_process',
         },
       },
-    ] as ChatMessage[];
+    ] as UIChatMessage[];
 
     const result = await contextEngineering({
       messages,
@@ -243,6 +243,10 @@ describe('contextEngineering', () => {
             type: 'text',
           },
         ],
+        reasoning: {
+          content: 'I need to calculate the answer to life, universe, and everything.',
+          signature: 'thinking_process',
+        },
         role: 'assistant',
       },
     ]);
@@ -250,7 +254,7 @@ describe('contextEngineering', () => {
 
   it('should inject INBOX_GUIDE_SYSTEM_ROLE for welcome questions in inbox session', async () => {
     // Don't mock INBOX_GUIDE_SYSTEMROLE, use the real one
-    const messages: ChatMessage[] = [
+    const messages: UIChatMessage[] = [
       {
         role: 'user',
         content: 'Hello, this is my first question',
@@ -281,7 +285,7 @@ describe('contextEngineering', () => {
   it('should inject historySummary into system message when provided', async () => {
     const historySummary = 'Previous conversation summary: User discussed AI topics.';
 
-    const messages: ChatMessage[] = [
+    const messages: UIChatMessage[] = [
       {
         role: 'user',
         content: 'Continue our discussion',
@@ -310,7 +314,7 @@ describe('contextEngineering', () => {
       // Mock isCanUseVision to return true for vision models
       vi.spyOn(helpers, 'isCanUseVision').mockReturnValue(true);
 
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'assistant',
           content: 'Here is an image.',
@@ -337,7 +341,7 @@ describe('contextEngineering', () => {
       // Mock isCanUseVision to return true for vision models
       vi.spyOn(helpers, 'isCanUseVision').mockReturnValue(true);
 
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'assistant',
           content: '',
@@ -364,7 +368,7 @@ describe('contextEngineering', () => {
     // Mock isCanUseFC to return false
     vi.spyOn(isCanUseFCModule, 'isCanUseFC').mockReturnValue(false);
 
-    const messages: ChatMessage[] = [
+    const messages: UIChatMessage[] = [
       {
         role: 'assistant',
         content: 'I have a tool call.',
@@ -396,7 +400,7 @@ describe('contextEngineering', () => {
 
   describe('Process placeholder variables', () => {
     it('should process placeholder variables in string content', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Hello {{username}}, today is {{date}} and the time is {{time}}',
@@ -461,7 +465,7 @@ describe('contextEngineering', () => {
     });
 
     it('should handle missing placeholder variables gracefully', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Hello {{username}}, missing: {{missing_var}}',
@@ -482,7 +486,7 @@ describe('contextEngineering', () => {
     });
 
     it('should not modify messages without placeholder variables', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Hello there, no variables here',
@@ -506,7 +510,7 @@ describe('contextEngineering', () => {
       isServerMode = true;
       vi.spyOn(helpers, 'isCanUseVision').mockReturnValue(true);
 
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Hello {{username}}, check this image from {{date}}',
@@ -549,7 +553,7 @@ describe('contextEngineering', () => {
 
   describe('Message preprocessing processors', () => {
     it('should truncate message history when enabled', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Message 1',
@@ -611,7 +615,7 @@ describe('contextEngineering', () => {
     });
 
     it('should apply input template to user messages', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Original user input',
@@ -652,7 +656,7 @@ describe('contextEngineering', () => {
     });
 
     it('should inject system role at the beginning', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'User message',
@@ -678,7 +682,7 @@ describe('contextEngineering', () => {
     });
 
     it('should combine all preprocessing steps correctly', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Old message 1',
@@ -733,7 +737,7 @@ describe('contextEngineering', () => {
     });
 
     it('should skip preprocessing when no configuration is provided', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Simple message',
@@ -760,7 +764,7 @@ describe('contextEngineering', () => {
     });
 
     it('should handle history truncation with system role injection correctly', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'Message 1',
@@ -810,7 +814,7 @@ describe('contextEngineering', () => {
     });
 
     it('should handle input template compilation errors gracefully', async () => {
-      const messages: ChatMessage[] = [
+      const messages: UIChatMessage[] = [
         {
           role: 'user',
           content: 'User message',

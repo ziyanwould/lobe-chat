@@ -1,4 +1,5 @@
 import { TraceEventType } from '@lobechat/types';
+import { UIChatMessage } from '@lobechat/types';
 import * as lobeUIModules from '@lobehub/ui';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { mutate } from 'swr';
@@ -7,7 +8,6 @@ import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { messageService } from '@/services/message';
 import { topicService } from '@/services/topic';
 import { messageMapKey } from '@/store/chat/utils/messageMapKey';
-import { ChatMessage } from '@/types/message';
 
 import { useChatStore } from '../../store';
 
@@ -103,6 +103,98 @@ describe('chatMessage actions', () => {
     });
   });
 
+  describe('addUserMessage', () => {
+    it('should return early if activeId is undefined', async () => {
+      useChatStore.setState({ activeId: undefined });
+      const { result } = renderHook(() => useChatStore());
+      const updateInputMessageSpy = vi.spyOn(result.current, 'updateInputMessage');
+
+      await act(async () => {
+        await result.current.addUserMessage({ message: 'test message' });
+      });
+
+      expect(messageService.createMessage).not.toHaveBeenCalled();
+      expect(updateInputMessageSpy).not.toHaveBeenCalled();
+    });
+
+    it('should call internal_createMessage with correct parameters', async () => {
+      const message = 'Test user message';
+      const fileList = ['file-id-1', 'file-id-2'];
+      useChatStore.setState({
+        activeId: mockState.activeId,
+        activeTopicId: mockState.activeTopicId,
+      });
+      const { result } = renderHook(() => useChatStore());
+
+      await act(async () => {
+        await result.current.addUserMessage({ message, fileList });
+      });
+
+      expect(messageService.createMessage).toHaveBeenCalledWith({
+        content: message,
+        files: fileList,
+        role: 'user',
+        sessionId: mockState.activeId,
+        topicId: mockState.activeTopicId,
+        threadId: undefined,
+      });
+    });
+
+    it('should call internal_createMessage with threadId when activeThreadId is set', async () => {
+      const message = 'Test user message';
+      const activeThreadId = 'thread-123';
+      useChatStore.setState({
+        activeId: mockState.activeId,
+        activeTopicId: mockState.activeTopicId,
+        activeThreadId,
+      });
+      const { result } = renderHook(() => useChatStore());
+
+      await act(async () => {
+        await result.current.addUserMessage({ message });
+      });
+
+      expect(messageService.createMessage).toHaveBeenCalledWith({
+        content: message,
+        files: undefined,
+        role: 'user',
+        sessionId: mockState.activeId,
+        topicId: mockState.activeTopicId,
+        threadId: activeThreadId,
+      });
+    });
+
+    it('should call updateInputMessage with empty string', async () => {
+      const { result } = renderHook(() => useChatStore());
+      const updateInputMessageSpy = vi.spyOn(result.current, 'updateInputMessage');
+
+      await act(async () => {
+        await result.current.addUserMessage({ message: 'test' });
+      });
+
+      expect(updateInputMessageSpy).toHaveBeenCalledWith('');
+    });
+
+    it('should handle message without fileList', async () => {
+      const message = 'Test user message without files';
+      useChatStore.setState({ activeId: mockState.activeId });
+      const { result } = renderHook(() => useChatStore());
+
+      await act(async () => {
+        await result.current.addUserMessage({ message });
+      });
+
+      expect(messageService.createMessage).toHaveBeenCalledWith({
+        content: message,
+        files: undefined,
+        role: 'user',
+        sessionId: mockState.activeId,
+        topicId: mockState.activeTopicId,
+        threadId: undefined,
+      });
+    });
+  });
+
   describe('deleteMessage', () => {
     it('deleteMessage should remove a message by id', async () => {
       const { result } = renderHook(() => useChatStore());
@@ -114,7 +206,7 @@ describe('chatMessage actions', () => {
           activeId: 'session-id',
           activeTopicId: undefined,
           messagesMap: {
-            [messageMapKey('session-id')]: [{ id: messageId } as ChatMessage],
+            [messageMapKey('session-id')]: [{ id: messageId } as UIChatMessage],
           },
         });
       });
@@ -137,9 +229,9 @@ describe('chatMessage actions', () => {
           activeTopicId: undefined,
           messagesMap: {
             [messageMapKey('session-id')]: [
-              { id: messageId, tools: [{ id: 'tool1' }, { id: 'tool2' }] } as ChatMessage,
-              { id: '2', tool_call_id: 'tool1', role: 'tool' } as ChatMessage,
-              { id: '3', tool_call_id: 'tool2', role: 'tool' } as ChatMessage,
+              { id: messageId, tools: [{ id: 'tool1' }, { id: 'tool2' }] } as UIChatMessage,
+              { id: '2', tool_call_id: 'tool1', role: 'tool' } as UIChatMessage,
+              { id: '3', tool_call_id: 'tool2', role: 'tool' } as UIChatMessage,
             ],
           },
         });
@@ -200,9 +292,14 @@ describe('chatMessage actions', () => {
                 id: messageId,
                 role: 'assistant',
                 tools: [{ id: 'tool1' }, { id: 'tool2' }],
-              } as ChatMessage,
-              { id: '2', parentId: messageId, tool_call_id: 'tool1', role: 'tool' } as ChatMessage,
-              { id: '3', tool_call_id: 'tool2', role: 'tool' } as ChatMessage,
+              } as UIChatMessage,
+              {
+                id: '2',
+                parentId: messageId,
+                tool_call_id: 'tool1',
+                role: 'tool',
+              } as UIChatMessage,
+              { id: '3', tool_call_id: 'tool2', role: 'tool' } as UIChatMessage,
             ],
           },
         });

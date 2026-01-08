@@ -1,4 +1,4 @@
-import { ChatMessage } from '@lobechat/types';
+import { UIChatMessage } from '@lobechat/types';
 import { Tag } from '@lobehub/ui';
 import { useResponsive } from 'antd-style';
 import { ReactNode, memo, useCallback, useMemo } from 'react';
@@ -28,7 +28,7 @@ import { UserMessageExtra } from './Extra';
 import { MarkdownRender as UserMarkdownRender } from './MarkdownRender';
 import { UserMessageContent } from './MessageContent';
 
-interface UserMessageProps extends ChatMessage {
+interface UserMessageProps extends UIChatMessage {
   disableEditing?: boolean;
   index: number;
 }
@@ -44,18 +44,8 @@ const remarkPlugins = markdownElements
   .filter(Boolean);
 
 const UserMessage = memo<UserMessageProps>((props) => {
-  const {
-    id,
-    ragQuery,
-    content,
-    createdAt,
-    error,
-    role,
-    index,
-    extra,
-    disableEditing,
-    targetId,
-  } = props;
+  const { id, ragQuery, content, createdAt, error, role, index, extra, disableEditing, targetId } =
+    props;
 
   const { t } = useTranslation('chat');
   const { mobile } = useResponsive();
@@ -71,14 +61,14 @@ const UserMessage = memo<UserMessageProps>((props) => {
   ]);
 
   const loading = isInRAGFlow || generating;
-  
+
   // Get target name for DM indicator
   const userName = useUserStore(userProfileSelectors.nickName) || 'User';
   const agents = useSessionStore(sessionSelectors.currentGroupAgents);
-  
+
   const dmIndicator = useMemo(() => {
     if (!targetId) return undefined;
-    
+
     let targetName = targetId;
     if (targetId === 'user') {
       targetName = userName;
@@ -86,7 +76,7 @@ const UserMessage = memo<UserMessageProps>((props) => {
       const targetAgent = agents?.find((agent) => agent.id === targetId);
       targetName = targetAgent?.title || targetId;
     }
-    
+
     return <Tag>{t('dm.visibleTo', { target: targetName })}</Tag>;
   }, [targetId, userName, agents, t]);
 
@@ -167,7 +157,7 @@ const UserMessage = memo<UserMessageProps>((props) => {
           direction={placement === 'left' ? 'horizontal' : 'horizontal-reverse'}
           gap={8}
         >
-          <Flexbox flex={1} style={{ minWidth: 0 }}>
+          <Flexbox flex={1} style={{ maxWidth: '100%', minWidth: 0 }}>
             <MessageContent
               editing={editing}
               id={id}

@@ -2,16 +2,49 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { mutate } from 'swr';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { FILE_UPLOAD_BLACKLIST } from '@/const/file';
+import { message } from '@/components/AntdStaticMethods';
+import { FILE_UPLOAD_BLACKLIST, MAX_UPLOAD_FILE_COUNT } from '@/const/file';
 import { lambdaClient } from '@/libs/trpc/client';
 import { fileService } from '@/services/file';
 import { ragService } from '@/services/rag';
 import { FileListItem } from '@/types/files';
 import { UploadFileItem } from '@/types/files/upload';
+import { unzipFile } from '@/utils/unzipFile';
 
 import { useFileStore as useStore } from '../../store';
 
 vi.mock('zustand/traditional');
+
+// Mock i18next translation function
+vi.mock('i18next', () => ({
+  t: (key: string, options?: any) => {
+    // Return a mock translation string that includes the options for verification
+    if (key === 'uploadDock.fileQueueInfo' && options?.count !== undefined) {
+      return `Uploading ${options.count} files, ${options.remaining} queued`;
+    }
+    return key;
+  },
+}));
+
+// Mock message
+vi.mock('@/components/AntdStaticMethods', () => ({
+  message: {
+    info: vi.fn(),
+    warning: vi.fn(),
+  },
+}));
+
+// Mock unzipFile
+vi.mock('@/utils/unzipFile', () => ({
+  unzipFile: vi.fn(),
+}));
+
+// Mock p-map to run sequentially for easier testing
+vi.mock('p-map', () => ({
+  default: vi.fn(async (items, mapper) => {
+    return Promise.all(items.map(mapper));
+  }),
+}));
 
 // Mock SWR
 vi.mock('swr', async () => {
@@ -234,6 +267,7 @@ describe('FileManagerActions', () => {
         .mockResolvedValue({ id: 'file-1', url: 'http://example.com/file-1' });
       const refreshSpy = vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
       const dispatchSpy = vi.spyOn(result.current, 'dispatchDockFileList');
+      const parseSpy = vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
 
       await act(async () => {
         await result.current.pushDockFileList([validFile, blacklistedFile]);
@@ -252,6 +286,8 @@ describe('FileManagerActions', () => {
         onStatusUpdate: expect.any(Function),
       });
       expect(refreshSpy).toHaveBeenCalled();
+      // Should auto-parse text files
+      expect(parseSpy).toHaveBeenCalledWith(['file-1'], { skipExist: false });
     });
 
     it('should upload files with knowledgeBaseId', async () => {
@@ -263,6 +299,7 @@ describe('FileManagerActions', () => {
         .spyOn(result.current, 'uploadWithProgress')
         .mockResolvedValue({ id: 'file-1', url: 'http://example.com/file-1' });
       vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
 
       await act(async () => {
         await result.current.pushDockFileList([file], 'kb-123');
@@ -287,6 +324,7 @@ describe('FileManagerActions', () => {
           return { id: 'file-1', url: 'http://example.com/file-1' };
         });
       vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
       const dispatchSpy = vi.spyOn(result.current, 'dispatchDockFileList');
 
       await act(async () => {
@@ -302,6 +340,7 @@ describe('FileManagerActions', () => {
 
       const uploadSpy = vi.spyOn(result.current, 'uploadWithProgress');
       const refreshSpy = vi.spyOn(result.current, 'refreshFileList');
+      const parseSpy = vi.spyOn(result.current, 'parseFilesToChunks');
 
       await act(async () => {
         await result.current.pushDockFileList([]);
@@ -309,6 +348,190 @@ describe('FileManagerActions', () => {
 
       expect(uploadSpy).not.toHaveBeenCalled();
       expect(refreshSpy).not.toHaveBeenCalled();
+      expect(parseSpy).not.toHaveBeenCalled();
+    });
+
+    it('should auto-embed files that support chunking', async () => {
+      const { result } = renderHook(() => useStore());
+
+      const textFile = new File(['text content'], 'doc.txt', { type: 'text/plain' });
+      const pdfFile = new File(['pdf content'], 'doc.pdf', { type: 'application/pdf' });
+
+      vi.spyOn(result.current, 'uploadWithProgress')
+        .mockResolvedValueOnce({ id: 'file-1', url: 'http://example.com/file-1' })
+        .mockResolvedValueOnce({ id: 'file-2', url: 'http://example.com/file-2' });
+      vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      const parseSpy = vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
+
+      await act(async () => {
+        await result.current.pushDockFileList([textFile, pdfFile]);
+      });
+
+      // Should auto-parse both files that support chunking
+      expect(parseSpy).toHaveBeenCalledWith(['file-1', 'file-2'], { skipExist: false });
+    });
+
+    it('should skip auto-embed for unsupported file types (images/videos/audio)', async () => {
+      const { result } = renderHook(() => useStore());
+
+      const imageFile = new File(['image content'], 'image.png', { type: 'image/png' });
+      const videoFile = new File(['video content'], 'video.mp4', { type: 'video/mp4' });
+      const audioFile = new File(['audio content'], 'audio.mp3', { type: 'audio/mpeg' });
+
+      vi.spyOn(result.current, 'uploadWithProgress')
+        .mockResolvedValueOnce({ id: 'file-1', url: 'http://example.com/file-1' })
+        .mockResolvedValueOnce({ id: 'file-2', url: 'http://example.com/file-2' })
+        .mockResolvedValueOnce({ id: 'file-3', url: 'http://example.com/file-3' });
+      vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      const parseSpy = vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
+
+      await act(async () => {
+        await result.current.pushDockFileList([imageFile, videoFile, audioFile]);
+      });
+
+      // Should not auto-parse unsupported files
+      expect(parseSpy).not.toHaveBeenCalled();
+    });
+
+    it('should auto-embed only supported files in mixed upload', async () => {
+      const { result } = renderHook(() => useStore());
+
+      const textFile = new File(['text content'], 'doc.txt', { type: 'text/plain' });
+      const imageFile = new File(['image content'], 'image.png', { type: 'image/png' });
+      const pdfFile = new File(['pdf content'], 'doc.pdf', { type: 'application/pdf' });
+
+      vi.spyOn(result.current, 'uploadWithProgress')
+        .mockResolvedValueOnce({ id: 'file-1', url: 'http://example.com/file-1' })
+        .mockResolvedValueOnce({ id: 'file-2', url: 'http://example.com/file-2' })
+        .mockResolvedValueOnce({ id: 'file-3', url: 'http://example.com/file-3' });
+      vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      const parseSpy = vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
+
+      await act(async () => {
+        await result.current.pushDockFileList([textFile, imageFile, pdfFile]);
+      });
+
+      // Should only auto-parse text and pdf files, skip image
+      expect(parseSpy).toHaveBeenCalledWith(['file-1', 'file-3'], { skipExist: false });
+    });
+
+    it('should skip auto-embed when upload fails', async () => {
+      const { result } = renderHook(() => useStore());
+
+      const textFile = new File(['text content'], 'doc.txt', { type: 'text/plain' });
+
+      vi.spyOn(result.current, 'uploadWithProgress').mockResolvedValue(undefined);
+      vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      const parseSpy = vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
+
+      await act(async () => {
+        await result.current.pushDockFileList([textFile]);
+      });
+
+      // Should not auto-parse when upload returns undefined
+      expect(parseSpy).not.toHaveBeenCalled();
+    });
+
+    it('should enforce file count limit and queue excess files', async () => {
+      const { result } = renderHook(() => useStore());
+
+      // Create more files than the limit
+      const totalFiles = MAX_UPLOAD_FILE_COUNT + 5;
+      const files = Array.from(
+        { length: totalFiles },
+        (_, i) => new File(['content'], `file-${i}.txt`, { type: 'text/plain' }),
+      );
+
+      vi.spyOn(result.current, 'uploadWithProgress').mockResolvedValue({
+        id: 'file-1',
+        url: 'http://example.com/file-1',
+      });
+      vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
+      const dispatchSpy = vi.spyOn(result.current, 'dispatchDockFileList');
+
+      await act(async () => {
+        await result.current.pushDockFileList(files);
+      });
+
+      // Should add all files to dock (not just first MAX_UPLOAD_FILE_COUNT)
+      expect(dispatchSpy).toHaveBeenCalledWith({
+        atStart: true,
+        files: expect.arrayContaining([
+          expect.objectContaining({ file: expect.any(File), status: 'pending' }),
+        ]),
+        type: 'addFiles',
+      });
+
+      // Verify all files were dispatched
+      const dispatchCall = dispatchSpy.mock.calls.find((call) => call[0].type === 'addFiles');
+      expect(dispatchCall?.[0]).toHaveProperty('files');
+      if (dispatchCall && 'files' in dispatchCall[0]) {
+        expect(dispatchCall[0].files).toHaveLength(totalFiles);
+      }
+    });
+
+    it('should extract ZIP files and upload contents', async () => {
+      const { result } = renderHook(() => useStore());
+
+      const zipFile = new File(['zip content'], 'archive.zip', { type: 'application/zip' });
+      const extractedFiles = [
+        new File(['file1'], 'file1.txt', { type: 'text/plain' }),
+        new File(['file2'], 'file2.txt', { type: 'text/plain' }),
+      ];
+
+      vi.mocked(unzipFile).mockResolvedValue(extractedFiles);
+      vi.spyOn(result.current, 'uploadWithProgress').mockResolvedValue({
+        id: 'file-1',
+        url: 'http://example.com/file-1',
+      });
+      vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
+      const dispatchSpy = vi.spyOn(result.current, 'dispatchDockFileList');
+
+      await act(async () => {
+        await result.current.pushDockFileList([zipFile]);
+      });
+
+      // Should extract ZIP file
+      expect(unzipFile).toHaveBeenCalledWith(zipFile);
+
+      // Should upload extracted files
+      expect(dispatchSpy).toHaveBeenCalledWith({
+        atStart: true,
+        files: extractedFiles.map((file) => ({ file, id: file.name, status: 'pending' })),
+        type: 'addFiles',
+      });
+    });
+
+    it('should handle ZIP extraction errors gracefully', async () => {
+      const { result } = renderHook(() => useStore());
+
+      const zipFile = new File(['zip content'], 'archive.zip', { type: 'application/zip' });
+
+      vi.mocked(unzipFile).mockRejectedValue(new Error('Extraction failed'));
+      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      vi.spyOn(result.current, 'uploadWithProgress').mockResolvedValue({
+        id: 'file-1',
+        url: 'http://example.com/file-1',
+      });
+      vi.spyOn(result.current, 'refreshFileList').mockResolvedValue();
+      vi.spyOn(result.current, 'parseFilesToChunks').mockResolvedValue();
+      const dispatchSpy = vi.spyOn(result.current, 'dispatchDockFileList');
+
+      await act(async () => {
+        await result.current.pushDockFileList([zipFile]);
+      });
+
+      // Should log error
+      expect(consoleErrorSpy).toHaveBeenCalled();
+
+      // Should fallback to uploading the ZIP file itself
+      expect(dispatchSpy).toHaveBeenCalledWith({
+        atStart: true,
+        files: [{ file: zipFile, id: zipFile.name, status: 'pending' }],
+        type: 'addFiles',
+      });
     });
   });
 
